@@ -1,2 +1,2 @@
-# cmbb-store
-cmbb store
+# smbb-store
+smbb store
