@@ -1,10 +1,14 @@
 export const navLink = [
   {
     key: "nav.home",
-    href: "/"
+    href: "/",
   },
   {
     key: "nav.services",
-    href: "/services"
-  }
-];
+    href: "/services",
+  },
+  {
+    key: "nav.location",
+    href: "/location",
+  },
+]
