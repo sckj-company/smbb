@@ -1,0 +1,13 @@
+{
+  "language": {
+    "label": "Idioma",
+    "select": "Selecione um idioma"
+  },
+  "company": {
+    "name": "SCKJ - Comércio e Serviços"
+  },
+  "nav": {
+    "home": "Início",
+    "services": "Serviços"
+  }
+}
