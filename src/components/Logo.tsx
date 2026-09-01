@@ -9,7 +9,7 @@ export default function Logo() {
         alt="SMBB Logo"
         width="200"
         height="100"
-        className="h-19 w-auto"
+        className="h-10 w-auto"
       />
     </Link>
   );
