@@ -8,6 +8,7 @@
   },
   "nav": {
     "home": "首页",
-    "services": "服务"
+    "services": "服务",
+    "location": "地点"
   }
 }
