@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { ArrowRight, Flame, Heart, Star } from "lucide-react";
-import { products } from "@/data/products";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useTranslation } from "react-i18next";
+import Link from "next/link"
+import { ArrowRight, Flame, Heart, Star } from "lucide-react"
+import { products } from "@/data/products"
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
+import { Checkbox } from "@/components/ui/checkbox"
+import { useTranslation } from "react-i18next"
 
 const filterChips = [
   "Apple",
@@ -14,21 +14,21 @@ const filterChips = [
   "SMEG",
   "Samsung",
   "Sony",
-  "Remez"
-];
+  "Remez",
+]
 
 function formatKz(value: number) {
-  return `Kz ${value.toLocaleString("pt-AO")}`;
+  return `Kz ${value.toLocaleString("pt-AO")}`
 }
 
 function ProductVisual({
   Icon,
   accent,
-  accentColor
+  accentColor,
 }: {
-  Icon: typeof Flame;
-  accent: string;
-  accentColor: string;
+  Icon: typeof Flame
+  accent: string
+  accentColor: string
 }) {
   return (
     <div
@@ -42,17 +42,17 @@ function ProductVisual({
         <Icon className="h-12 w-12" strokeWidth={1.4} />
       </div>
     </div>
-  );
+  )
 }
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   return (
     <main className="min-h-screen px-4 pb-12 pt-4 text-slate-900 md:px-6">
       <div className="mx-auto max-w-7xl">
         <h1 className="my-8 text-2xl font-semibold">{t("company.name")}</h1>
 
-        <div className="relative grid gap-8 xl:grid-cols-[280px_minmax(0,1fr)]">
+        <div className="relative grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
           <aside className="sticky top-10 h-fit grid gap-8 rounded-lg border border-slate-200 p-5">
             <div>
               <p className="mb-6 flex items-center gap-2 text-sm font-medium text-slate-500">
@@ -64,7 +64,7 @@ export default function Home() {
                     "Apple",
                     "SMEG",
                     "Home Appliances",
-                    "Kitchen Appliances"
+                    "Kitchen Appliances",
                   ].map((label) => (
                     <span
                       key={label}
@@ -109,7 +109,7 @@ export default function Home() {
           <section className="space-y-10">
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {products.map((product) => {
-                const Icon = product.icon;
+                const Icon = product.icon
 
                 return (
                   <article
@@ -174,12 +174,12 @@ export default function Home() {
                       </div>
                     </Link>
                   </article>
-                );
+                )
               })}
             </div>
           </section>
         </div>
       </div>
     </main>
-  );
+  )
 }
