@@ -8,6 +8,7 @@
   },
   "nav": {
     "home": "Início",
-    "services": "Serviços"
+    "services": "Serviços",
+    "location": "Localização"
   }
 }
