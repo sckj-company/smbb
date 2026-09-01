@@ -1,0 +1,13 @@
+{
+  "language": {
+    "label": "语言",
+    "select": "选择语言"
+  },
+  "company": {
+    "name": "SCKJ - 商业和服务"
+  },
+  "nav": {
+    "home": "首页",
+    "services": "服务"
+  }
+}
