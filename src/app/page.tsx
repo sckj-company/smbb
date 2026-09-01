@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <main className="min-h-screen px-4 pb-12 pt-4 text-slate-900 md:px-6">
       <div className="mx-auto max-w-7xl">
-        <h1 className="my-8 text-2xl font-semibold">{t("company.name")}</h1>
+        <h1 className="my-8 lg:text-lg xl:text-2xl font-semibold">{t("company.name")}</h1>
 
         <div className="relative grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
           <aside className="sticky top-10 h-fit grid gap-8 rounded-lg border border-slate-200 p-5">
