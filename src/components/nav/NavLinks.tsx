@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useTranslation } from "react-i18next";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useTranslation } from "react-i18next"
 
-import { navLink } from "@/data/links";
+import { navLink } from "@/data/links"
 
 export default function NavLinks() {
-  const pathname = usePathname();
-  const { t } = useTranslation();
+  const pathname = usePathname()
+  const { t } = useTranslation()
 
-  const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) => pathname === href
 
   return (
     <div className="flex items-center gap-5">
@@ -18,7 +18,7 @@ export default function NavLinks() {
         <Link
           key={link.href}
           href={link.href}
-          className={`transition-colors ${
+          className={`transition-colors text-sm xl:text-base ${
             isActive(link.href)
               ? "text-blue-500 font-semibold"
               : "text-gray-500 hover:text-blue-500"
@@ -28,5 +28,5 @@ export default function NavLinks() {
         </Link>
       ))}
     </div>
-  );
+  )
 }
