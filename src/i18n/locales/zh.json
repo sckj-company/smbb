@@ -11,11 +11,10 @@
     "services": "服务"
   },
   "filters": {
-    "reset": "清除筛选",
-    "brand": "品牌",
-    "homeAppliances": "家用电器",
-    "kitchenAppliances": "厨房电器",
-    "safety": "安全"
+    "all": "全部",
+    "extinguishers": "灭火器",
+    "supports": "支持",
+    "plates": "路标"
   },
   "servicesPage": {
     "eyebrow": "服务",
