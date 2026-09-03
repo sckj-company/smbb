@@ -11,11 +11,10 @@
     "services": "Serviços"
   },
   "filters": {
-    "reset": "Limpar filtros",
-    "brand": "Marca",
-    "homeAppliances": "Eletrodomésticos",
-    "kitchenAppliances": "Eletrodomésticos de cozinha",
-    "safety": "Segurança"
+    "all": "Todos",
+    "extinguishers": "Extintores",
+    "supports": "Suportes",
+    "plates": "Placas de Sinalização"
   },
   "servicesPage": {
     "eyebrow": "Serviços",
