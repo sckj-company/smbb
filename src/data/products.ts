@@ -1,18 +1,18 @@
-import { Flame, ShieldCheck, Siren } from "lucide-react";
+import { Flame, ShieldCheck, Siren } from "lucide-react"
 
 export type Product = {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  oldPrice: number;
-  accent: string;
-  accentColor: string;
-  image: string;
-  description: string;
-  highlights: string[];
-  type: "product";
-};
+  id: string
+  name: string
+  brand: string
+  price: number
+  oldPrice: number
+  accent: string
+  accentColor: string
+  image: string
+  description: string
+  highlights: string[]
+  type: "product"
+}
 
 export const products: Product[] = [
   {
@@ -23,15 +23,15 @@ export const products: Product[] = [
     oldPrice: 1100000,
     accent: "from-slate-700 via-stone-700 to-neutral-900",
     accentColor: "#facc15",
-    image: "/extintor-5bc.png",
+    image: "/product.png",
     description:
       "Extintor multifuncional para uso em áreas comerciais, industriais e residenciais com alta confiabilidade.",
     highlights: [
       "Pressão certificada",
       "Acessório de suporte",
-      "Válvula de segurança"
+      "Válvula de segurança",
     ],
-    type: "product"
+    type: "product",
   },
   {
     id: "detector-fumaca",
@@ -41,15 +41,15 @@ export const products: Product[] = [
     oldPrice: 1290000,
     accent: "from-zinc-700 via-slate-800 to-black",
     accentColor: "#e5e7eb",
-    image: "/extintor-5bc.png",
+    image: "/product.png",
     description:
       "Detector inteligente com alarme sonoro, indicação visual e resposta rápida para proteção imediata.",
     highlights: [
       "Alarme sonoro 85 dB",
       "Bateria de longa duração",
-      "Teste automatizado"
+      "Teste automatizado",
     ],
-    type: "product"
+    type: "product",
   },
   {
     id: "sprinklers",
@@ -59,15 +59,15 @@ export const products: Product[] = [
     oldPrice: 1430000,
     accent: "from-stone-500 via-zinc-700 to-black",
     accentColor: "#d4d4d8",
-    image: "/extintor-5bc.png",
+    image: "/product.png",
     description:
       "Sistema automatizado de combate a incêndio para proteção contínua de áreas amplas e comerciais.",
     highlights: [
       "Cobertura ampla",
       "Resposta automática",
-      "Instalação sob medida"
+      "Instalação sob medida",
     ],
-    type: "product"
+    type: "product",
   },
   {
     id: "extintore-abc",
@@ -77,15 +77,15 @@ export const products: Product[] = [
     oldPrice: 1100000,
     accent: "from-slate-700 via-stone-700 to-neutral-900",
     accentColor: "#facc15",
-    image: "/extintor-5bc.png",
+    image: "/product.png",
     description:
       "Extintor multifuncional para uso em áreas comerciais, industriais e residenciais com alta confiabilidade.",
     highlights: [
       "Pressão certificada",
       "Acessório de suporte",
-      "Válvula de segurança"
+      "Válvula de segurança",
     ],
-    type: "product"
+    type: "product",
   },
   {
     id: "deteector-fumaca",
@@ -95,15 +95,15 @@ export const products: Product[] = [
     oldPrice: 1290000,
     accent: "from-zinc-700 via-slate-800 to-black",
     accentColor: "#e5e7eb",
-    image: "/extintor-5bc.png",
+    image: "/product.png",
     description:
       "Detector inteligente com alarme sonoro, indicação visual e resposta rápida para proteção imediata.",
     highlights: [
       "Alarme sonoro 85 dB",
       "Bateria de longa duração",
-      "Teste automatizado"
+      "Teste automatizado",
     ],
-    type: "product"
+    type: "product",
   },
   {
     id: "sprinkleres",
@@ -113,14 +113,14 @@ export const products: Product[] = [
     oldPrice: 1430000,
     accent: "from-stone-500 via-zinc-700 to-black",
     accentColor: "#d4d4d8",
-    image: "/extintor-5bc.png",
+    image: "/product.png",
     description:
       "Sistema automatizado de combate a incêndio para proteção contínua de áreas amplas e comerciais.",
     highlights: [
       "Cobertura ampla",
       "Resposta automática",
-      "Instalação sob medida"
+      "Instalação sob medida",
     ],
-    type: "product"
-  }
-];
+    type: "product",
+  },
+]
