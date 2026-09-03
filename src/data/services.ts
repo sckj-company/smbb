@@ -1,10 +1,8 @@
-import { Check, ShieldCheck, Sparkles, Wrench } from "lucide-react";
-
 export type Service = {
   id: string;
   title: string;
   description: string;
-  icon: typeof ShieldCheck;
+  image: string;
   price: string;
   highlights: string[];
   type: "service";
@@ -15,8 +13,8 @@ export const services: Service[] = [
     id: "inspecao-anual",
     title: "Inspeção anual",
     description:
-      "Laudo técnico completo com checagem de extintores, hidrantes, detectores e sinalização de emergência.",
-    icon: Check,
+      "Laudo técnico completo de extintores, hidrantes, detectores e sinalização de emergência.",
+    image: "/service.jpg",
     price: "A partir de Kz 420.000",
     highlights: ["Relatório digital", "Checklist completo", "Acompanha laudo"],
     type: "service"
@@ -25,8 +23,8 @@ export const services: Service[] = [
     id: "treinamento-brigada",
     title: "Treinamento de brigada",
     description:
-      "Treinamento prático para evacuação, uso de extintores e resposta rápida em situações de emergência.",
-    icon: Sparkles,
+      "Treinamento prático de evacuação, uso de extintores e resposta rápida a emergências.",
+    image: "/service.jpg",
     price: "A partir de Kz 680.000",
     highlights: [
       "Treinamento prático",
@@ -39,8 +37,8 @@ export const services: Service[] = [
     id: "manutencao-preventiva",
     title: "Manutenção preventiva",
     description:
-      "Verificação, recarga e substituição de componentes críticos para manter o sistema sempre funcional.",
-    icon: Wrench,
+      "Verificação, recarga e substituição de componentes críticos para manter o sistema funcional.",
+    image: "/service.jpg",
     price: "A partir de Kz 560.000",
     highlights: [
       "Recarga de extintores",
