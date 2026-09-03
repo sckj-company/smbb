@@ -3,8 +3,8 @@ export type Language = "pt" | "zh";
 export const defaultLanguage: Language = "pt";
 
 export const languages: Record<Language, string> = {
-  pt: "Português",
-  zh: "简体中文"
+  zh: "简体中文",
+  pt: "Português"
 };
 
 export const getInitialLanguage = (): Language => {
