@@ -6,10 +6,9 @@ export type Product = {
   brand: string;
   price: number;
   oldPrice: number;
-  tag: string;
   accent: string;
   accentColor: string;
-  icon: typeof Flame;
+  image: string;
   description: string;
   highlights: string[];
   type: "product";
@@ -22,10 +21,9 @@ export const products: Product[] = [
     brand: "SMEG",
     price: 985000,
     oldPrice: 1100000,
-    tag: "Promo 15%",
     accent: "from-slate-700 via-stone-700 to-neutral-900",
     accentColor: "#facc15",
-    icon: Flame,
+    image: "/extintor-5bc.png",
     description:
       "Extintor multifuncional para uso em áreas comerciais, industriais e residenciais com alta confiabilidade.",
     highlights: [
@@ -41,10 +39,9 @@ export const products: Product[] = [
     brand: "APPLE",
     price: 1130000,
     oldPrice: 1290000,
-    tag: "Top rated",
     accent: "from-zinc-700 via-slate-800 to-black",
     accentColor: "#e5e7eb",
-    icon: Siren,
+    image: "/extintor-5bc.png",
     description:
       "Detector inteligente com alarme sonoro, indicação visual e resposta rápida para proteção imediata.",
     highlights: [
@@ -60,10 +57,9 @@ export const products: Product[] = [
     brand: "SMEG",
     price: 1290000,
     oldPrice: 1430000,
-    tag: "Novo",
     accent: "from-stone-500 via-zinc-700 to-black",
     accentColor: "#d4d4d8",
-    icon: ShieldCheck,
+    image: "/extintor-5bc.png",
     description:
       "Sistema automatizado de combate a incêndio para proteção contínua de áreas amplas e comerciais.",
     highlights: [
@@ -79,10 +75,9 @@ export const products: Product[] = [
     brand: "SMEG",
     price: 985000,
     oldPrice: 1100000,
-    tag: "Promo 15%",
     accent: "from-slate-700 via-stone-700 to-neutral-900",
     accentColor: "#facc15",
-    icon: Flame,
+    image: "/extintor-5bc.png",
     description:
       "Extintor multifuncional para uso em áreas comerciais, industriais e residenciais com alta confiabilidade.",
     highlights: [
@@ -98,10 +93,9 @@ export const products: Product[] = [
     brand: "APPLE",
     price: 1130000,
     oldPrice: 1290000,
-    tag: "Top rated",
     accent: "from-zinc-700 via-slate-800 to-black",
     accentColor: "#e5e7eb",
-    icon: Siren,
+    image: "/extintor-5bc.png",
     description:
       "Detector inteligente com alarme sonoro, indicação visual e resposta rápida para proteção imediata.",
     highlights: [
@@ -117,10 +111,9 @@ export const products: Product[] = [
     brand: "SMEG",
     price: 1290000,
     oldPrice: 1430000,
-    tag: "Novo",
     accent: "from-stone-500 via-zinc-700 to-black",
     accentColor: "#d4d4d8",
-    icon: ShieldCheck,
+    image: "/extintor-5bc.png",
     description:
       "Sistema automatizado de combate a incêndio para proteção contínua de áreas amplas e comerciais.",
     highlights: [
