@@ -4,11 +4,95 @@
     "select": "Selecione um idioma"
   },
   "company": {
-    "name": "SCKJ - Comércio e Serviços"
+    "name": "SMBB - Comércio e Serviços"
   },
   "nav": {
-    "home": "Início",
-    "services": "Serviços",
-    "location": "Localização"
+    "store": "Loja",
+    "services": "Serviços"
+  },
+  "filters": {
+    "reset": "Limpar filtros",
+    "brand": "Marca",
+    "homeAppliances": "Eletrodomésticos",
+    "kitchenAppliances": "Eletrodomésticos de cozinha",
+    "safety": "Segurança"
+  },
+  "servicesPage": {
+    "eyebrow": "Serviços",
+    "title": "Proteção e suporte técnico",
+    "quote": "Solicitar orçamento",
+    "openDetails": "Abrir detalhes de {{title}}",
+    "items": {
+      "inspecao-anual": {
+        "title": "Inspeção anual",
+        "description": "Laudo técnico completo de extintores, hidrantes, detectores e sinalização de emergência.",
+        "price": "A partir de Kz 420.000",
+        "highlights": [
+          "Relatório digital",
+          "Checklist completo",
+          "Acompanha laudo"
+        ]
+      },
+      "treinamento-brigada": {
+        "title": "Treinamento de brigada",
+        "description": "Treinamento prático de evacuação, uso de extintores e resposta rápida a emergências.",
+        "price": "A partir de Kz 680.000",
+        "highlights": [
+          "Treinamento prático",
+          "Simulação realista",
+          "Certificação de brigada"
+        ]
+      },
+      "manutencao-preventiva": {
+        "title": "Manutenção preventiva",
+        "description": "Verificação, recarga e substituição de componentes críticos para manter o sistema funcional.",
+        "price": "A partir de Kz 560.000",
+        "highlights": [
+          "Recarga de extintores",
+          "Troca de peças",
+          "Monitoramento técnico"
+        ]
+      }
+    }
+  },
+  "products": {
+    "extintor-abc": {
+      "title": "Extintor ABC 6kg",
+      "description": "Extintor multifuncional para uso em áreas comerciais, industriais e residenciais com alta confiabilidade.",
+      "highlights": [
+        "Pressão certificada",
+        "Acessório de suporte",
+        "Válvula de segurança"
+      ]
+    },
+    "detector-fumaca": {
+      "title": "Detector de fumaça",
+      "description": "Detector inteligente com alarme sonoro, indicação visual e resposta rápida para proteção imediata.",
+      "highlights": [
+        "Alarme sonoro 85 dB",
+        "Bateria de longa duração",
+        "Teste automatizado"
+      ]
+    },
+    "sprinklers": {
+      "title": "Sistema de sprinklers",
+      "description": "Sistema automatizado de combate a incêndio para proteção contínua de áreas amplas e comerciais.",
+      "highlights": [
+        "Cobertura ampla",
+        "Resposta automática",
+        "Instalação sob medida"
+      ]
+    }
+  },
+  "detail": {
+    "bestseller": "Mais vendido",
+    "product": "Produto",
+    "service": "Serviço",
+    "features": "Principais recursos",
+    "buyNow": "Comprar agora",
+    "addToCart": "Adicionar ao carrinho",
+    "warranty": "Garantia",
+    "warrantyValue": "1 ano",
+    "back": "Voltar"
   }
 }
