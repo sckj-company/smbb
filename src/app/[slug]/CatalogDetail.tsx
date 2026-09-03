@@ -1,50 +1,50 @@
-"use client";
+"use client"
 
-import { Check, ShoppingCart, Star } from "lucide-react";
-import { Product, products } from "@/data/products";
-import { Service, services } from "@/data/services";
-import { useTranslation } from "react-i18next";
-import Image from "next/image";
+import { Check, ShoppingCart, Star } from "lucide-react"
+import { Product, products } from "@/data/products"
+import { Service, services } from "@/data/services"
+import { useTranslation } from "react-i18next"
+import Image from "next/image"
 
-const catalogItems = [...products, ...services];
+const catalogItems = [...products, ...services]
 
 function formatKz(value: number) {
-  return `Kz ${value.toLocaleString("pt-AO")}`;
+  return `Kz ${value.toLocaleString("pt-AO")}`
 }
 
 export default function CatalogDetail({ slug }: { slug: string }) {
-  const { t } = useTranslation();
-  const item = catalogItems.find((entry) => entry.id === slug);
+  const { t } = useTranslation()
+  const item = catalogItems.find((entry) => entry.id === slug)
 
-  if (!item) return null;
+  if (!item) return null
 
-  const isProduct = item.type === "product";
-  const product = isProduct ? (item as Product) : null;
-  const service = !isProduct ? (item as Service) : null;
+  const isProduct = item.type === "product"
+  const product = isProduct ? (item as Product) : null
+  const service = !isProduct ? (item as Service) : null
   const productTranslationId = product?.id
     .replace("extintore-abc", "extintor-abc")
     .replace("deteector-fumaca", "detector-fumaca")
-    .replace("sprinkleres", "sprinklers");
+    .replace("sprinkleres", "sprinklers")
   const translationKey = service
     ? `servicesPage.items.${service.id}`
-    : `products.${productTranslationId}`;
-  const title = t(`${translationKey}.title`, { defaultValue: product?.name });
+    : `products.${productTranslationId}`
+  const title = t(`${translationKey}.title`, { defaultValue: product?.name })
   const description = service
     ? t(`${translationKey}.description`)
     : t(`${translationKey}.description`, {
-        defaultValue: product?.description
-      });
+        defaultValue: product?.description,
+      })
   const highlights = service
     ? (t(`${translationKey}.highlights`, { returnObjects: true }) as string[])
     : (t(`${translationKey}.highlights`, {
         returnObjects: true,
-        defaultValue: product?.highlights
-      }) as string[]);
+        defaultValue: product?.highlights,
+      }) as string[])
 
   return (
-    <main className="mx-auto mt-12 md:w-7xl xl:w-full 2xl:w-7xl bg-white">
-      <div className="grid gap-15 lg:grid-cols-[1.2fr_0.8fr]">
-        <section className="rounded-xl border border-blue-200 bg-blue-50 p-4 md:p-5">
+    <main className="mx-auto mt-12 md:max-full md:p-6 2xl:w-7xl bg-white">
+      <div className="sm:relative grid md:gap-12 2xl:gap-15 md:grid-cols-[1fr_1fr]">
+        <section className="sm:sticky top-10 h-fit rounded-xl border border-blue-200 bg-blue-50 p-4 md:p-5">
           <div className="mb-5">
             <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-slate-500">
               {t("detail.bestseller")}
@@ -79,7 +79,7 @@ export default function CatalogDetail({ slug }: { slug: string }) {
           </div>
         </section>
 
-        <aside className="rounded-xl bg-white">
+        <aside className="rounded-xl py-4 md:py-5">
           <div className="flex items-center justify-between gap-3">
             <p className="border-b pb-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">
               {isProduct ? product?.brand : "SMBB Care"}
@@ -88,16 +88,17 @@ export default function CatalogDetail({ slug }: { slug: string }) {
               {isProduct ? t("detail.product") : t("detail.service")}
             </span>
           </div>
-          <h1 className="mt-5 text-3xl font-semibold tracking-[-0.07em] text-slate-900 md:text-[2.2rem]">
+
+          <h1 className="mt-5 md:text-2xl  2xl:text-3xl font-semibold tracking-[-0.07em] text-slate-900">
             {title}
           </h1>
           <p className="mt-4 text-sm leading-6 text-slate-600">{description}</p>
           <div className="mt-5 flex items-end gap-3">
-            <p className="text-xl font-bold tracking-[-0.06em] text-slate-900">
+            <p className="xl:text-lg 2xl:text-xl font-bold tracking-[-0.06em] text-slate-900">
               {isProduct ? formatKz(product!.price) : service!.price}
             </p>
             {isProduct && (
-              <span className="mb-1 text-sm text-slate-400 line-through">
+              <span className="mb-1 md:text-xs 2xl:text-sm text-slate-400 line-through">
                 {formatKz(product!.oldPrice)}
               </span>
             )}
@@ -148,5 +149,5 @@ export default function CatalogDetail({ slug }: { slug: string }) {
         </aside>
       </div>
     </main>
-  );
+  )
 }
