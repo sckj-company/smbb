@@ -29,13 +29,14 @@ export default function ServicesPage() {
         {services.map((service) => {
           const translationKey = `servicesPage.items.${service.id}`;
           const title = t(`${translationKey}.title`);
+          
           return (
             <Link
               href={`/${service.id}`}
               key={service.id}
-              className="overflow-hidden rounded-[22px] border border-slate-200 bg-slate-50 transition hover:bg-slate-100 shadow-[0_12px_30px_rgba(15,23,42,0.04)] hover:shadow-none"
+              className="overflow-hidden rounded-lg border border-slate-200 bg-slate-50 transition hover:bg-slate-100 shadow-[0_12px_30px_rgba(15,23,42,0.04)] hover:shadow-none"
             >
-              <div className="w-full aspect-3/2">
+              <div className="w-full lg:aspect-4/2 2xl:aspect-3/2">
                 <Image
                   src={service.image}
                   alt="Service Cover"
