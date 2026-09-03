@@ -4,11 +4,71 @@
     "select": "选择语言"
   },
   "company": {
-    "name": "SCKJ - 商业和服务"
+    "name": "SMBB - 商业和服务"
   },
   "nav": {
-    "home": "首页",
-    "services": "服务",
-    "location": "地点"
+    "store": "店铺",
+    "services": "服务"
+  },
+  "filters": {
+    "reset": "清除筛选",
+    "brand": "品牌",
+    "homeAppliances": "家用电器",
+    "kitchenAppliances": "厨房电器",
+    "safety": "安全"
+  },
+  "servicesPage": {
+    "eyebrow": "服务",
+    "title": "保护与技术支持",
+    "quote": "申请报价",
+    "openDetails": "打开 {{title}} 的详细信息",
+    "items": {
+      "inspecao-anual": {
+        "title": "年度检查",
+        "description": "对灭火器、消防栓、探测器和紧急标识进行完整的技术检查并出具报告。",
+        "price": "起价 Kz 420,000",
+        "highlights": ["数字报告", "完整检查清单", "附带技术报告"]
+      },
+      "treinamento-brigada": {
+        "title": "消防队培训",
+        "description": "提供疏散、灭火器使用和紧急响应的实操培训。",
+        "price": "起价 Kz 680,000",
+        "highlights": ["实操培训", "真实模拟", "消防队认证"]
+      },
+      "manutencao-preventiva": {
+        "title": "预防性维护",
+        "description": "检查、补充和更换关键部件，确保系统持续正常运行。",
+        "price": "起价 Kz 560,000",
+        "highlights": ["灭火器充装", "更换零件", "技术监控"]
+      }
+    }
+  },
+  "products": {
+    "extintor-abc": {
+      "title": "ABC 6公斤灭火器",
+      "description": "适用于商业、工业和住宅区域的多功能灭火器，可靠性高。",
+      "highlights": ["认证压力", "支架配件", "安全阀"]
+    },
+    "detector-fumaca": {
+      "title": "烟雾探测器",
+      "description": "配备声音警报和视觉指示的智能探测器，可快速响应并提供即时保护。",
+      "highlights": ["85分贝声音警报", "长效电池", "自动测试"]
+    },
+    "sprinklers": {
+      "title": "自动喷水灭火系统",
+      "description": "适用于大型商业区域的自动灭火系统，提供持续保护。",
+      "highlights": ["广泛覆盖", "自动响应", "定制安装"]
+    }
+  },
+  "detail": {
+    "bestseller": "畅销产品",
+    "product": "产品",
+    "service": "服务",
+    "features": "主要功能",
+    "buyNow": "立即购买",
+    "addToCart": "加入购物车",
+    "warranty": "保修",
+    "warrantyValue": "1 再次",
+    "back": "返回"
   }
 }
