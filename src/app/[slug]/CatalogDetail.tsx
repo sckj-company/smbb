@@ -42,9 +42,9 @@ export default function CatalogDetail({ slug }: { slug: string }) {
       }) as string[])
 
   return (
-    <main className="mx-auto mt-12 md:max-full md:p-6 2xl:w-7xl bg-white">
+    <main className="mx-auto mt-35 md:max-full md:p-6 2xl:w-7xl bg-white">
       <div className="sm:relative grid md:gap-12 2xl:gap-15 md:grid-cols-[1fr_1fr]">
-        <section className="sm:sticky top-10 h-fit rounded-xl border border-blue-200 bg-blue-50 p-4 md:p-5">
+        <section className="sm:sticky top-40 h-fit rounded-xl border border-blue-200 bg-blue-50 p-4 md:p-5">
           <div className="mb-5">
             <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-slate-500">
               {t("detail.bestseller")}
