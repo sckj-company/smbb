@@ -1,18 +1,17 @@
-import { Flame, ShieldCheck, Siren } from "lucide-react"
-
 export type Product = {
-  id: string
-  name: string
-  brand: string
-  price: number
-  oldPrice: number
-  accent: string
-  accentColor: string
-  image: string
-  description: string
-  highlights: string[]
-  type: "product"
-}
+  id: string;
+  name: string;
+  brand: string;
+  price: number;
+  oldPrice: number;
+  accent: string;
+  accentColor: string;
+  image: string;
+  description: string;
+  highlights: string[];
+  groupType: "Extintor" | "Suporte" | "Placa de Sinalização";
+  type: "product";
+};
 
 export const products: Product[] = [
   {
@@ -29,9 +28,10 @@ export const products: Product[] = [
     highlights: [
       "Pressão certificada",
       "Acessório de suporte",
-      "Válvula de segurança",
+      "Válvula de segurança"
     ],
-    type: "product",
+    groupType: "Extintor",
+    type: "product"
   },
   {
     id: "detector-fumaca",
@@ -47,9 +47,10 @@ export const products: Product[] = [
     highlights: [
       "Alarme sonoro 85 dB",
       "Bateria de longa duração",
-      "Teste automatizado",
+      "Teste automatizado"
     ],
-    type: "product",
+    groupType: "Extintor",
+    type: "product"
   },
   {
     id: "sprinklers",
@@ -65,9 +66,10 @@ export const products: Product[] = [
     highlights: [
       "Cobertura ampla",
       "Resposta automática",
-      "Instalação sob medida",
+      "Instalação sob medida"
     ],
-    type: "product",
+    groupType: "Suporte",
+    type: "product"
   },
   {
     id: "extintore-abc",
@@ -83,9 +85,10 @@ export const products: Product[] = [
     highlights: [
       "Pressão certificada",
       "Acessório de suporte",
-      "Válvula de segurança",
+      "Válvula de segurança"
     ],
-    type: "product",
+    groupType: "Suporte",
+    type: "product"
   },
   {
     id: "deteector-fumaca",
@@ -101,9 +104,10 @@ export const products: Product[] = [
     highlights: [
       "Alarme sonoro 85 dB",
       "Bateria de longa duração",
-      "Teste automatizado",
+      "Teste automatizado"
     ],
-    type: "product",
+    groupType: "Placa de Sinalização",
+    type: "product"
   },
   {
     id: "sprinkleres",
@@ -119,8 +123,9 @@ export const products: Product[] = [
     highlights: [
       "Cobertura ampla",
       "Resposta automática",
-      "Instalação sob medida",
+      "Instalação sob medida"
     ],
-    type: "product",
-  },
-]
+    groupType: "Placa de Sinalização",
+    type: "product"
+  }
+];
