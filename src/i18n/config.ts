@@ -4,10 +4,12 @@ import { initReactI18next } from "react-i18next";
 import pt from "@/i18n/locales/pt.json";
 import zh from "@/i18n/locales/zh.json";
 
+const defaultLanguage = "zh";
+
 const savedLanguage =
   typeof window !== "undefined"
-    ? localStorage.getItem("smbb-language") || "pt"
-    : "pt";
+    ? localStorage.getItem("smbb-language") || defaultLanguage
+    : defaultLanguage;
 
 if (!i18next.isInitialized) {
   i18next.use(initReactI18next).init({
@@ -16,7 +18,7 @@ if (!i18next.isInitialized) {
       zh: { translation: zh }
     },
     lng: savedLanguage,
-    fallbackLng: "pt",
+    fallbackLng: defaultLanguage,
     interpolation: {
       escapeValue: false
     },
