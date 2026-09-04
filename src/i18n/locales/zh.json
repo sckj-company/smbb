@@ -14,7 +14,9 @@
     "all": "全部",
     "extinguishers": "灭火器",
     "supports": "支持",
-    "plates": "路标"
+    "plates": "路标",
+    "placeholder": "搜索产品...",
+    "safety": "安全"
   },
   "servicesPage": {
     "eyebrow": "服务",
@@ -69,5 +71,14 @@
     "warranty": "保修",
     "warrantyValue": "1 再次",
     "back": "返回"
+  },
+  "cta": {
+    "title": "不要等到火来敲门",
+    "description": "保护你努力建立的东西。 SMBB 为您提供最好的消防设备和服务，以便在悲剧发生之前而不是之后采取行动。",
+    "button": "立即保护"
+  },
+  "footer": {
+    "description": "消防专家。在最坏的情况发生之前，我们会保护对您重要的东西。",
+    "copyright": "SMBB - 商业和服务，(SU), LDA"
   }
 }
