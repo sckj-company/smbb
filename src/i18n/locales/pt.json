@@ -14,7 +14,9 @@
     "all": "Todos",
     "extinguishers": "Extintores",
     "supports": "Suportes",
-    "plates": "Placas de Sinalização"
+    "plates": "Placas de Sinalização",
+    "placeholder": "Pesquisar produto...",
+    "safety": "Segurança"
   },
   "servicesPage": {
     "eyebrow": "Serviços",
@@ -93,5 +95,14 @@
     "warranty": "Garantia",
     "warrantyValue": "1 ano",
     "back": "Voltar"
+  },
+  "cta": {
+    "title": "Não Espere o Fogo Bater à Porta",
+    "description": "Proteja o que construiu com esforço. A SMBB junta-te aos melhores equipamentos e serviços contra-incêndios, para agires antes da tragédia, e não depois dela.",
+    "button": "Proteger Agora"
+  },
+  "footer": {
+    "description": "Especialistas em prevenção e combate a incêndios. Protegemos o que é importante para ti, antes que o pior aconteça.",
+    "copyright": "SMBB - Comércio e Serviços, (SU), LDA"
   }
 }
