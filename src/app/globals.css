@@ -152,11 +152,7 @@
 }
 
 body {
-  padding: 2rem;
-
-  @media (width <= 1280px) {
-    padding: 1rem;
-  }
+  padding: 0;
 }
 
 .login-container {
