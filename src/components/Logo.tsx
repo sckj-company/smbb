@@ -1,15 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Logo() {
+interface LogoProps {
+  className?: string;
+  variant?: "dark" | "light";
+  link?: string;
+}
+
+export default function Logo({
+  className,
+  variant = "dark",
+  link = "/"
+}: LogoProps) {
   return (
-    <Link href="/">
+    <Link href={link}>
       <Image
-        src="/smbb-logo.webp"
+        src={
+          variant === "dark" ? "/smbb-logo-dark.webp" : "/smbb-logo-light.webp"
+        }
         alt="SMBB Logo"
         width="200"
         height="100"
-        className="lg:h-8.5 xl:h-10 w-auto"
+        className={`sm:h-6.5 xl:h-7.5 w-auto ${className}`}
       />
     </Link>
   );
