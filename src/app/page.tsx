@@ -1,42 +1,24 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { ArrowUpRight, Search } from "lucide-react";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import Image from "next/image";
+import Link from "next/link"
+import { ArrowUpRight, Search } from "lucide-react"
+import { useState } from "react"
+import { useTranslation } from "react-i18next"
+import Image from "next/image"
 
-import { products } from "@/data/products";
-
-const productGroups = Array.from(
-  new Set(products.map((product) => product.groupType))
-);
-
-const groupTranslationKeys = {
-  Extintor: "filters.extinguishers",
-  Suporte: "filters.supports",
-  "Placa de Sinalização": "filters.plates"
-} as const;
+import SelectGroup from "@/components/products/SelectGroup"
+import useSelectGroup from "@/hooks/useSelectGroup"
 
 function formatKz(value: number) {
-  return `Kz ${value.toLocaleString("pt-AO")}`;
+  return `Kz ${value.toLocaleString("pt-AO")}`
 }
 
 export default function Home() {
-  const { t } = useTranslation();
-  const [selectedGroup, setSelectedGroup] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const normalizedSearchQuery = searchQuery.trim().toLocaleLowerCase();
-
-  const visibleProducts = products.filter((product) => {
-    const matchesGroup = !selectedGroup || product.groupType === selectedGroup;
-    const searchableText =
-      `${product.name} ${product.brand} ${product.groupType}`.toLocaleLowerCase();
-    const matchesSearch = searchableText.includes(normalizedSearchQuery);
-
-    return matchesGroup && matchesSearch;
-  });
+  const { t } = useTranslation()
+  const [searchQuery, setSearchQuery] = useState("")
+  const { selectedGroup, setSelectedGroup, visibleProducts } = useSelectGroup({
+    searchQuery,
+  })
 
   return (
     <main className="mt-38 min-h-screen pb-12 text-slate-900">
@@ -47,42 +29,22 @@ export default function Home() {
           </h1>
 
           <div className="flex items-center justify-between">
-            <ul className="flex gap-2.5">
-              {[null, ...productGroups].map((groupType) => {
-                const isSelected = selectedGroup === groupType;
-                const label = groupType
-                  ? t(
-                      groupTranslationKeys[
-                        groupType as keyof typeof groupTranslationKeys
-                      ]
-                    )
-                  : t("filters.all");
-
-                return (
-                  <button
-                    key={groupType ?? "all"}
-                    type="button"
-                    aria-pressed={isSelected}
-                    onClick={() => setSelectedGroup(groupType)}
-                    className={`text-sm py-1 px-3 ${isSelected ? "bg-blue-50 rounded-4xl text-blue-500 font-medium" : "text-gray-500 hover:text-blue-500"}`}
-                  >
-                    {label}
-                  </button>
-                );
-              })}
-            </ul>
-
-            <label className="flex items-center gap-2 rounded-full bg-slate-50 px-4 py-2 ring-1 ring-slate-200">
-            <input
-              value={searchQuery}
-              onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Pesquisar produto"
-              aria-label="Pesquisar produto"
-              className="w-40 bg-transparent text-sm outline-none"
+            <SelectGroup
+              selectedGroup={selectedGroup}
+              setSelectedGroup={setSelectedGroup}
             />
 
-            <Search className="h-4 w-4 text-slate-400" />
-          </label>
+            <label className="flex items-center gap-2 rounded-full bg-slate-50 px-4 py-2 ring-1 ring-slate-200">
+              <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Pesquisar produto"
+                aria-label="Pesquisar produto"
+                className="w-40 bg-transparent text-sm outline-none"
+              />
+
+              <Search className="h-4 w-4 text-slate-400" />
+            </label>
           </div>
         </div>
 
@@ -137,11 +99,11 @@ export default function Home() {
                     </div>
                   </Link>
                 </article>
-              );
+              )
             })}
           </div>
         </section>
       </div>
     </main>
-  );
+  )
 }
