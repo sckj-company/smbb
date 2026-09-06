@@ -151,8 +151,9 @@
   }
 }
 
-body {
-  padding: 0;
+body::selection {
+  background-color: var(--color-blue-300);
+  color: var(--color-blue-900);
 }
 
 .login-container {
