@@ -1,19 +1,18 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { Edit, Plus, Search } from "lucide-react";
-import { useState } from "react";
-import { products } from "@/data/products";
+import Image from "next/image"
+import Link from "next/link"
+import { Edit, Plus, Search } from "lucide-react"
+import { useState } from "react"
+import SelectGroup from "../products/SelectGroup"
+import useSelectGroup from "@/hooks/useSelectGroup"
 
 export default function AdminProductList() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const query = searchQuery.trim().toLocaleLowerCase();
-  const visibleProducts = products.filter((product) =>
-    `${product.name} ${product.brand} ${product.groupType}`
-      .toLocaleLowerCase()
-      .includes(query)
-  );
+  const [searchQuery, setSearchQuery] = useState("")
+  const query = searchQuery.trim().toLocaleLowerCase()
+  const { selectedGroup, setSelectedGroup, visibleProducts } = useSelectGroup({
+    searchQuery: query,
+  })
 
   return (
     <main className="mx-auto max-w-7xl">
@@ -23,9 +22,14 @@ export default function AdminProductList() {
             Administração
           </p>
 
-          <h1 className="mt-2 text-2xl font-semibold text-slate-900">
+          <h1 className="mt-2 mb-4 text-2xl font-semibold text-slate-900">
             Produtos
           </h1>
+
+          <SelectGroup
+            selectedGroup={selectedGroup}
+            setSelectedGroup={setSelectedGroup}
+          />
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -82,5 +86,5 @@ export default function AdminProductList() {
         ))}
       </div>
     </main>
-  );
+  )
 }
