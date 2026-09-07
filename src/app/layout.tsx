@@ -18,7 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "SMBB - Comércio e Serviços, (SU), LDA",
-  description: "SMBB oferece equipamentos e serviços premium de segurança contra incêndios em Angola, incluindo inspeção, manutenção e recarga de extintores, hidrantes e sistemas de emergência."
+  description:
+    "SMBB oferece equipamentos e serviços premium de segurança contra incêndios em Angola, incluindo inspeção, manutenção e recarga de extintores, hidrantes e sistemas de emergência."
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
