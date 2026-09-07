@@ -1,40 +1,40 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { LayoutDashboard, LogOut, Package, Wrench } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
-import Logo from "../Logo";
+import Link from "next/link"
+import { LayoutDashboard, LogOut, Package, Wrench } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
+import Logo from "../Logo"
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/products", label: "Produtos", icon: Package },
-  { href: "/admin/services", label: "Serviços", icon: Wrench }
-];
+  { href: "/admin/services", label: "Serviços", icon: Wrench },
+]
 
 export default function AdminNavbar() {
-  const pathname = usePathname();
-  const router = useRouter();
+  const pathname = usePathname()
+  const router = useRouter()
 
   if (pathname === "/admin/login") {
-    return null;
+    return null
   }
 
   async function logout() {
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.replace("/admin/login");
-    router.refresh();
+    await fetch("/api/admin/logout", { method: "POST" })
+    router.replace("/admin/login")
+    router.refresh()
   }
 
   return (
     <nav className="fixed top-0  left-1/2 -translate-x-1/2 z-10 w-full max-w-7xl bg-white py-5">
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="flex md:w-5xl 2xl:w-7xl mx-auto items-center justify-between gap-4">
         <Logo link="/admin" />
 
         <div className="flex items-center gap-2">
           {links.map(({ href, label, icon: Icon }) => {
             const isActive =
-              href === "/admin" ? pathname === href : pathname.startsWith(href);
+              href === "/admin" ? pathname === href : pathname.startsWith(href)
 
             return (
               <Link
@@ -45,7 +45,7 @@ export default function AdminNavbar() {
                 <Icon size={16} />
                 {label}
               </Link>
-            );
+            )
           })}
           <button
             type="button"
@@ -58,5 +58,5 @@ export default function AdminNavbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
