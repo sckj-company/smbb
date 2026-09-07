@@ -1,37 +1,41 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import useSWR from "swr";
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
+import useSWR from "swr"
+import Loader from "@/components/ui/loader"
 
-const fetcher = (url: string) => fetch(url).then((response) => response.json());
+const fetcher = (url: string) => fetch(url).then((response) => response.json())
 
 type Service = {
-  id: string;
-  slug: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-};
+  id: string
+  slug: string
+  name: string
+  description: string
+  price: number
+  image: string
+}
 
 export default function ServicesPage() {
   const { data: services = [], isLoading } = useSWR<Service[]>(
     "/api/products?type=service",
-    fetcher
-  );
+    fetcher,
+  )
   return (
-    <main className="mt-38 2xl:px-0 md:w-5xl 2xl:w-7xl mx-auto bg-white">
-      <div className="mb-8">
-        <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
-          Serviços
-        </p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tighter text-slate-900">
-          Soluções profissionais
-        </h2>
+    <main className="min-h-screen pb-12 pt-32 md:w-5xl 2xl:w-7xl mx-auto">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
+            SMBB
+          </p>
+          <h1 className="mt-2 mb-4 text-xl sm:text-2xl font-semibold text-slate-900">
+            Prestação de Serviços
+          </h1>
+        </div>
       </div>
+
       {isLoading ? (
-        <p className="text-sm text-slate-500">A carregar serviços...</p>
+        <Loader />
       ) : services.length === 0 ? (
         <p className="rounded-xl border border-dashed border-slate-300 p-10 text-center text-sm text-slate-500">
           Nenhum serviço disponível.
@@ -68,5 +72,5 @@ export default function ServicesPage() {
         </div>
       )}
     </main>
-  );
+  )
 }
