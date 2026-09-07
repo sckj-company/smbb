@@ -1,17 +1,26 @@
 import Link from "next/link";
 import { ArrowRight, Package, Wrench } from "lucide-react";
+import { prisma } from "@/lib/prisma";
 
-const sections = [
-  {
-    href: "/admin/products",
-    title: "Produtos",
-    count: "6 itens",
-    icon: Package
-  },
-  { href: "/admin/services", title: "Serviços", count: "3 itens", icon: Wrench }
-];
-
-export default function AdminPage() {
+export default async function AdminPage() {
+  const [products, services] = await Promise.all([
+    prisma.product.count({ where: { type: "product" } }),
+    prisma.product.count({ where: { type: "service" } })
+  ]);
+  const sections = [
+    {
+      href: "/admin/products",
+      title: "Produtos",
+      count: `${products} itens`,
+      icon: Package
+    },
+    {
+      href: "/admin/services",
+      title: "Serviços",
+      count: `${services} itens`,
+      icon: Wrench
+    }
+  ];
   return (
     <main className="mx-auto max-w-7xl">
       <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
@@ -21,7 +30,6 @@ export default function AdminPage() {
       <p className="mt-2 text-sm text-slate-500">
         Gerencie o catálogo da SMBB.
       </p>
-
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         {sections.map(({ href, title, count, icon: Icon }) => (
           <Link
@@ -37,7 +45,7 @@ export default function AdminPage() {
                 </h2>
                 <p className="mt-1 text-sm text-slate-500">{count}</p>
               </div>
-              <ArrowRight className="h-5 w-5 text-blue-500 transition group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5 text-blue-500" />
             </div>
           </Link>
         ))}
