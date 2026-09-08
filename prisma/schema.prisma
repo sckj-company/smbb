@@ -11,6 +11,7 @@ model Product {
   id          String   @id @default(cuid())
   slug        String   @unique
   name        String
+  nameZh      String   @default("")
   brand       String
   price       Int
   oldPrice    Int      @default(0)
@@ -18,6 +19,7 @@ model Product {
   accentColor String   @default("#facc15")
   image       String   @db.Text
   description String
+  descriptionZh String @default("")
   highlights  String[]
   groupType   String
   type        String   @default("product")
