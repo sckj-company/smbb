@@ -14,6 +14,20 @@
     "products": "产品",
     "services": "提供服务"
   },
+  "services": {
+    "startingAt": "起价：",
+    "bookService": "预约服务",
+    "date": "日期",
+    "selectDate": "选择日期",
+    "time": "时间",
+    "selectTime": "选择时间",
+    "location": "服务地点",
+    "locationPlaceholder": "地址或参考地点",
+    "observation": "备注",
+    "optional": "可选",
+    "observationPlaceholder": "其他补充信息",
+    "requestOnWhatsApp": "通过 WhatsApp 请求"
+  },
   "filters": {
     "all": "全部",
     "extinguishers": "灭火器",
