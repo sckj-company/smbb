@@ -1,42 +1,35 @@
-"use client"
+"use client";
 
-import { useTranslation } from "react-i18next"
-
-const productGroups = ["Extintor", "Suporte", "Placa de Sinalização"] as const
-
-const groupTranslationKeys = {
-  Extintor: "filters.extinguishers",
-  Suporte: "filters.supports",
-  "Placa de Sinalização": "filters.plates",
-} as const
+import { useTranslation } from "react-i18next";
+import { groupTranslationKeys, productGroups } from "@/data/productGroups";
 
 interface SelectGroupProps {
-  selectedGroup: string | null
-  language?: string
+  selectedGroup: string | null;
+  language?: string;
   setSelectedGroup: (
-    groupType: "Extintor" | "Suporte" | "Placa de Sinalização" | null,
-  ) => void
+    groupType: "Extintor" | "Suporte" | "Placa de Sinalização" | null
+  ) => void;
 }
 
 export default function SelectGroup({
   selectedGroup,
   language,
-  setSelectedGroup,
+  setSelectedGroup
 }: SelectGroupProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <ul className="flex flex-nowrap gap-1 sm:gap-2.5 overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {[null, ...productGroups].map((groupType) => {
-        const isSelected = selectedGroup === groupType
+        const isSelected = selectedGroup === groupType;
         const label = groupType
           ? t(
               groupTranslationKeys[
                 groupType as keyof typeof groupTranslationKeys
               ],
-              language ? { lng: language } : undefined,
+              language ? { lng: language } : undefined
             )
-          : t("filters.all", language ? { lng: language } : undefined)
+          : t("filters.all", language ? { lng: language } : undefined);
 
         return (
           <button
@@ -48,8 +41,8 @@ export default function SelectGroup({
           >
             {label}
           </button>
-        )
+        );
       })}
     </ul>
-  )
+  );
 }
