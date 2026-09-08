@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, Plus, Save, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -10,13 +10,13 @@ type Group = "Extintor" | "Suporte" | "Placa de Sinalização";
 type FormProduct = {
   id?: string;
   name: string;
+  nameZh: string;
   brand: string;
   price: number | string;
   oldPrice: number | string;
-  accent: string;
-  accentColor: string;
   image: string;
   description: string;
+  descriptionZh: string;
   highlights: string[];
   groupType: Group;
 };
@@ -27,21 +27,41 @@ type Props = {
 };
 const empty: FormProduct = {
   name: "",
-  brand: "",
+  nameZh: "",
+  brand: "SMBB",
   price: "",
   oldPrice: "",
-  accent: "from-slate-700 via-stone-700 to-neutral-900",
-  accentColor: "#facc15",
   image: "",
   description: "",
+  descriptionZh: "",
   highlights: [""],
   groupType: "Extintor"
 };
 const inputClass =
   "rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-blue-500";
 
+function RequiredMark() {
+  return <span className="ml-1 text-red-500" aria-hidden="true">*</span>;
+}
+
+function normalizeHighlights(highlights: string[]) {
+  const values = highlights
+    .flatMap((highlight) => highlight.split(","))
+    .map((highlight) => highlight.trim())
+    .filter(Boolean)
+    .slice(0, 3);
+
+  return values.length > 0 ? values : [""];
+}
+
 export default function CatalogForm({ kind, item, backHref }: Props) {
-  const [form, setForm] = useState<FormProduct>(item ?? empty);
+  const [form, setForm] = useState<FormProduct>(() => ({
+    ...(item ?? empty),
+    nameZh: item?.nameZh?.trim() || item?.name || empty.nameZh,
+    descriptionZh:
+      item?.descriptionZh?.trim() || item?.description || empty.descriptionZh,
+    highlights: normalizeHighlights(item?.highlights ?? empty.highlights)
+  }));
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState("");
   const router = useRouter();
@@ -67,11 +87,18 @@ export default function CatalogForm({ kind, item, backHref }: Props) {
       return;
     }
     const payload = {
-      ...form,
+      name: form.name,
+      nameZh: form.nameZh,
       price: Number(form.price),
       oldPrice: Number(form.oldPrice || 0),
-      highlights: form.highlights.filter(Boolean),
-      type: kind === "Serviço" ? "service" : "product"
+      image: form.image,
+      description: form.description,
+      descriptionZh: form.descriptionZh,
+      highlights: kind === "Serviço" ? normalizeHighlights(form.highlights) : [],
+      type: kind === "Serviço" ? "service" : "product",
+      ...(kind === "Produto"
+        ? { brand: form.brand, groupType: form.groupType }
+        : {})
     };
     const response = await fetch(
       form.id ? `/api/products/${form.id}` : "/api/products",
@@ -111,7 +138,7 @@ export default function CatalogForm({ kind, item, backHref }: Props) {
         <form className="mt-8 grid gap-5" onSubmit={submit}>
           <div className="grid gap-5 md:grid-cols-2">
             <label className="grid gap-2 text-sm font-medium text-slate-700">
-              Nome
+              <span>Título português<RequiredMark /></span>
               <input
                 className={inputClass}
                 value={form.name}
@@ -120,16 +147,27 @@ export default function CatalogForm({ kind, item, backHref }: Props) {
               />
             </label>
             <label className="grid gap-2 text-sm font-medium text-slate-700">
-              Marca
+              <span>Título chinês<RequiredMark /></span>
               <input
                 className={inputClass}
-                value={form.brand}
-                onChange={(e) => set("brand", e.target.value)}
+                value={form.nameZh}
+                onChange={(e) => set("nameZh", e.target.value)}
                 required
               />
             </label>
+            {kind === "Produto" && (
+              <label className="grid gap-2 text-sm font-medium text-slate-700">
+                <span>Marca<RequiredMark /></span>
+                <input
+                  className={inputClass}
+                  value={form.brand}
+                  onChange={(e) => set("brand", e.target.value)}
+                  required
+                />
+              </label>
+            )}
             <label className="grid gap-2 text-sm font-medium text-slate-700">
-              Preço
+              <span>Preço<RequiredMark /></span>
               <input
                 type="number"
                 min="0"
@@ -149,30 +187,24 @@ export default function CatalogForm({ kind, item, backHref }: Props) {
                 onChange={(e) => set("oldPrice", e.target.value)}
               />
             </label>
-            <label className="grid gap-2 text-sm font-medium text-slate-700">
-              Grupo
-              <select
-                className={inputClass}
-                value={form.groupType}
-                onChange={(e) => set("groupType", e.target.value as Group)}
-              >
-                <option>Extintor</option>
-                <option>Suporte</option>
-                <option>Placa de Sinalização</option>
-              </select>
-            </label>
-            <label className="grid gap-2 text-sm font-medium text-slate-700">
-              Cor
-              <input
-                type="color"
-                className="h-10 w-full rounded-lg border border-slate-200"
-                value={form.accentColor}
-                onChange={(e) => set("accentColor", e.target.value)}
-              />
-            </label>
+            {kind === "Produto" && (
+              <label className="grid gap-2 text-sm font-medium text-slate-700">
+                <span>Grupo<RequiredMark /></span>
+                <select
+                  className={inputClass}
+                  value={form.groupType}
+                  required
+                  onChange={(e) => set("groupType", e.target.value as Group)}
+                >
+                  <option>Extintor</option>
+                  <option>Suporte</option>
+                  <option>Placa de Sinalização</option>
+                </select>
+              </label>
+            )}
           </div>
           <label className="grid gap-2 text-sm font-medium text-slate-700">
-            Imagem do computador
+            <span>Imagem do computador<RequiredMark /></span>
             <input
               type="file"
               accept="image/png,image/jpeg,image/webp"
@@ -190,7 +222,7 @@ export default function CatalogForm({ kind, item, backHref }: Props) {
             )}
           </label>
           <label className="grid gap-2 text-sm font-medium text-slate-700">
-            Descrição
+            <span>Descrição<RequiredMark /></span>
             <textarea
               className={inputClass}
               rows={4}
@@ -200,19 +232,66 @@ export default function CatalogForm({ kind, item, backHref }: Props) {
             />
           </label>
           <label className="grid gap-2 text-sm font-medium text-slate-700">
-            Destaques
-            <input
+            <span>Descrição chinesa<RequiredMark /></span>
+            <textarea
               className={inputClass}
-              value={form.highlights.join(", ")}
-              onChange={(e) =>
-                set(
-                  "highlights",
-                  e.target.value.split(",").map((value) => value.trim())
-                )
-              }
-              placeholder="Ex.: Garantia, certificado"
+              rows={4}
+              value={form.descriptionZh}
+              onChange={(e) => set("descriptionZh", e.target.value)}
+              required
             />
           </label>
+          {kind === "Serviço" && <div className="grid gap-3 text-sm font-medium text-slate-700">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span>Destaques</span>
+              <span className="text-xs font-normal text-slate-400">
+                {form.highlights.length}/3 adicionados
+              </span>
+            </div>
+            <div className="grid gap-2">
+              {form.highlights.map((highlight, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <input
+                    className={`${inputClass} min-w-0 flex-1`}
+                    value={highlight}
+                    onChange={(event) => {
+                      const highlights = [...form.highlights];
+                      highlights[index] = event.target.value;
+                      set("highlights", highlights);
+                    }}
+                    placeholder={`Destaque ${index + 1}`}
+                    maxLength={80}
+                  />
+                  {form.highlights.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        set(
+                          "highlights",
+                          form.highlights.filter(
+                            (_, itemIndex) => itemIndex !== index
+                          )
+                        )
+                      }
+                      className="rounded-full p-2 text-slate-400 hover:bg-red-50 hover:text-red-500"
+                      aria-label={`Remover destaque ${index + 1}`}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              disabled={form.highlights.length >= 3}
+              onClick={() => set("highlights", [...form.highlights, ""])}
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-blue-200 px-3 py-2 text-xs font-semibold text-blue-600 hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              Adicionar destaque
+            </button>
+          </div>}
           {message && (
             <p role="alert" className="text-sm text-red-600">
               {message}
