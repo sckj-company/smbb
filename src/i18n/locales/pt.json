@@ -14,6 +14,20 @@
     "products": "Produtos",
     "services": "Prestação de Serviços"
   },
+  "services": {
+    "startingAt": "A partir de:",
+    "bookService": "Agendar serviço",
+    "date": "Data",
+    "selectDate": "Selecione uma data",
+    "time": "Horário",
+    "selectTime": "Selecione um horário",
+    "location": "Local de atendimento",
+    "locationPlaceholder": "Morada ou referência",
+    "observation": "Observação",
+    "optional": "opcional",
+    "observationPlaceholder": "Alguma informação adicional",
+    "requestOnWhatsApp": "Solicitar pelo WhatsApp"
+  },
   "filters": {
     "all": "Todos",
     "extinguishers": "Extintores",
