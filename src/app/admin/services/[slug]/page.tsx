@@ -18,12 +18,12 @@ export default async function EditServicePage({
       backHref="/admin/services"
       item={{
         name: service.title,
+        nameZh: service.titleZh,
         brand: "SMBB",
         description: service.description,
+        descriptionZh: service.descriptionZh,
         price: service.price,
         oldPrice: "",
-        accent: "from-slate-700 via-stone-700 to-neutral-900",
-        accentColor: "#facc15",
         image: service.image,
         highlights: [""],
         groupType: "Extintor"
