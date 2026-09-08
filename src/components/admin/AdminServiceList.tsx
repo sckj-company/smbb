@@ -28,13 +28,13 @@ export default function AdminServiceList() {
   );
 
   return (
-    <main className="md:w-5xl 2xl:w-7xl mx-auto">
+    <main className="w-full pb-12 px-4 sm:px-8 2xl:px-0 md:w-5xl 2xl:w-7xl mx-auto">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
             Administração
           </p>
-          <h1 className="mt-2 text-2xl font-semibold text-slate-900">
+          <h1 className="mt-2 mb-4 text-2xl font-semibold text-slate-900">
             Serviços
           </h1>
         </div>
