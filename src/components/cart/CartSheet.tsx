@@ -44,13 +44,16 @@ export default function CartSheet({ open, onClose }: Props) {
         showCloseButton={false}
         className="w-full max-w-md gap-0 p-0"
       >
-        <SheetHeader className="border-b border-slate-200 px-5 py-4 pr-14">
-          <SheetTitle className="flex items-center gap-2 text-lg text-slate-900">
-            <ShoppingCart className="h-5 w-5 text-blue-600" />
+        <SheetHeader className="px-5 pb-4">
+          <SheetTitle className="pt-2 flex items-center gap-2 text-sm xl:text-lg 2xl:text-2xl font-semibold text-slate-900">
+            <ShoppingCart className="h-5 w-5 text-blue-500" />
             {t("cart.title")}
-            <span className="text-sm font-normal text-slate-400">
-              ({totalItems})
-            </span>
+
+            {totalItems > 1 && (
+              <span className="text-sm font-normal text-slate-400">
+                ({totalItems})
+              </span>
+            )}
           </SheetTitle>
 
           <SheetClose
@@ -63,18 +66,22 @@ export default function CartSheet({ open, onClose }: Props) {
         <div className="min-h-0 flex-1 overflow-y-auto p-5">
           {!items.length ? (
             <div className="flex h-full flex-col items-center justify-center gap-3 text-center text-slate-500">
-              <ShoppingCart className="h-10 w-10 text-slate-300" />
+              <ShoppingCart className="h-6 w-6 sm:w-10 sm:h-10 text-slate-300" />
               <p>{t("cart.emptyTrash")}</p>
             </div>
           ) : (
             <div className="space-y-8">
-              {items.map((item) => {
+              {items.map((item, index) => {
                 const productName = localize(item.name, item.nameZh);
 
                 return (
                   <div
                     key={item.id}
-                    className="flex gap-5 border-b border-slate-100 pb-8"
+                    className={`flex gap-5 pb-8 ${
+                      index < items.length - 1
+                        ? "border-b border-slate-100"
+                        : ""
+                    }`}
                   >
                     <Image
                       src={item.image}
@@ -116,19 +123,22 @@ export default function CartSheet({ open, onClose }: Props) {
             </div>
           )}
         </div>
+
         <SheetFooter className="border-t border-slate-200 p-5">
           <div className="flex items-center justify-between text-base font-semibold text-slate-900">
             <span>{t("cart.totalText")}</span>
             <span>{formatKz(totalPrice)}</span>
           </div>
+
           <button
             type="button"
             onClick={checkout}
             disabled={!items.length}
-            className="w-full rounded-full bg-green-600 px-5 py-3 text-sm font-semibold text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-3 w-full rounded-full bg-green-600 px-5 py-2 text-sm font-semibold text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {t("cart.buyViaWhatsApp")}
           </button>
+
           {items.length > 0 && (
             <button
               type="button"
