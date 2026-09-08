@@ -1,32 +1,31 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Edit, Plus, Search } from "lucide-react"
-import useSWR from "swr"
-import { useState } from "react"
-import Loader from "../ui/loader"
+import Link from "next/link";
+import { Edit, Plus, Search } from "lucide-react";
+import useSWR from "swr";
+import { useState } from "react";
+import Loader from "../ui/loader";
+import Image from "next/image";
 
 type Service = {
-  id: string
-  name: string
-  description: string
-  image: string
-  slug: string
-}
-const fetcher = (url: string) => fetch(url).then((response) => response.json())
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  slug: string;
+};
+const fetcher = (url: string) => fetch(url).then((response) => response.json());
 
 export default function AdminServiceList() {
-  const [searchQuery, setSearchQuery] = useState("")
+  const [searchQuery, setSearchQuery] = useState("");
   const { data: services = [], isLoading } = useSWR<Service[]>(
     "/api/products?type=service",
-    fetcher,
-  )
-  const query = searchQuery.trim().toLocaleLowerCase()
+    fetcher
+  );
+  const query = searchQuery.trim().toLocaleLowerCase();
   const visibleServices = services.filter((service) =>
-    `${service.name} ${service.description}`
-      .toLocaleLowerCase()
-      .includes(query),
-  )
+    `${service.name} ${service.description}`.toLocaleLowerCase().includes(query)
+  );
 
   return (
     <main className="md:w-5xl 2xl:w-7xl mx-auto">
@@ -74,9 +73,11 @@ export default function AdminServiceList() {
               href={`/admin/services/${service.id}`}
               className="group rounded-lg border border-slate-200 bg-white p-2"
             >
-              <img
+              <Image
                 src={service.image}
                 alt={service.name}
+                width={200}
+                height={200}
                 className="h-48 w-full rounded-sm object-cover"
               />
               <div className="flex items-start justify-between gap-3 px-3 py-4">
@@ -95,5 +96,5 @@ export default function AdminServiceList() {
         </div>
       )}
     </main>
-  )
+  );
 }
