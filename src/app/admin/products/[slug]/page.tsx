@@ -19,14 +19,14 @@ export default async function EditProductPage({
       item={{
         id: product.id,
         name: product.name,
+        nameZh: product.nameZh?.trim() || product.name,
         brand: product.brand,
         price: product.price,
         oldPrice: product.oldPrice,
-        accent: product.accent,
-        accentColor: product.accentColor,
         image: product.image,
         description: product.description,
-        highlights: product.highlights,
+        descriptionZh: product.descriptionZh?.trim() || product.description,
+        highlights: [],
         groupType: product.groupType as
           | "Extintor"
           | "Suporte"
