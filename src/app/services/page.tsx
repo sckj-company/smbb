@@ -30,14 +30,15 @@ export default function ServicesPage() {
   );
 
   const { localize } = useCatalogLanguage();
+
   return (
-    <main className="min-h-screen mt-45 pb-12 px-4 sm:px-0 md:w-5xl 2xl:w-7xl mx-auto">
+    <main className="min-h-screen mt-30 sm:mt-35 xl:mt-40 2xl:mt-45 pb-12 px-4 sm:px-8 2xl:px-0 w-full md:w-5xl 2xl:w-7xl mx-auto">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
             SMBB
           </p>
-          <h1 className="mt-2 mb-4 text-xl sm:text-2xl font-semibold text-slate-900">
+          <h1 className="mt-2 mb-4 text-2xl font-semibold text-slate-900">
             {t("pageTitle.services")}
           </h1>
         </div>
