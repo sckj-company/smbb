@@ -22,11 +22,13 @@ export default async function AdminPage() {
     }
   ];
   return (
-    <main className="mx-auto max-w-7xl">
+    <main className="w-full md:max-w-5xl 2xl:max-w-7xl mx-auto pb-12 px-4 sm:px-8 2xl:px-0">
       <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
         Administração
       </p>
-      <h1 className="mt-2 text-3xl font-semibold text-slate-900">Dashboard</h1>
+      <h1 className="mt-2 mb-4 text-2xl font-semibold text-slate-900">
+        Dashboard
+      </h1>
       <p className="mt-2 text-sm text-slate-500">
         Gerencie o catálogo da SMBB.
       </p>
