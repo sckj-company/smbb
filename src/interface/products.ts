@@ -1,14 +1,13 @@
 export type Product = {
   id: string;
   name: string;
+  nameZh: string;
   brand: string;
   price: number;
   oldPrice: number;
-  accent: string;
-  accentColor: string;
   image: string;
   description: string;
-  highlights: string[];
+  descriptionZh: string;
   groupType: "Extintor" | "Suporte" | "Placa de Sinalização";
   type: "product";
 };
