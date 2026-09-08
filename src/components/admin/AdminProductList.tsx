@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { Edit, Plus, Search, Trash2 } from "lucide-react"
-import { useState } from "react"
-import SelectGroup from "../products/SelectGroup"
-import type { Product } from "@/interface/products"
-import useSelectGroup from "@/hooks/useSelectGroup"
-import { Button } from "@/components/ui/button"
+import Image from "next/image";
+import Link from "next/link";
+import { Edit, Plus, Search, Trash2 } from "lucide-react";
+import { useState } from "react";
+import SelectGroup from "../products/SelectGroup";
+import type { Product } from "@/interface/products";
+import useSelectGroup from "@/hooks/useSelectGroup";
+import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,54 +16,54 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
-import Loader from "../ui/loader"
+  AlertDialogTitle
+} from "@/components/ui/alert-dialog";
+import Loader from "../ui/loader";
 
 export default function AdminProductList() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [productToDelete, setProductToDelete] = useState<Product | null>(null)
-  const [deleteError, setDeleteError] = useState("")
-  const [isDeleting, setIsDeleting] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
+  const [deleteError, setDeleteError] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
   const {
     selectedGroup,
     setSelectedGroup,
     visibleProducts,
     isLoading,
     error,
-    mutate,
+    mutate
   } = useSelectGroup({
-    searchQuery,
-  })
+    searchQuery
+  });
 
   async function remove() {
-    if (!productToDelete) return
-    setIsDeleting(true)
-    setDeleteError("")
+    if (!productToDelete) return;
+    setIsDeleting(true);
+    setDeleteError("");
     try {
       const response = await fetch(`/api/products/${productToDelete.id}`, {
-        method: "DELETE",
-      })
+        method: "DELETE"
+      });
       if (!response.ok) {
-        const result = await response.json().catch(() => ({}))
-        setDeleteError(result.error ?? "Não foi possível apagar o produto.")
-        return
+        const result = await response.json().catch(() => ({}));
+        setDeleteError(result.error ?? "Não foi possível apagar o produto.");
+        return;
       }
-      await mutate()
-      setProductToDelete(null)
+      await mutate();
+      setProductToDelete(null);
     } finally {
-      setIsDeleting(false)
+      setIsDeleting(false);
     }
   }
 
   return (
-    <main className="md:w-5xl 2xl:w-7xl mx-auto">
+    <main className="w-full pb-12 px-4 sm:px-8 2xl:px-0 md:w-5xl 2xl:w-7xl mx-auto">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
             Administração
           </p>
-          <h1 className="mt-2 mb-4 text-xl sm:text-2xl font-semibold text-slate-900">
+          <h1 className="mt-2 mb-4 text-2xl font-semibold text-slate-900">
             Produtos
           </h1>
 
@@ -96,7 +96,7 @@ export default function AdminProductList() {
         </div>
       </div>
 
-      <section className="space-y-10">
+      <section className="w-full space-y-10">
         {isLoading && <Loader />}
         {error && (
           <p className="text-sm text-red-600">
@@ -107,7 +107,7 @@ export default function AdminProductList() {
           <p className="text-sm text-slate-500">Nenhum produto encontrado.</p>
         )}
 
-        <div className="mt-10 grid gap-3 sm:gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+        <div className="mt-10 grid w-full gap-3 sm:gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
           {visibleProducts.map((product) => (
             <article
               key={product.id}
@@ -126,7 +126,9 @@ export default function AdminProductList() {
                 <div className="flex items-start justify-between gap-3 px-2 py-4">
                   <div>
                     <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
-                      {product.groupType}
+                      {product.groupType === "Placa de Sinalização"
+                        ? "Sinalização"
+                        : product.groupType}
                     </p>
                     <h2 className="mt-1 font-semibold text-slate-800 line-clamp-1">
                       {product.name}
@@ -151,7 +153,7 @@ export default function AdminProductList() {
       <AlertDialog
         open={productToDelete !== null}
         onOpenChange={(open) => {
-          if (!open && !isDeleting) setProductToDelete(null)
+          if (!open && !isDeleting) setProductToDelete(null);
         }}
       >
         <AlertDialogContent>
@@ -176,5 +178,5 @@ export default function AdminProductList() {
         </AlertDialogContent>
       </AlertDialog>
     </main>
-  )
+  );
 }
