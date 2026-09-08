@@ -1,6 +1,6 @@
 "use client";
 
-import { BanknoteArrowUp, Send, ShoppingCart, Star } from "lucide-react";
+import { BanknoteArrowUp, ShoppingCart, Star } from "lucide-react";
 import { useState } from "react";
 import type { Product } from "@/interface/products";
 import useCart from "@/hooks/useCart";
@@ -32,22 +32,21 @@ export function CatalogDetailContent({ item }: { item: Product }) {
   }
   return (
     <div className="grid gap-8 p-5 sm:p-8 md:grid-cols-2 md:gap-12">
-      <section className="rounded-xl border border-blue-200 bg-blue-50 p-5">
-        <div className="relative h-95 w-full rounded-xl p-6">
-          <Image
-            src={item.image}
-            alt={productName}
-            width={400}
-            height={400}
-            className="h-full w-full object-contain"
-          />
-        </div>
+      <section className="rounded-xl border border-slate-200 bg-slate-50 py-4 xl:p-6">
+        <Image
+          src={item.image}
+          alt={productName}
+          width={400}
+          height={400}
+          className="relative h-50 xl:h-95 w-full  object-contain"
+        />
       </section>
+
       <aside className="py-5">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
           {item.brand}
         </p>
-        <h1 className="mt-5 text-3xl font-semibold text-slate-900">
+        <h1 className="mt-5 text-xl xl:text-2xl 2xl:text-3xl font-semibold text-slate-900">
           {productName}
         </h1>
         <p className="mt-4 text-sm leading-6 text-slate-600">
@@ -84,9 +83,11 @@ export function CatalogDetailContent({ item }: { item: Product }) {
           </button>
         </div>
 
-        <div className="mt-6 flex items-center gap-3 text-sm bg-blue-100 border border-blue-200 py-2.5 px-3 rounded-md">
-          <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-300">
-            <Star className="h-4 w-4 text-blue-800" />
+        <div className="mt-6 flex items-center gap-3 text-sm bg-blue-100 border border-blue-200 py-2 px-2.5 sm:py-2.5 sm:px-3 rounded-4xl sm:rounded-md">
+          <div
+            className="w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-blue-300"
+          >
+            <Star className="h-3 w-3 sm:h-4 sm:w-4 text-blue-800" />
           </div>
 
           <span className="text-slate-500">{t("detail.suggestion")}</span>
