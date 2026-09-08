@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
-export default function NavLinks() {
+export default function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
   const { t } = useTranslation();
 
@@ -17,6 +17,7 @@ export default function NavLinks() {
         <Link
           key={link.href}
           href={link.href}
+          onClick={onNavigate}
           className={`flex items-center gap-1.5 text-sm 2xl:text-base rounded-4xl py-1 px-3 transition-colors ${
             isActive(link.href)
               ? "bg-blue-50 rounded-4xl py-1 px-3 text-blue-500 font-medium"
