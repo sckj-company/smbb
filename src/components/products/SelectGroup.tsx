@@ -19,7 +19,7 @@ export default function SelectGroup({
   const { t } = useTranslation();
 
   return (
-    <ul className="flex flex-nowrap gap-1 sm:gap-2.5 overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-none [&::-webkit-scrollbar]:hidden">
+    <ul className="w-full min-w-0 max-w-full flex flex-nowrap gap-1 sm:gap-2.5 overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-none [&::-webkit-scrollbar]:hidden">
       {[null, ...productGroups].map((groupType) => {
         const isSelected = selectedGroup === groupType;
         const label = groupType
@@ -37,7 +37,7 @@ export default function SelectGroup({
             type="button"
             aria-pressed={isSelected}
             onClick={() => setSelectedGroup(groupType)}
-            className={`text-sm py-1 px-3 ${isSelected ? "bg-blue-50 rounded-4xl text-blue-500 font-medium" : "text-gray-500 hover:text-blue-500"}`}
+            className={`shrink-0 text-sm py-1 px-3 ${isSelected ? "bg-blue-50 rounded-4xl text-blue-500 font-medium" : "text-gray-500 hover:text-blue-500"}`}
           >
             {label}
           </button>
