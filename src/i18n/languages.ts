@@ -1,6 +1,6 @@
 export type Language = "pt" | "zh";
 
-export const defaultLanguage: Language = "pt";
+export const defaultLanguage: Language = "zh";
 
 export const languages: Record<Language, string> = {
   zh: "简体中文",
@@ -11,5 +11,5 @@ export const getInitialLanguage = (): Language => {
   if (typeof window === "undefined") return defaultLanguage;
 
   const savedLanguage = localStorage.getItem("smbb-language");
-  return savedLanguage === "zh" ? "zh" : "pt";
+  return savedLanguage === "pt" ? "pt" : "zh";
 };
