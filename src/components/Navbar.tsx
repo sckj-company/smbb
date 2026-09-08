@@ -19,7 +19,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed left-1/2 px-4 py-4 md:px-0 top-0 z-30 w-full max-w-7xl -translate-x-1/2 bg-white/95 md:py-4 backdrop-blur">
+      <nav className="fixed left-1/2 px-4 py-4 md:px-0 top-0 z-30 w-full max-w-7xl -translate-x-1/2 bg-white/95 md:py-4 backdrop-blur border-b border-slate-200">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
           <div className="flex items-center gap-4 sm:gap-5.5">
             <Logo />
@@ -66,7 +66,7 @@ export default function Navbar() {
         </div>
 
         {menuOpen && (
-          <div className="border-b border-slate-100 py-6 sm:hidden">
+          <div className="pt-6 pb-3 sm:hidden">
             <NavLinks onNavigate={() => setMenuOpen(false)} />
           </div>
         )}
