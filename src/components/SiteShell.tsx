@@ -5,17 +5,18 @@ import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
 import ScrollToTop from "./ScrollToTop";
 import Footer from "./Footer";
+import { CartProvider } from "@/hooks/useCart";
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdminRoute = pathname.startsWith("/admin");
 
   return (
-    <React.Fragment>
+    <CartProvider>
       <ScrollToTop />
-      {!isAdminRoute && <Navbar  />}
+      {!isAdminRoute && <Navbar />}
       {children}
       {!isAdminRoute && <Footer />}
-    </React.Fragment>
+    </CartProvider>
   );
 }
