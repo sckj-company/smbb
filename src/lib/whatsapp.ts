@@ -12,10 +12,12 @@ export function createProductOrderMessage(items: CartItem[], total: number) {
       `- ${item.name} (${item.quantity}x): ${formatKz(item.price * item.quantity)}`
   );
   return [
-    "Olá, SMBB! Quero comprar:",
+    "*Olá, SMBB!* 🧯🔥",
+    "",
+    "> Quero comprar:",
     ...lines,
     "",
-    `Total: ${formatKz(total)}`
+    `Total: *${formatKz(total)}*`
   ].join("\n");
 }
 
