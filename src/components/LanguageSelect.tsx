@@ -20,7 +20,10 @@ export default function LanguageSelect({
 }: LanguageSelectProps) {
   return (
     <div className="flex items-center gap-3">
-      <span className="text-sm text-muted-foreground">{label}</span>
+      <span className="hidden sm:block text-sm text-muted-foreground">
+        {label}
+      </span>
+      
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger>
           <Globe strokeWidth={1.7} />
