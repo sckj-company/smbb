@@ -15,7 +15,9 @@ export default function ServiceBookingForm({ service }: Props) {
   function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const message = [
-      "Olá, SMBB! Quero contratar um serviço:",
+      "Olá, SMBB! 🧯🔥",
+      "",
+      "> Quero contratar um serviço:",
       `Serviço: ${service.name}`,
       `Preço de referência: ${formatKz(service.price)}`,
       `Data: ${date}`,
