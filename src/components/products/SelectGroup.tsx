@@ -19,7 +19,7 @@ export default function SelectGroup({
   const { t } = useTranslation();
 
   return (
-    <ul className="flex flex-nowrap gap-1 sm:gap-2.5 overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <ul className="flex flex-nowrap gap-1 sm:gap-2.5 overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-none [&::-webkit-scrollbar]:hidden">
       {[null, ...productGroups].map((groupType) => {
         const isSelected = selectedGroup === groupType;
         const label = groupType
