@@ -36,7 +36,7 @@ export default function AdminNavbar() {
   }
 
   return (
-    <nav className="fixed left-1/2 top-0 z-30 w-full max-w-7xl -translate-x-1/2 bg-white/95 px-4 py-4 backdrop-blur sm:px-0">
+    <nav className="fixed left-1/2 px-4 sm:px-8 2xl:px-0 py-4 top-0 z-30 w-full md:max-w-5xl 2xl:max-w-7xl mx-auto -translate-x-1/2 bg-white/95 md:py-4 backdrop-blur border-b border-slate-200">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
         <Logo link="/admin" />
 
