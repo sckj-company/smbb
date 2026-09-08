@@ -1,36 +1,42 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ArrowUpRight, Search } from "lucide-react"
-import { useState } from "react"
-import { useTranslation } from "react-i18next"
+import Link from "next/link";
+import { ArrowUpRight, Search, ShoppingCart } from "lucide-react";
+import { useState } from "react";
 
-import SelectGroup from "@/components/products/SelectGroup"
-import useSelectGroup from "@/hooks/useSelectGroup"
-import Image from "next/image"
-import Loader from "@/components/ui/loader"
+import SelectGroup from "@/components/products/SelectGroup";
+import useSelectGroup from "@/hooks/useSelectGroup";
+import Image from "next/image";
+import Loader from "@/components/ui/loader";
+import useCart from "@/hooks/useCart";
+import ProductQuickView from "@/components/products/ProductQuickView";
+import useCatalogLanguage from "@/hooks/useCatalogLanguage";
+import { useTranslation } from "react-i18next";
+import { groupTranslationKeys } from "@/data/productGroups";
 
 function formatKz(value: number) {
-  return `${value.toLocaleString("pt-AO")} Kz`
+  return `${value.toLocaleString("pt-AO")} Kz`;
 }
 
 export default function Home() {
-  const { t } = useTranslation()
-  const [searchQuery, setSearchQuery] = useState("")
+  const { t } = useTranslation();
+  const { addItem } = useCart();
+  const { localize } = useCatalogLanguage();
+  const [searchQuery, setSearchQuery] = useState("");
   const { selectedGroup, setSelectedGroup, visibleProducts, isLoading, error } =
     useSelectGroup({
-      searchQuery,
-    })
+      searchQuery
+    });
 
   return (
-    <main className="min-h-screen pt-32 pb-12 px-4 sm:px-0 md:w-5xl 2xl:w-7xl mx-auto">
+    <main className="min-h-screen mt-45 pb-12 px-4 sm:px-0 md:w-5xl 2xl:w-7xl mx-auto">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
             SMBB
           </p>
           <h1 className="mt-2 mb-4 text-xl sm:text-2xl font-semibold text-slate-900">
-            Produtos
+            {t("pageTitle.products")}
           </h1>
 
           <SelectGroup
@@ -43,8 +49,8 @@ export default function Home() {
           <input
             value={searchQuery}
             onChange={(event) => setSearchQuery(event.target.value)}
-            placeholder="Pesquisar produto"
-            aria-label="Pesquisar produto"
+            placeholder={t("filters.placeholder")}
+            aria-label={t("filters.placeholder")}
             className="w-40 bg-transparent text-sm outline-none"
           />
 
@@ -65,16 +71,21 @@ export default function Home() {
 
         <div className="mt-10 grid gap-3 sm:gap-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
           {visibleProducts.map((product) => {
+            const productName = localize(product.name, product.nameZh);
+
             return (
               <article
                 key={product.id}
                 className="group relative rounded-lg border border-slate-200 bg-white p-2 transition hover:-translate-y-1 hover:shadow-[0_20px_30px_rgba(15,23,42,0.08)]"
               >
-                <Link href={`/${product.id}`} className="group">
+                <div className="hidden md:block">
+                  <ProductQuickView product={product} />
+                </div>
+                <Link href={`/${product.id}`} className="group md:hidden">
                   <div className="rounded-lg border border-slate-200 bg-slate-50 p-2">
                     <Image
                       src={product.image}
-                      alt={product.name}
+                      alt={productName}
                       width={200}
                       height={200}
                       className="mx-auto h-37.5 w-37.5 object-contain xl:my-5 2xl:my-8"
@@ -86,14 +97,15 @@ export default function Home() {
                       <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
                         {product.brand}
                       </span>
+
                       <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1 text-[8px] uppercase text-slate-500">
-                        {product.groupType}
+                        {t(groupTranslationKeys[product.groupType])}
                       </span>
                     </div>
 
                     <div>
                       <h2 className="2xl:text-lg font-bold text-slate-800 line-clamp-1">
-                        {product.name}
+                        {productName}
                       </h2>
                       <div className="flex items-end justify-between gap-3">
                         <div>
@@ -115,11 +127,20 @@ export default function Home() {
                     </div>
                   </div>
                 </Link>
+
+                <button
+                  type="button"
+                  onClick={() => addItem(product)}
+                  className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full border border-blue-200 px-3 py-2 text-xs font-semibold text-blue-700 hover:bg-blue-50"
+                >
+                  <ShoppingCart className="h-3.5 w-3.5" />
+                  {t("detail.addToCart")}
+                </button>
               </article>
-            )
+            );
           })}
         </div>
       </section>
     </main>
-  )
+  );
 }
