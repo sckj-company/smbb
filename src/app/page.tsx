@@ -29,7 +29,7 @@ export default function Home() {
     });
 
   return (
-    <main className="min-h-screen mt-45 pb-12 px-4 sm:px-0 md:w-5xl 2xl:w-7xl mx-auto">
+    <main className="min-h-screen mt-25 sm:mt-45 pb-12 px-4 sm:px-0 md:w-5xl 2xl:w-7xl mx-auto">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
