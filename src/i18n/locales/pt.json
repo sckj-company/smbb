@@ -45,6 +45,11 @@
     "warrantyValue": "1 ano",
     "back": "Voltar"
   },
+  "qrModal": {
+    "title": "QR Code da página",
+    "description": "Escaneie o código para abrir esta página.",
+    "download": "Baixar PNG"
+  },
   "cart": {
     "title": "Seu carrinho",
     "totalText": "Total",
