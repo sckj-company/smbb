@@ -19,6 +19,7 @@ import {
   AlertDialogTitle
 } from "@/components/ui/alert-dialog";
 import Loader from "../ui/loader";
+import QrCodeDialog from "../QrCodeDialog";
 
 export default function AdminProductList() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -137,14 +138,21 @@ export default function AdminProductList() {
                   <Edit className="h-4 w-4 text-blue-500" />
                 </div>
               </Link>
-              <button
-                type="button"
-                onClick={() => setProductToDelete(product)}
-                className="inline-flex items-center gap-2 px-2 pb-2 text-xs text-red-600"
-              >
-                <Trash2 size={14} />
-                Apagar
-              </button>
+              <div className="flex items-center justify-between px-2 pb-2">
+                <button
+                  type="button"
+                  onClick={() => setProductToDelete(product)}
+                  className="inline-flex items-center gap-2 text-xs text-red-600"
+                >
+                  <Trash2 size={14} />
+                  Apagar
+                </button>
+                <QrCodeDialog
+                  href={`/${product.id}`}
+                  label={`Mostrar QR Code de ${product.name}`}
+                  className="border border-slate-200 p-1.5"
+                />
+              </div>
             </article>
           ))}
         </div>
