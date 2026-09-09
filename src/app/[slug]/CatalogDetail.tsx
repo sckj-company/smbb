@@ -1,34 +1,36 @@
-"use client"
+"use client";
 
-import { BanknoteArrowUp, ShoppingCart, Star } from "lucide-react"
-import { useState } from "react"
-import type { Product } from "@/interface/products"
-import useCart from "@/hooks/useCart"
-import QuantitySelector from "@/components/products/QuantitySelector"
-import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp"
-import Image from "next/image"
-import useCatalogLanguage from "@/hooks/useCatalogLanguage"
-import { useTranslation } from "react-i18next"
+import { BanknoteArrowUp, ShoppingCart, Star } from "lucide-react";
+import { useState } from "react";
+import type { Product } from "@/interface/products";
+import useCart from "@/hooks/useCart";
+import QuantitySelector from "@/components/products/QuantitySelector";
+import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp";
+import Image from "next/image";
+import useCatalogLanguage from "@/hooks/useCatalogLanguage";
+import { useTranslation } from "react-i18next";
+import QrCodeDialog from "@/components/QrCodeDialog";
 
 export function CatalogDetailContent({ item }: { item: Product }) {
-  const { t } = useTranslation()
-  const [quantity, setQuantity] = useState(1)
-  const { addItem } = useCart()
-  const { localize } = useCatalogLanguage()
-  const productName = localize(item.name, item.nameZh)
-  const productDescription = localize(item.description, item.descriptionZh)
+  const { t } = useTranslation();
+  const [quantity, setQuantity] = useState(1);
+  const { addItem, items } = useCart();
+  const { localize } = useCatalogLanguage();
+  const productName = localize(item.name, item.nameZh);
+  const productDescription = localize(item.description, item.descriptionZh);
+  const isInCart = items.some((cartItem) => cartItem.id === item.id);
   function buyNow() {
-    addItem(item, quantity)
+    addItem(item, quantity);
     window.open(
       createWhatsAppLink(
         createProductOrderMessage(
           [{ ...item, quantity }],
-          item.price * quantity,
-        ),
+          item.price * quantity
+        )
       ),
       "_blank",
-      "noopener,noreferrer",
-    )
+      "noopener,noreferrer"
+    );
   }
   return (
     <div className="grid gap-8 p-5 sm:p-8 md:grid-cols-2 md:gap-12">
@@ -74,13 +76,20 @@ export function CatalogDetailContent({ item }: { item: Product }) {
             <BanknoteArrowUp className="h-4 w-4" />
             {t("detail.buyNow")}
           </button>
-          <button
-            onClick={() => addItem(item, quantity)}
-            className="flex items-center justify-center gap-2 rounded-full hover:bg-slate-50 border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700"
-          >
-            <ShoppingCart className="h-4 w-4" />
-            {t("detail.addToCart")}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => addItem(item, quantity)}
+              className={`flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors ${isInCart ? "border-slate-300 bg-slate-200 text-slate-700 hover:bg-slate-300" : "border-slate-200 text-slate-700 hover:bg-slate-50"}`}
+            >
+              <ShoppingCart className="h-4 w-4" />
+              {t("detail.addToCart")}
+            </button>
+            <QrCodeDialog
+              href={`/${item.id}`}
+              label={`Mostrar QR Code de ${productName}`}
+              className="border border-slate-200"
+            />
+          </div>
         </div>
 
         <div className="mt-6 flex items-center gap-3 text-sm bg-blue-100 border border-blue-200 py-2 px-2.5 2xl:py-2.5 2xl:px-3 rounded-4xl 2xl:rounded-md">
@@ -92,7 +101,7 @@ export function CatalogDetailContent({ item }: { item: Product }) {
         </div>
       </aside>
     </div>
-  )
+  );
 }
 
 export default function CatalogDetail({ item }: { item: Product }) {
@@ -100,5 +109,5 @@ export default function CatalogDetail({ item }: { item: Product }) {
     <main className="mx-auto max-w-7xl bg-white px-4 pb-12 pt-28 sm:px-6 md:pt-35">
       <CatalogDetailContent item={item} />
     </main>
-  )
+  );
 }
