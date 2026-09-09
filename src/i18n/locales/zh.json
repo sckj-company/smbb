@@ -32,8 +32,8 @@
   "filters": {
     "all": "全部",
     "extinguishers": "灭火器",
-    "supports": "支持",
-    "plates": "路标",
+    "supports": "灭火器支架",
+    "plates": "标牌面板",
     "placeholder": "搜索产品"
   },
   "detail": {
@@ -44,6 +44,11 @@
     "warranty": "保修",
     "warrantyValue": "1 再次",
     "back": "返回"
+  },
+  "qrModal": {
+    "title": "页面二维码",
+    "description": "扫描二维码即可打开此页面。",
+    "download": "下载PNG"
   },
   "cart": {
     "title": "你的购物车",
