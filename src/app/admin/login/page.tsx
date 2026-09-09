@@ -14,7 +14,7 @@ export default function LoginPage() {
                 SMBB - Comércio e Serviços, (SU), LDA
               </h1>
               <p className="text-sm text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                SMBB oferece equipamentos e serviços premium de segurança contra incêndios em Angola.
               </p>
             </div>
           </div>
