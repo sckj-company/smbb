@@ -7,7 +7,7 @@ export default function CTA() {
   const { t } = useTranslation();
 
   return (
-    <section className="mt-55 md:w-5xl 2xl:w-7xl mx-auto bg-blue-500 rounded-3xl py-12 2xl:py-20 shadow-[0_20px_30px_rgba(15,23,42,0.08)] grid justify-center">
+    <section className="mt-55 -mb-30 md:w-5xl 2xl:w-7xl mx-auto bg-blue-500 rounded-3xl py-12 2xl:py-20 shadow-[0_20px_30px_rgba(15,23,42,0.08)] grid justify-center">
       <Logo className="mx-auto mb-8" variant="light" />
       <div className="max-w-2xl mx-auto text-center">
         <h1 className="text-white font-semibold xl:text-2xl 2xl:text-[1.8rem] mb-5">
