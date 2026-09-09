@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import Link from "next/link"
+import Link from "next/link";
 import {
   ArrowUpRight,
   FireExtinguisher,
@@ -8,55 +8,56 @@ import {
   Search,
   ShoppingCart,
   Signpost,
-  Wrench,
-} from "lucide-react"
-import { useState } from "react"
+  Wrench
+} from "lucide-react";
+import { useState } from "react";
 
-import SelectGroup from "@/components/products/SelectGroup"
-import useSelectGroup from "@/hooks/useSelectGroup"
-import Image from "next/image"
-import Loader from "@/components/ui/loader"
-import useCart from "@/hooks/useCart"
-import ProductQuickView from "@/components/products/ProductQuickView"
-import useCatalogLanguage from "@/hooks/useCatalogLanguage"
-import { useTranslation } from "react-i18next"
-import { groupTranslationKeys, productGroups } from "@/data/productGroups"
-import type { ProductGroup } from "@/data/productGroups"
+import SelectGroup from "@/components/products/SelectGroup";
+import useSelectGroup from "@/hooks/useSelectGroup";
+import Image from "next/image";
+import Loader from "@/components/ui/loader";
+import useCart from "@/hooks/useCart";
+import ProductQuickView from "@/components/products/ProductQuickView";
+import QrCodeDialog from "@/components/QrCodeDialog";
+import useCatalogLanguage from "@/hooks/useCatalogLanguage";
+import { useTranslation } from "react-i18next";
+import { groupTranslationKeys, productGroups } from "@/data/productGroups";
+import type { ProductGroup } from "@/data/productGroups";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+  SelectValue
+} from "@/components/ui/select";
 
 function formatKz(value: number) {
-  return `${value.toLocaleString("pt-AO")} Kz`
+  return `${value.toLocaleString("pt-AO")} Kz`;
 }
 
 const groupIcons = {
   Extintor: FireExtinguisher,
   Suporte: Wrench,
-  "Placa de Sinalização": Signpost,
-} satisfies Record<ProductGroup, typeof Flame>
+  "Placa de Sinalização": Signpost
+} satisfies Record<ProductGroup, typeof Flame>;
 
 export default function Home() {
-  const { t } = useTranslation()
-  const { addItem } = useCart()
-  const { localize } = useCatalogLanguage()
-  const [searchQuery, setSearchQuery] = useState("")
+  const { t } = useTranslation();
+  const { addItem, items } = useCart();
+  const { localize } = useCatalogLanguage();
+  const [searchQuery, setSearchQuery] = useState("");
   const { selectedGroup, setSelectedGroup, visibleProducts, isLoading, error } =
     useSelectGroup({
-      searchQuery,
-    })
+      searchQuery
+    });
   const groupedProducts = productGroups
     .map((groupType) => ({
       groupType,
       products: visibleProducts.filter(
-        (product) => product.groupType === groupType,
-      ),
+        (product) => product.groupType === groupType
+      )
     }))
-    .filter(({ products }) => products.length > 0)
+    .filter(({ products }) => products.length > 0);
 
   return (
     <main className="min-h-screen mt-30 sm:mt-35 xl:mt-40 2xl:mt-45 w-full pb-12 px-4 sm:px-8 2xl:px-0 md:w-5xl 2xl:w-7xl mx-auto">
@@ -81,7 +82,7 @@ export default function Home() {
               value={selectedGroup ?? "all"}
               onValueChange={(value) =>
                 setSelectedGroup(
-                  value === "all" ? null : (value as typeof selectedGroup),
+                  value === "all" ? null : (value as typeof selectedGroup)
                 )
               }
             >
@@ -93,7 +94,7 @@ export default function Home() {
                       ? t(
                           groupTranslationKeys[
                             selectedGroup as keyof typeof groupTranslationKeys
-                          ],
+                          ]
                         )
                       : t("filters.all")}
                 </SelectValue>
@@ -150,26 +151,27 @@ export default function Home() {
             <section key={groupType} className="space-y-6">
               <h2 className="flex items-center gap-2 bg-white text-lg font-semibold text-blue-500">
                 {(() => {
-                  const GroupIcon = groupIcons[groupType]
-                  return <GroupIcon aria-hidden="true" className="h-5 w-5" />
+                  const GroupIcon = groupIcons[groupType];
+                  return <GroupIcon aria-hidden="true" className="h-5 w-5" />;
                 })()}
                 {t(groupTranslationKeys[groupType as ProductGroup])}
               </h2>
 
               <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 md:grid-cols-4">
                 {products.map((product) => {
-                  const productName = localize(product.name, product.nameZh)
+                  const productName = localize(product.name, product.nameZh);
+                  const isInCart = items.some((item) => item.id === product.id);
 
                   return (
                     <article
                       key={product.id}
-                      className="group relative rounded-lg border border-slate-200 bg-white p-2 transition hover:-translate-y-1 hover:shadow-[0_20px_30px_rgba(15,23,42,0.08)]"
+                      className="group relative rounded-lg bg-white hover:bg-slate-50 p-2 transition border border-slate-200"
                     >
                       <div className="hidden md:block">
                         <ProductQuickView product={product} />
                       </div>
                       <Link href={`/${product.id}`} className="group md:hidden">
-                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-2">
+                        <div className="border border-slate-200 bg-slate-50 p-2">
                           <Image
                             src={product.image}
                             alt={productName}
@@ -180,16 +182,6 @@ export default function Home() {
                         </div>
 
                         <div className="space-y-3 px-2 pt-4 pb-2.5">
-                          <div className="flex items-center justify-between gap-3">
-                            <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
-                              {product.brand}
-                            </span>
-
-                            <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-1 text-[8px] uppercase text-slate-500">
-                              {t(groupTranslationKeys[product.groupType])}
-                            </span>
-                          </div>
-
                           <div>
                             <h3 className="2xl:text-lg font-bold text-slate-800 line-clamp-1">
                               {productName}
@@ -215,16 +207,24 @@ export default function Home() {
                         </div>
                       </Link>
 
-                      <button
-                        type="button"
-                        onClick={() => addItem(product)}
-                        className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full border border-blue-200 px-3 py-2 text-xs font-semibold text-blue-500 hover:bg-blue-50"
-                      >
-                        <ShoppingCart className="h-3.5 w-3.5" />
-                        {t("detail.addToCart")}
-                      </button>
+                      <div className="mt-1 flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => addItem(product)}
+                          className={`inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-colors ${isInCart ? "border-slate-300 bg-slate-200 text-slate-700 hover:bg-slate-300" : "border-blue-200 text-blue-500 hover:bg-blue-500 hover:text-white"}`}
+                        >
+                          <ShoppingCart className="h-3.5 w-3.5" />
+                          {t("detail.addToCart")}
+                        </button>
+
+                        <QrCodeDialog
+                          href={`/${product.id}`}
+                          label={`Mostrar QR Code de ${productName}`}
+                          className="shrink-0 border border-slate-200"
+                        />
+                      </div>
                     </article>
-                  )
+                  );
                 })}
               </div>
             </section>
@@ -232,5 +232,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-  )
+  );
 }
