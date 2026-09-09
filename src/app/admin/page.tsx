@@ -7,6 +7,7 @@ export default async function AdminPage() {
     prisma.product.count({ where: { type: "product" } }),
     prisma.product.count({ where: { type: "service" } })
   ]);
+  
   const sections = [
     {
       href: "/admin/products",
