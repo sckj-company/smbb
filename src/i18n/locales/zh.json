@@ -12,7 +12,8 @@
   },
   "pageTitle": {
     "products": "产品",
-    "services": "提供服务"
+    "services": "提供服务",
+    "not-found": "返回主页。"
   },
   "services": {
     "startingAt": "起价：",
