@@ -4,6 +4,7 @@ import { PasswordField } from "./PasswordField";
 import { useState } from "react";
 import { usePasswordToggle } from "@/hooks/usePasswordToggle";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 export function LoginForm() {
   const { showPassword, togglePassword } = usePasswordToggle();
@@ -35,6 +36,14 @@ export function LoginForm() {
   return (
     <section>
       <section className="login-form">
+        <Image
+          src="/smbb-logo-dark-transparent.png"
+          alt="SMBB Logo"
+          width="200"
+          height="100"
+          className="h-4 sm:h-6.5 xl:h-6 w-fit mx-auto mb-2 sm:mb-5"
+        />
+
         <div>
           <h1>Administrador</h1>
           <p className="mt-1">Painel Administrativo</p>
@@ -51,7 +60,7 @@ export function LoginForm() {
                 required
               />
             </label>
-            
+
             <label>
               <span>Palavra-passe</span>
               <PasswordField
