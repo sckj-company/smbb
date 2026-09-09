@@ -167,6 +167,18 @@ body::selection {
   padding: 0.4rem 4rem 0.4rem 0.4rem;
   border-radius: 0.9rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.13);
+
+  @media (width <= 1280px) {
+    gap: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  @media (width <= 640px) {
+    display: grid;
+    gap: 0;
+    padding: 0.2rem;
+    box-shadow: none;
+  }
 }
 
 .login-fire {
@@ -177,6 +189,16 @@ body::selection {
   width: 30rem;
   height: 40rem;
   border-radius: 0.9rem;
+
+  @media (width <= 1280px) {
+    width: 22rem;
+    height: 32rem;
+  }
+
+  @media (width <= 640px) {
+    width: 100%;
+    height: 20rem;
+  }
 }
 
 .login-form {
@@ -185,6 +207,10 @@ body::selection {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (width <= 640px) {
+    margin: 2rem 1.5rem 1.5rem;
+  }
 }
 
 .login-form h1 {
