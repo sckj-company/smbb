@@ -12,7 +12,8 @@
   },
   "pageTitle": {
     "products": "Produtos",
-    "services": "Prestação de Serviços"
+    "services": "Prestação de Serviços",
+    "not-found": "Voltar à Página Inicial."
   },
   "services": {
     "startingAt": "A partir de:",
