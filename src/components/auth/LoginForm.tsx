@@ -51,6 +51,7 @@ export function LoginForm() {
                 required
               />
             </label>
+            
             <label>
               <span>Palavra-passe</span>
               <PasswordField
