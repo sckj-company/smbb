@@ -156,6 +156,12 @@ body::selection {
   color: var(--color-blue-900);
 }
 
+.bg-dotted {
+    background-image: radial-gradient(#024a7026 1px, #0000 1px);
+    background-size: 1.08rem 1.08rem;
+    background-attachment: fixed;
+}
+
 .login-container {
   display: flex;
   align-items: center;
