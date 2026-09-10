@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import ScrollToTop from "./ScrollToTop";
 import Footer from "./Footer";
 import { CartProvider } from "@/hooks/useCart";
+import CompanySupportButton from "./ui/company-support-button";
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -17,6 +18,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       {!isAdminRoute && <Navbar />}
       {children}
       {!isAdminRoute && <Footer />}
+      <CompanySupportButton />
     </CartProvider>
   );
 }
