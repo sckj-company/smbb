@@ -18,6 +18,8 @@
   "services": {
     "startingAt": "A partir de:",
     "bookService": "Agendar serviço",
+    "client": "Cliente",
+    "clientPlaceholder": "Nome do Cliente",
     "date": "Data",
     "selectDate": "Selecione uma data",
     "time": "Horário",
@@ -65,5 +67,73 @@
   "footer": {
     "description": "Especialistas em prevenção e combate a incêndios. Protegemos o que é importante para ti, antes que o pior aconteça.",
     "copyright": "SMBB - Comércio e Serviços, (SU), LDA"
+  },
+  "howItWorks": {
+    "eyebrow": "COMO FUNCIONA",
+    "title1": "Seis passos.",
+    "title2": "Zero complicação.",
+    "description": "Pedir um produto ou agendar um serviço com a SMBB é simples — do primeiro clique até o equipamento chegar às tuas mãos ou o técnico chegar ao local.",
+    "items": [
+      {
+        "command": "Explora o catálogo",
+        "label": "EXPLORAR",
+        "description": "Navega pela Loja para ver extintores, suportes e placas de sinalização, ou pela secção de Serviços para manutenção e inspeção."
+      },
+      {
+        "command": "Escolhe o que precisas",
+        "label": "ESCOLHER",
+        "description": "Seleciona o produto que queres comprar ou o serviço que queres agendar, com preço a partir de já visível."
+      },
+      {
+        "command": "Preenche os dados",
+        "label": "PREENCHER",
+        "description": "Indica o teu nome, e para serviços, a data, horário e local de atendimento. Podes deixar uma observação adicional."
+      },
+      {
+        "command": "Solicita pelo WhatsApp",
+        "label": "SOLICITAR",
+        "description": "Com um clique, o teu pedido é enviado diretamente para o WhatsApp da SMBB, já com todos os detalhes preenchidos."
+      },
+      {
+        "command": "Confirmação da SMBB",
+        "label": "CONFIRMAR",
+        "description": "A nossa equipa confirma a disponibilidade, o preço final e combina contigo os próximos passos."
+      },
+      {
+        "command": "Entrega ou atendimento",
+        "label": "RECEBER",
+        "description": "Recebe o teu produto ou recebe o técnico no local combinado, pronto para proteger o que é importante para ti."
+      }
+    ]
+  },
+  "faq": {
+    "title": "Perguntas frequentes",
+    "description": "Encontre respostas rápidas para as principais dúvidas sobre segurança contra incêndios, equipamentos e serviços da SMBB.",
+    "items": [
+      {
+        "question": "Os meus extintores estão prontos para uso?",
+        "answer": "Apenas uma inspeção adequada pode confirmar o estado e a funcionalidade do equipamento."
+      },
+      {
+        "question": "Quando devo substituir um extintor?",
+        "answer": "A substituição depende do estado, validade, danos e condições técnicas do equipamento."
+      },
+      {
+        "question": "Qual extintor é adequado para o meu espaço?",
+        "answer": "Depende dos riscos e materiais presentes no local. A SMBB pode indicar a solução adequada."
+      },
+      {
+        "question": "A SMBB faz inspeções no local?",
+        "answer": "Sim. Avaliamos as condições dos equipamentos e identificamos possíveis necessidades de manutenção."
+      },
+      {
+        "question": "Ter extintores significa estar protegido?",
+        "answer": "Não necessariamente. Equipamentos inadequados, danificados ou sem manutenção podem comprometer a proteção contra incêndios."
+      },
+      {
+        "question": "Como garantir a proteção da minha empresa?",
+        "answer": "Através de uma avaliação adequada dos riscos, equipamentos corretos e manutenção realizada regularmente."
+      }
+    ]
   }
 }
