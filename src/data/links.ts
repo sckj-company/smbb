@@ -3,7 +3,7 @@ import { Store, Wrench } from "lucide-react";
 export const navLink = [
   {
     key: "nav.store",
-    href: "/",
+    href: "/products",
     icon: Store
   },
   {
