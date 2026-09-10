@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import { ArrowUpRight } from "lucide-react"
-import useSWR from "swr"
-import Loader from "@/components/ui/loader"
-import ServiceBookingForm from "@/components/services/ServiceBookingForm"
-import { formatKz } from "@/lib/whatsapp"
-import useCatalogLanguage from "@/hooks/useCatalogLanguage"
-import { useTranslation } from "react-i18next"
-import Image from "next/image"
+import { ArrowUpRight } from "lucide-react";
+import useSWR from "swr";
+import Loader from "@/components/ui/loader";
+import ServiceBookingForm from "@/components/services/ServiceBookingForm";
+import useCatalogLanguage from "@/hooks/useCatalogLanguage";
+import { useTranslation } from "react-i18next";
+import Image from "next/image";
+import { formatKz } from "@/utils/formatKz";
 
-const fetcher = (url: string) => fetch(url).then((response) => response.json())
+const fetcher = (url: string) => fetch(url).then((response) => response.json());
 
 type Service = {
-  id: string
-  slug: string
-  name: string
-  nameZh: string
-  description: string
-  descriptionZh: string
-  price: number
-  image: string
-}
+  id: string;
+  slug: string;
+  name: string;
+  nameZh: string;
+  description: string;
+  descriptionZh: string;
+  price: number;
+  image: string;
+};
 
 export default function ServicesPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const { data: services = [], isLoading } = useSWR<Service[]>(
     "/api/products?type=service",
-    fetcher,
-  )
+    fetcher
+  );
 
-  const { localize } = useCatalogLanguage()
+  const { localize } = useCatalogLanguage();
 
   return (
     <main className="min-h-screen mt-30 sm:mt-35 xl:mt-40 2xl:mt-45 pb-12 px-4 sm:px-8 2xl:px-0 w-full md:w-5xl 2xl:w-7xl mx-auto">
@@ -53,11 +53,12 @@ export default function ServicesPage() {
       ) : (
         <div className="grid gap-5 md:grid-cols-2 2xl:grid-cols-3">
           {services.map((service) => {
-            const serviceName = localize(service.name, service.nameZh)
+            const serviceName = localize(service.name, service.nameZh);
             const serviceDescription = localize(
               service.description,
-              service.descriptionZh,
-            )
+              service.descriptionZh
+            );
+
             return (
               <article
                 key={service.id}
@@ -78,12 +79,12 @@ export default function ServicesPage() {
                     {serviceDescription}
                   </p>
                   <div className="flex items-center justify-between border-t border-slate-200 pt-4">
-                    <span className="flex gap-1.5 text-sm font-medium text-slate-700">
-                      {t("services.startingAt")}
+                    <div className="flex gap-1.5 text-sm text-slate-700">
+                      <span className="font-semibold">{t("services.startingAt")}</span>
                       <span className="text-green-700 font-semibold">
                         {formatKz(service.price)}
                       </span>
-                    </span>
+                    </div>
                     <ArrowUpRight className="h-4 w-4 text-blue-700" />
                   </div>
 
@@ -92,10 +93,10 @@ export default function ServicesPage() {
                   />
                 </div>
               </article>
-            )
+            );
           })}
         </div>
       )}
     </main>
-  )
+  );
 }
