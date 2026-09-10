@@ -3,11 +3,7 @@
 import { ShoppingCart, Trash2 } from "lucide-react";
 import useCart from "@/hooks/useCart";
 import QuantitySelector from "@/components/products/QuantitySelector";
-import {
-  createProductOrderMessage,
-  createWhatsAppLink,
-  formatKz
-} from "@/lib/whatsapp";
+import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp";
 import {
   Sheet,
   SheetClose,
@@ -19,6 +15,7 @@ import {
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import useCatalogLanguage from "@/hooks/useCatalogLanguage";
+import { formatKz } from "@/utils/formatKz";
 
 type Props = { open: boolean; onClose: () => void };
 
