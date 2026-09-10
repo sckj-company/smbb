@@ -5,7 +5,7 @@ import HeroContent from "./ui/hero-content";
 
 export default function HomeHero() {
   return (
-    <header className="mt-25 mb-60 flex flex-col items-center justify-center gap-4 text-center">
+    <header className="pt-60 pb-60 flex flex-col items-center justify-center gap-4 text-center">
       <HeroContent />
       <HeroButtons />
     </header>
