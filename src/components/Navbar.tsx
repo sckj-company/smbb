@@ -20,8 +20,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed left-1/2 px-4 sm:px-8 2xl:px-0 py-4 top-0 z-30 w-full md:max-w-5xl 2xl:max-w-7xl mx-auto -translate-x-1/2 bg-white/95 md:py-4 backdrop-blur border-b border-slate-200">
-        <div className="mx-auto max-w-7xl flex items-center justify-between gap-4">
+      <nav className="fixed left-1/2 px-4 sm:px-8 2xl:px-0 py-4 top-0 z-30 w-full -translate-x-1/2 bg-white/95 md:py-4 backdrop-blur border-b border-slate-200">
+        <div className="w-full md:max-w-5xl 2xl:max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-4 sm:gap-5.5">
             <Logo />
             <div className="hidden h-6 w-px border-l border-blue-100 sm:block" />
