@@ -1,4 +1,5 @@
 import type { CartItem } from "@/hooks/useCart";
+import { formatKz } from "@/utils/formatKz";
 
 export const whatsappNumber = 244951116116;
 
@@ -19,8 +20,4 @@ export function createProductOrderMessage(items: CartItem[], total: number) {
     "",
     `Total: *${formatKz(total)}*`
   ].join("\n");
-}
-
-export function formatKz(value: number) {
-  return `${value.toLocaleString("pt-AO")} Kz`;
 }
