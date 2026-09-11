@@ -2,6 +2,7 @@
 
 import useAvailability from "@/hooks/useAvailability";
 import { useTranslation } from "react-i18next";
+import Availability from "./Availability";
 
 interface StepItem {
   command: string;
@@ -11,7 +12,6 @@ interface StepItem {
 
 export default function HowItWorksSection() {
   const { t } = useTranslation();
-  const availability = useAvailability();
 
   const steps = t("howItWorks.items", { returnObjects: true }) as StepItem[];
 
@@ -22,7 +22,7 @@ export default function HowItWorksSection() {
           {t("howItWorks.eyebrow")}
         </span>
 
-        <h2 className="mt-3 text-4xl font-bold leading-tight text-neutral-900 sm:text-5xl">
+        <h2 className="mt-3 text-4xl font-bold leading-tight sm:text-5xl text-sky-900">
           {t("howItWorks.title1")}
           <br />
           {t("howItWorks.title2")}
@@ -42,7 +42,7 @@ export default function HowItWorksSection() {
                 {String(index + 1).padStart(2, "0")}
               </span>
 
-              <p className="mt-2 text-base font-semibold text-neutral-900">
+              <p className="mt-2 text-sky-900 text-base font-semibold">
                 {item.command}
               </p>
 
@@ -59,10 +59,7 @@ export default function HowItWorksSection() {
 
         <div className="flex justify-between">
           <div />
-          <div className="self-end mt-10 h-fit w-fit bg-green-200 rounded-[6rem] flex items-center gap-1 py-1 px-2">
-            <div className="inline-flex bg-green-500  dark:bg-sky-300 w-2 h-2 rounded-full animate-pulse" />
-            <h1 className="text-xs font-medium">{availability}</h1>
-          </div>
+          <Availability />
         </div>
       </div>
     </section>
