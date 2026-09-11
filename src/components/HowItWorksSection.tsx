@@ -1,5 +1,6 @@
 "use client";
 
+import useAvailability from "@/hooks/useAvailability";
 import { useTranslation } from "react-i18next";
 
 interface StepItem {
@@ -10,11 +11,12 @@ interface StepItem {
 
 export default function HowItWorksSection() {
   const { t } = useTranslation();
+  const availability = useAvailability();
 
   const steps = t("howItWorks.items", { returnObjects: true }) as StepItem[];
 
   return (
-    <section className="relative overflow-hidden px-6 py-24 sm:px-10 lg:px-16">
+    <section className="relative overflow-hidden px-6 py-40 sm:px-0">
       <div className="md:w-5xl 2xl:w-7xl mx-auto relative">
         <span className="font-mono text-xs tracking-widest text-blue-600">
           {t("howItWorks.eyebrow")}
@@ -53,6 +55,14 @@ export default function HowItWorksSection() {
               </p>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-between">
+          <div />
+          <div className="self-end mt-10 h-fit w-fit bg-green-200 rounded-[6rem] flex items-center gap-1 py-1 px-2">
+            <div className="inline-flex bg-green-500  dark:bg-sky-300 w-2 h-2 rounded-full animate-pulse" />
+            <h1 className="text-xs font-medium">{availability}</h1>
+          </div>
         </div>
       </div>
     </section>
