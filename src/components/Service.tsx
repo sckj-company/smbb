@@ -20,7 +20,7 @@ export default function Service() {
   );
 
   return (
-    <section className="border-y border-slate-200 bg-sky-50 py-20">
+    <section className="border-y border-blue-200 bg-sky-50 py-24">
       <div className="md:w-5xl 2xl:w-7xl mx-auto grid grid-cols-[56%_auto] gap-10">
         <Image
           src="/service.jpg"
