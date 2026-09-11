@@ -15,34 +15,34 @@ export default function Numbers() {
   const yearsInBusiness = getYearsInBusiness();
 
   return (
-    <section className="bg-[#041636] py-10">
+    <section className="border-y border-blue-200 bg-sky-50 py-10">
       <div className="md:w-5xl 2xl:w-7xl mx-auto flex justify-between gap-10">
         <div className="space-y-4 text-center">
-          <h1 className="text-sky-300 text-5xl font-bold">
+          <h1 className="text-4xl font-bold text-sky-900">
             {yearsInBusiness}
             <span className="text-blue-400 animate-pulse">+</span>
           </h1>
-          <p className="text-white/70">Anos no mercado</p>
+          <p className="text-sky-900/70">Anos no mercado</p>
         </div>
         <div className="space-y-4 text-center">
-          <h1 className="text-sky-300 text-5xl font-bold">
+          <h1 className="text-4xl font-bold text-sky-900">
             200<span className="text-blue-400 animate-pulse">+</span>
           </h1>
-          <p className="text-white/70">Clientes fiéis</p>
+          <p className="text-sky-900/70">Clientes fiéis</p>
         </div>
         <div className="space-y-4 text-center">
-          <h1 className="text-sky-300 text-5xl font-bold">
+          <h1 className="text-4xl font-bold text-sky-900">
             1.200<span className="text-blue-400 animate-pulse">+</span>
           </h1>
-          <p className="text-white/70">Equipamentos fornecidos</p>
+          <p className="text-sky-900/70">Equipamentos fornecidos</p>
         </div>
         <div className="space-y-4 text-center">
-          <h1 className="text-sky-300 text-5xl font-bold">
-            24
-            <span className="text-blue-400 animate-pulse">/7</span>
+          <h1 className="text-4xl font-bold text-sky-900">
+            97
+            <span className="text-blue-400 animate-pulse">%</span>
           </h1>
 
-          <p className="text-white/70">Compromisso com a segurança</p>
+          <p className="text-sky-900/70">Taxa de satisfação</p>
         </div>
       </div>
     </section>
