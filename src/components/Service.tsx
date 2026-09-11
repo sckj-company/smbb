@@ -29,8 +29,9 @@ export default function Service() {
           height={5000}
           className="w-full h-full rounded-md object-cover"
         />
+
         <div className="px-5 pb-4 pt-4">
-          <h3 className="mb-2 text-xl font-semibold text-blue-900">
+          <h3 className="text-sky-900 mb-2 text-xl font-semibold">
             {serviceName}
           </h3>
           <p className="mb-4 text-sm leading-6 text-slate-600">
@@ -38,7 +39,9 @@ export default function Service() {
           </p>
           <div className="flex items-center justify-between border-t border-slate-200 pt-4">
             <div className="flex gap-1.5 text-sm font-medium text-slate-700">
-              <span className="text-sm font-semibold text-slate-800">{t("services.startingAt")}</span>
+              <span className="text-sm font-semibold text-slate-800">
+                {t("services.startingAt")}
+              </span>
               <span className="text-green-700 font-semibold">
                 {formatKz(service.price)}
               </span>
