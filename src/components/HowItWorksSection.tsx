@@ -1,11 +1,10 @@
 "use client";
 
-import useAvailability from "@/hooks/useAvailability";
 import { useTranslation } from "react-i18next";
 import Availability from "./Availability";
 
 interface StepItem {
-  command: string;
+  title: string;
   label: string;
   description: string;
 }
@@ -16,13 +15,13 @@ export default function HowItWorksSection() {
   const steps = t("howItWorks.items", { returnObjects: true }) as StepItem[];
 
   return (
-    <section className="relative overflow-hidden px-6 py-40 sm:px-0">
+    <section className="relative overflow-hidden py-40 px-6 sm:px-0">
       <div className="md:w-5xl 2xl:w-7xl mx-auto relative">
-        <span className="font-mono text-xs tracking-widest text-blue-600">
+        <span className="font-mono uppercase text-xs tracking-widest text-blue-600">
           {t("howItWorks.eyebrow")}
         </span>
 
-        <h2 className="mt-3 text-4xl font-bold leading-tight sm:text-5xl text-sky-900">
+        <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-5xl text-sky-900">
           {t("howItWorks.title1")}
           <br />
           {t("howItWorks.title2")}
@@ -35,7 +34,7 @@ export default function HowItWorksSection() {
         <div className="mt-14 grid grid-cols-1 divide-y divide-neutral-200 overflow-hidden rounded-xl border border-neutral-200 bg-white sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-3">
           {steps?.map((item, index) => (
             <div
-              key={item.command}
+              key={item.title}
               className="group relative flex flex-col gap-3 border-neutral-200 p-8 transition-colors hover:bg-blue-50/50 sm:border-t sm:sm:nth-[-n+3]:border-t-0 lg:nth-[-n+3]:border-t-0"
             >
               <span className="absolute right-6 top-6 font-mono text-xs text-neutral-300">
@@ -43,7 +42,7 @@ export default function HowItWorksSection() {
               </span>
 
               <p className="mt-2 text-sky-900 text-base font-semibold">
-                {item.command}
+                {item.title}
               </p>
 
               <p className="font-mono text-xs tracking-wider text-blue-600">
