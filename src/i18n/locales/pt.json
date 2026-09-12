@@ -6,6 +6,36 @@
   "company": {
     "name": "SMBB - Comércio e Serviços"
   },
+  "header": {
+    "title": "A Sua Primeira Linha de Defesa Contra o Fogo.",
+    "description": "Segurança contra incêndio de confiança, para empresas e residências em Angola.",
+    "primaryBtn": "Ver Produtos",
+    "secondaryBtn": "Solicitar Serviço"
+  },
+  "numbers": {
+    "items": [
+      {
+        "number": "",
+        "label": "+",
+        "description": "Anos no mercado"
+      },
+      {
+        "number": "200",
+        "label": "+",
+        "description": "Clientes fiéis"
+      },
+      {
+        "number": "1.100",
+        "label": "+",
+        "description": "Equipamentos fornecidos"
+      },
+      {
+        "number": "97",
+        "label": "%",
+        "description": "Taxa de satisfação"
+      }
+    ]
+  },
   "nav": {
     "store": "Loja",
     "services": "Serviços"
@@ -69,40 +99,68 @@
     "copyright": "SMBB - Comércio e Serviços, (SU), LDA"
   },
   "howItWorks": {
-    "eyebrow": "COMO FUNCIONA",
+    "eyebrow": "Como funciona",
     "title1": "Seis passos.",
     "title2": "Zero complicação.",
     "description": "Pedir um produto ou agendar um serviço com a SMBB é simples — do primeiro clique até o equipamento chegar às tuas mãos ou o técnico chegar ao local.",
     "items": [
       {
-        "command": "Explora o catálogo",
+        "title": "Explora o catálogo",
         "label": "EXPLORAR",
         "description": "Navega pela Loja para ver extintores, suportes e placas de sinalização, ou pela secção de Serviços para manutenção e inspeção."
       },
       {
-        "command": "Escolhe o que precisas",
+        "title": "Escolhe o que precisas",
         "label": "ESCOLHER",
         "description": "Seleciona o produto que queres comprar ou o serviço que queres agendar, com preço a partir de já visível."
       },
       {
-        "command": "Preenche os dados",
+        "title": "Preenche os dados",
         "label": "PREENCHER",
         "description": "Indica o teu nome, e para serviços, a data, horário e local de atendimento. Podes deixar uma observação adicional."
       },
       {
-        "command": "Solicita pelo WhatsApp",
+        "title": "Solicita pelo WhatsApp",
         "label": "SOLICITAR",
         "description": "Com um clique, o teu pedido é enviado diretamente para o WhatsApp da SMBB, já com todos os detalhes preenchidos."
       },
       {
-        "command": "Confirmação da SMBB",
+        "title": "Confirmação da SMBB",
         "label": "CONFIRMAR",
         "description": "A nossa equipa confirma a disponibilidade, o preço final e combina contigo os próximos passos."
       },
       {
-        "command": "Entrega ou atendimento",
+        "title": "Entrega ou atendimento",
         "label": "RECEBER",
         "description": "Recebe o teu produto ou recebe o técnico no local combinado, pronto para proteger o que é importante para ti."
+      }
+    ]
+  },
+  "minimalStore": {
+    "eyebrow": "Produtos e Serviços",
+    "title1": "Quatro soluções.",
+    "title2": "Uma só empresa.",
+    "description": "Da compra de um extintor à manutenção completa do teu sistema de segurança contra incêndios — a SMBB trata de tudo, do primeiro contacto até à entrega ou intervenção no local.",
+    "items": [
+      {
+        "cover": "/extinguisher.jpg",
+        "title": "Extintores",
+        "description": "Extintores novos e certificados para todo o tipo de espaço."
+      },
+      {
+        "cover": "/plates.jpg",
+        "title": "Placas de sinalização",
+        "description": "Sinalética de emergência e segurança, conforme às normas."
+      },
+      {
+        "cover": "/equipments.jpg",
+        "title": "Acessórios",
+        "description": "Acessórios que completam a tua proteção contra incêndios."
+      },
+      {
+        "cover": "/service-image.jpg",
+        "title": "Manutenção",
+        "description": "Inspeção, recarga e manutenção dos teus extintores."
       }
     ]
   },
@@ -135,5 +193,12 @@
         "answer": "Através de uma avaliação adequada dos riscos, equipamentos corretos e manutenção realizada regularmente."
       }
     ]
+  },
+  "availability": {
+    "open": "Atendimento Aberto",
+    "closed": "Atendimento Fechado"
+  },
+  "smbbSupport": {
+    "text": "Suporte SMBB"
   }
 }
