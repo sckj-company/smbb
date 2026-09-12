@@ -40,11 +40,11 @@ export default function MinimalStore() {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat"
               }}
-              className="h-60 sm:h-120 rounded-[0.5rem] relative [--gradient-stop:70%] sm:[--gradient-stop:45%]"
+              className="h-6 lg:h-90 2xl:h-120 rounded-[0.5rem] relative [--gradient-stop:70%] sm:[--gradient-stop:45%]"
             >
               <div className="p-4 absolute bottom-0">
                 <h1 className="text-white font-semibold">{item.title}</h1>
-                <p className="text-white/85">{item.description}</p>
+                <p className="text-white/85 lg:text-sm">{item.description}</p>
               </div>
             </article>
           ))}
