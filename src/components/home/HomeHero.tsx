@@ -1,49 +1,24 @@
 "use client";
 
-import Availability from "../Availability";
+import HeroButtons from "./ui/hero-buttons";
+import HeroContent from "./ui/hero-content";
 
 export default function HomeHero() {
   return (
-    <header className="relative w-full min-h-screen flex items-center overflow-hidden bg-white">
+    <header
+      id="home-hero"
+      className="-mt-35 relative flex min-h-screen w-full items-center justify-center overflow-hidden md:justify-start"
+    >
       <div
-        className="absolute inset-0"
+        className="sm:mt-45 absolute inset-x-0 bottom-0 h-[48%] bg-[url('/hero-image-mobile.png')] bg-position-[35%_bottom] bg-no-repeat md:inset-0 md:h-auto md:bg-[url('/hero-image.png')] md:bg-position-[right_center]"
         style={{
-          backgroundImage: "url('/hero-image.png')",
-          backgroundSize: "contain",
-          backgroundPosition: "right center",
-          backgroundRepeat: "no-repeat"
+          backgroundSize: "contain"
         }}
       />
 
-      <div className="absolute inset-0 bg-linear-to-r from-white via-white/80 to-transparent md:via-white/40" />
-
-      <div className="relative z-10 max-w-7xl w-full mx-auto px-6">
-        <div className="max-w-xl text-left">
-          <Availability />
-          <h1 className="mt-8 text-4xl font-bold tracking-tighter sm:text-6xl md:text-[4.2rem]">
-            Onde Equipes e Agentes Pensam Juntos.
-          </h1>
-
-          <p className="mt-6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-            aspernatur quas accusamus illum adipisci!
-          </p>
-
-          <div className="mt-8 flex items-center gap-4">
-            <a
-              href="#"
-              className="rounded-full bg-sky-500 px-7 py-3 text-sm font-semibold text-white hover:bg-sky-600 transition"
-            >
-              Pedir Orçamento
-            </a>
-            <a
-              href="#"
-              className="rounded-full bg-white px-7 py-3 text-sm font-semibold text-zinc-900 border border-zinc-200 hover:bg-zinc-50 transition"
-            >
-              Saber Mais
-            </a>
-          </div>
-        </div>
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-4 pb-[42%] text-center md:items-start md:px-0 md:pb-0 md:text-left">
+        <HeroContent />
+        <HeroButtons />
       </div>
     </header>
   );
