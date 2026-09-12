@@ -20,8 +20,11 @@ export default function Service() {
   );
 
   return (
-    <section className="border-y border-blue-200 bg-sky-50 py-24">
-      <div className="md:w-5xl 2xl:w-7xl mx-auto grid grid-cols-[56%_auto] gap-10">
+    <section
+      className="border-y border-blue-200 bg-sky-50 py-8 sm:py-24 px-6 sm:px-0"
+      id="services"
+    >
+      <div className="md:w-5xl 2xl:w-7xl mx-auto grid sm:grid-cols-[56%_auto] gap-10">
         <Image
           src="/service.jpg"
           alt="Service"
