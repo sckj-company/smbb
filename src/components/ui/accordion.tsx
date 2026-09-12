@@ -32,7 +32,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex gap-5 flex-1 items-start justify-between rounded-lg border border-transparent py-5.5 text-left font-semibold text-2xl text-blue-950/60 transition-all outline-none hover:text-blue-950 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 data-panel-open:text-blue-950 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-6 **:data-[slot=accordion-trigger-icon]:text-muted-foreground",
+          "group/accordion-trigger relative flex gap-5 flex-1 items-start justify-between rounded-lg border border-transparent py-5.5 text-left font-semibold text-[1.1rem] sm:text-2xl text-sky-950/60 transition-all outline-none hover:text-sky-900 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring aria-disabled:pointer-events-none aria-disabled:opacity-50 data-panel-open:text-sky-900 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-6 **:data-[slot=accordion-trigger-icon]:text-muted-foreground",
           className
         )}
         {...props}
@@ -40,11 +40,11 @@ function AccordionTrigger({
         {children}
         <ChevronDownIcon
           data-slot="accordion-trigger-icon"
-          className="stroke-blue-950 pointer-events-none shrink-0 data-panel-open:hidden"
+          className="stroke-sky-950 pointer-events-none shrink-0 data-panel-open:hidden"
         />
         <ChevronUpIcon
           data-slot="accordion-trigger-icon"
-          className="stroke-blue-950 pointer-events-none hidden shrink-0 data-panel-open:inline"
+          className="stroke-sky-950 pointer-events-none hidden shrink-0 data-panel-open:inline"
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
