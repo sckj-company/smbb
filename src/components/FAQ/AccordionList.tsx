@@ -19,7 +19,7 @@ export default function AccordionList() {
     <Accordion
       value={openItems}
       onValueChange={(value) => setOpenItems(value as string[])}
-      className="max-w-xl"
+      className="w-full sm:max-w-xl"
     >
       {FAQ_ITEMS.map((index) => {
         const itemValue = `faq-${index}`;
@@ -34,7 +34,9 @@ export default function AccordionList() {
               {t(`faq.items.${index}.question`)}
             </AccordionTrigger>
 
-            <AccordionContent>{t(`faq.items.${index}.answer`)}</AccordionContent>
+            <AccordionContent>
+              {t(`faq.items.${index}.answer`)}
+            </AccordionContent>
           </AccordionItem>
         );
       })}
