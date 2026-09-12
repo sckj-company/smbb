@@ -1,3 +1,13 @@
+"use client";
+
+import { useTranslation } from "react-i18next";
+
+interface NumberItem {
+  number: string;
+  label: string;
+  description: string;
+}
+
 const foundedAt = new Date("2024-05-31T00:00:00Z");
 
 function getYearsInBusiness() {
@@ -12,38 +22,27 @@ function getYearsInBusiness() {
 }
 
 export default function Numbers() {
+  const { t } = useTranslation();
   const yearsInBusiness = getYearsInBusiness();
 
-  return (
-    <section className="border-y border-blue-200 bg-sky-50 py-10">
-      <div className="md:w-5xl 2xl:w-7xl mx-auto flex justify-between gap-10">
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold text-sky-900">
-            {yearsInBusiness}
-            <span className="text-blue-400 animate-pulse">+</span>
-          </h1>
-          <p className="text-sky-900/70">Anos no mercado</p>
-        </div>
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold text-sky-900">
-            200<span className="text-blue-400 animate-pulse">+</span>
-          </h1>
-          <p className="text-sky-900/70">Clientes fiéis</p>
-        </div>
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold text-sky-900">
-            1.200<span className="text-blue-400 animate-pulse">+</span>
-          </h1>
-          <p className="text-sky-900/70">Equipamentos fornecidos</p>
-        </div>
-        <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold text-sky-900">
-            97
-            <span className="text-blue-400 animate-pulse">%</span>
-          </h1>
+  const numbers = t("numbers.items", {
+    returnObjects: true
+  }) as NumberItem[];
 
-          <p className="text-sky-900/70">Taxa de satisfação</p>
-        </div>
+  return (
+    <section className="border-y border-blue-200 bg-sky-50 py-8 lg:py-10 px-4 sm:px-0">
+      <div className="md:w-5xl 2xl:w-7xl mx-auto grid grid-cols-2 gap-y-8 lg:flex lg:justify-between lg:gap-10">
+        {numbers?.map((item, index) => (
+          <div key={index} className="sm:space-y-4 text-center">
+            <h1 className="text-[1.5rem] sm:text-4xl font-bold text-sky-900">
+              {item.number ? item.number : yearsInBusiness}
+              <span className="text-blue-400 animate-pulse">{item.label}</span>
+            </h1>
+            <p className="text-sm sm:text-base text-sky-900/70">
+              {item.description}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );
