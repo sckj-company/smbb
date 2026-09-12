@@ -6,6 +6,36 @@
   "company": {
     "name": "SMBB - 商业和服务"
   },
+  "header": {
+    "title": "您抵御火灾的第一道防线。",
+    "description": "为安哥拉的公司和家庭提供可靠的消防安全。",
+    "primaryBtn": "查看产品",
+    "secondaryBtn": "请求服务"
+  },
+  "numbers": {
+    "items": [
+      {
+        "number": "",
+        "label": "+",
+        "description": "A深耕市场年数"
+      },
+      {
+        "number": "200",
+        "label": "+",
+        "description": "忠实客户"
+      },
+      {
+        "number": "1,100",
+        "label": "+",
+        "description": "供应设备数量"
+      },
+      {
+        "number": "97",
+        "label": "%",
+        "description": "满意度"
+      }
+    ]
+  },
   "nav": {
     "store": "店铺",
     "services": "服务"
@@ -75,34 +105,62 @@
     "description": "在 SMBB 购买产品或预约服务非常简单——从第一次点击开始，直到设备送达或技术人员到场。",
     "items": [
       {
-        "command": "浏览产品目录",
-        "label": "浏览",
+        "title": "浏览产品目录",
+        "label": "探索",
         "description": "在店铺中查看灭火器、支架和标牌面板，或在服务栏目中查看维护与检查服务。"
       },
       {
-        "command": "选择所需内容",
+        "title": "选择所需内容",
         "label": "选择",
         "description": "选择你想购买的产品或想预约的服务，起价已直接显示。"
       },
       {
-        "command": "填写信息",
+        "title": "填写信息",
         "label": "填写",
         "description": "填写你的姓名；如为服务预约，还需填写日期、时间和服务地点，也可添加备注信息。"
       },
       {
-        "command": "通过 WhatsApp 提交",
-        "label": "提交",
+        "title": "通过 WhatsApp 提交",
+        "label": "要求",
         "description": "一键将你的请求连同所有已填写的信息，直接发送到 SMBB 的 WhatsApp。"
       },
       {
-        "command": "SMBB 确认",
+        "title": "SMBB 确认",
         "label": "确认",
         "description": "我们的团队会确认库存情况、最终价格，并与你商定后续安排。"
       },
       {
-        "command": "交付或上门服务",
+        "title": "交付或上门服务",
         "label": "接收",
         "description": "收到你的产品，或在约定地点接待技术人员，保护对你重要的一切。"
+      }
+    ]
+  },
+  "minimalStore": {
+    "eyebrow": "产品与服务",
+    "title1": "四种解决方案。",
+    "title2": "一家公司。",
+    "description": "从购买灭火器到消防安全系统的完整维护 - SMBB 负责一切事务，从第一次联系到交付或现场干预。",
+    "items": [
+      {
+        "cover": "/extinguisher.jpg",
+        "title": "灭火器",
+        "description": "适用于所有类型空间的新型且经过认证的灭火器。"
+      },
+      {
+        "cover": "/plates.jpg",
+        "title": "路标",
+        "description": "紧急和安全标志，符合标准。"
+      },
+      {
+        "cover": "/equipments.jpg",
+        "title": "配件",
+        "description": "完善您的防火保护的配件。"
+      },
+      {
+        "cover": "/service-image.jpg",
+        "title": "维护",
+        "description": "灭火器的检查、充电和维护。"
       }
     ]
   },
@@ -135,5 +193,12 @@
         "answer": "通过专业的风险评估、正确配置消防设备以及定期进行检查和维护。"
       }
     ]
+  },
+  "availability": {
+    "open": "开放服务",
+    "closed": "封闭式服务"
+  },
+  "smbbSupport": {
+    "text": "SMBB 支持"
   }
 }
