@@ -1,15 +1,15 @@
-"use client";
-import { useTranslation } from "react-i18next";
+"use client"
+import { useTranslation } from "react-i18next"
 
-import AccordionList from "./FAQ/AccordionList";
+import AccordionList from "./FAQ/AccordionList"
 
 export function Faq() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
-    <section className="border-y border-blue-200 bg-sky-50 py-16 sm:py-24 px-6 sm:px-0">
-      <div className="md:w-5xl 2xl:w-7xl mx-auto grid w-full max-w-7xl gap-8 sm:px-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] md:items-start md:gap-10 lg:gap-20 xl:px-0">
-        <section className="w-full space-y-3 md:max-w-sm">
+    <section className="mt-40 border-y border-blue-200 bg-sky-50 py-16 sm:py-24 px-6 sm:px-0">
+      <div className="lg:w-5xl 2xl:w-7xl mx-auto grid w-full max-w-7xl gap-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] md:items-start md:gap-10 lg:gap-35 xl:px-0">
+        <section className="w-full space-y-3">
           <h1 className="text-3xl font-bold text-sky-900 sm:text-4xl">
             {t("faq.title")}
           </h1>
@@ -23,5 +23,5 @@ export function Faq() {
         </div>
       </div>
     </section>
-  );
+  )
 }
