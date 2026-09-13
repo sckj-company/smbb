@@ -194,7 +194,7 @@ html {
 .login-fire {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.336) 100%),
-    url("/login-fire.jpg") bottom center;
+    url("/login-fire.webp") bottom center;
   background-size: cover;
   border-radius: 0.9rem;
   width: 30rem;
