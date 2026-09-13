@@ -1,36 +1,36 @@
-"use client";
+"use client"
 
-import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-import ServiceBookingForm from "./services/ServiceBookingForm";
-import useCatalogLanguage from "@/hooks/useCatalogLanguage";
-import { serviceDataSection } from "@/data/service";
-import { useTranslation } from "react-i18next";
-import { formatKz } from "@/utils/formatKz";
+import { ArrowUpRight } from "lucide-react"
+import Image from "next/image"
+import ServiceBookingForm from "./services/ServiceBookingForm"
+import useCatalogLanguage from "@/hooks/useCatalogLanguage"
+import { serviceDataSection } from "@/data/service"
+import { useTranslation } from "react-i18next"
+import { formatKz } from "@/utils/formatKz"
 
 export default function Service() {
-  const { t } = useTranslation();
-  const { localize } = useCatalogLanguage();
-  const service = serviceDataSection;
+  const { t } = useTranslation()
+  const { localize } = useCatalogLanguage()
+  const service = serviceDataSection
 
-  const serviceName = localize(service.name, service.nameZh);
+  const serviceName = localize(service.name, service.nameZh)
   const serviceDescription = localize(
     service.description,
-    service.descriptionZh
-  );
+    service.descriptionZh,
+  )
 
   return (
     <section
-      className="border-y border-blue-200 bg-sky-50 py-8 sm:py-24 px-6 sm:px-0"
+      className="border-y border-blue-200 bg-sky-50 my-40 px-6 sm:px-8"
       id="services"
     >
-      <div className="md:w-5xl 2xl:w-7xl mx-auto grid sm:grid-cols-[56%_auto] gap-10">
+      <div className="lg:w-5xl 2xl:w-7xl my-15 mx-auto grid lg:grid-cols-[56%_auto] gap-10">
         <Image
           src="/service.jpg"
           alt="Service"
           width={2000}
           height={5000}
-          className="w-full h-full rounded-md object-cover"
+          className="w-full h-full sm:h-100 lg:h-full rounded-md object-cover object-bottom-left"
         />
 
         <div className="px-5 pb-4 pt-4">
@@ -55,5 +55,5 @@ export default function Service() {
         </div>
       </div>
     </section>
-  );
+  )
 }
