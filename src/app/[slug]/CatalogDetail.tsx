@@ -1,36 +1,36 @@
-"use client";
+"use client"
 
-import { BanknoteArrowUp, ShoppingCart, Star } from "lucide-react";
-import { useState } from "react";
-import type { Product } from "@/interface/products";
-import useCart from "@/hooks/useCart";
-import QuantitySelector from "@/components/products/QuantitySelector";
-import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp";
-import Image from "next/image";
-import useCatalogLanguage from "@/hooks/useCatalogLanguage";
-import { useTranslation } from "react-i18next";
-import QrCodeDialog from "@/components/QrCodeDialog";
+import { BanknoteArrowUp, ShoppingCart, Star } from "lucide-react"
+import { useState } from "react"
+import type { Product } from "@/interface/products"
+import useCart from "@/hooks/useCart"
+import QuantitySelector from "@/components/products/QuantitySelector"
+import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp"
+import Image from "next/image"
+import useCatalogLanguage from "@/hooks/useCatalogLanguage"
+import { useTranslation } from "react-i18next"
+import QrCodeDialog from "@/components/QrCodeDialog"
 
 export function CatalogDetailContent({ item }: { item: Product }) {
-  const { t } = useTranslation();
-  const [quantity, setQuantity] = useState(1);
-  const { addItem, items } = useCart();
-  const { localize } = useCatalogLanguage();
-  const productName = localize(item.name, item.nameZh);
-  const productDescription = localize(item.description, item.descriptionZh);
-  const isInCart = items.some((cartItem) => cartItem.id === item.id);
+  const { t } = useTranslation()
+  const [quantity, setQuantity] = useState(1)
+  const { addItem, items } = useCart()
+  const { localize } = useCatalogLanguage()
+  const productName = localize(item.name, item.nameZh)
+  const productDescription = localize(item.description, item.descriptionZh)
+  const isInCart = items.some((cartItem) => cartItem.id === item.id)
   function buyNow() {
-    addItem(item, quantity);
+    addItem(item, quantity)
     window.open(
       createWhatsAppLink(
         createProductOrderMessage(
           [{ ...item, quantity }],
-          item.price * quantity
-        )
+          item.price * quantity,
+        ),
       ),
       "_blank",
-      "noopener,noreferrer"
-    );
+      "noopener,noreferrer",
+    )
   }
   return (
     <div className="grid gap-8 p-5 sm:p-8 md:grid-cols-2 md:gap-12">
@@ -82,7 +82,7 @@ export function CatalogDetailContent({ item }: { item: Product }) {
               className={`flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors ${isInCart ? "border-slate-300 bg-slate-200 text-slate-700 hover:bg-slate-300" : "border-slate-200 text-slate-700 hover:bg-slate-50"}`}
             >
               <ShoppingCart className="h-4 w-4" />
-              {t("detail.addToCart")}
+              {isInCart ? t("detail.addedToCart") : t("detail.addToCart")}
             </button>
             <QrCodeDialog
               href={`/${item.id}`}
@@ -101,7 +101,7 @@ export function CatalogDetailContent({ item }: { item: Product }) {
         </div>
       </aside>
     </div>
-  );
+  )
 }
 
 export default function CatalogDetail({ item }: { item: Product }) {
@@ -109,5 +109,5 @@ export default function CatalogDetail({ item }: { item: Product }) {
     <main className="mx-auto max-w-7xl bg-white px-4 pb-12 pt-28 sm:px-6 md:pt-35">
       <CatalogDetailContent item={item} />
     </main>
-  );
+  )
 }
