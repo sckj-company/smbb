@@ -143,22 +143,22 @@
     "description": "Da compra de um extintor à manutenção completa do teu sistema de segurança contra incêndios — a SMBB trata de tudo, do primeiro contacto até à entrega ou intervenção no local.",
     "items": [
       {
-        "cover": "/extinguisher.jpg",
+        "cover": "/extinguisher.webp",
         "title": "Extintores",
         "description": "Extintores novos e certificados para todo o tipo de espaço."
       },
       {
-        "cover": "/plates.jpg",
+        "cover": "/plates.webp",
         "title": "Placas de sinalização",
         "description": "Sinalética de emergência e segurança, conforme às normas."
       },
       {
-        "cover": "/equipments.jpg",
+        "cover": "/equipments.webp",
         "title": "Acessórios",
         "description": "Acessórios que completam a tua proteção contra incêndios."
       },
       {
-        "cover": "/service-image.jpg",
+        "cover": "/service-image.webp",
         "title": "Manutenção",
         "description": "Inspeção, recarga e manutenção dos teus extintores."
       }
