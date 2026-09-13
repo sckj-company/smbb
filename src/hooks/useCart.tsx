@@ -18,17 +18,65 @@ type CartContextValue = {
 const CartContext = createContext<CartContextValue | null>(null);
 const storageKey = "smbb-cart";
 
+type StoredCartItem = Pick<CartItem, "id" | "quantity">;
+
+function isStoredCartItem(value: unknown): value is StoredCartItem {
+  if (!value || typeof value !== "object") return false;
+  const item = value as Partial<StoredCartItem>;
+  return typeof item.id === "string" &&
+    typeof item.quantity === "number" &&
+    Number.isFinite(item.quantity) &&
+    item.quantity > 0;
+}
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem(storageKey);
-    if (saved) setItems(JSON.parse(saved) as CartItem[]);
+    async function restoreCart() {
+      try {
+        const saved = window.localStorage.getItem(storageKey);
+        if (!saved) return;
+
+        const parsed: unknown = JSON.parse(saved);
+        if (!Array.isArray(parsed)) return;
+
+        const storedItems = parsed.filter(isStoredCartItem);
+        if (!storedItems.length) return;
+
+        const response = await fetch("/api/products?type=product");
+        if (!response.ok) return;
+
+        const products = (await response.json()) as Product[];
+        const productsById = new Map(products.map((product) => [product.id, product]));
+        setItems(
+          storedItems.flatMap((item) => {
+            const product = productsById.get(item.id);
+            return product ? [{ ...product, quantity: item.quantity }] : [];
+          })
+        );
+      } catch {
+        window.localStorage.removeItem(storageKey);
+      } finally {
+        setIsHydrated(true);
+      }
+    }
+
+    void restoreCart();
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem(storageKey, JSON.stringify(items));
-  }, [items]);
+    if (!isHydrated) return;
+
+    try {
+      const storedItems: StoredCartItem[] = items.map(({ id, quantity }) => ({
+        id,
+        quantity,
+      }));
+      window.localStorage.setItem(storageKey, JSON.stringify(storedItems));
+    } catch {}
+  }, [items, isHydrated]);
 
   const value = useMemo<CartContextValue>(
     () => ({
