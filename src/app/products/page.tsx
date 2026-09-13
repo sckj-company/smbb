@@ -211,7 +211,9 @@ export default function Home() {
                           className={`inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-colors ${isInCart ? "border-slate-300 bg-slate-200 text-slate-700 hover:bg-slate-300" : "border-blue-200 text-blue-500 hover:bg-blue-500 hover:text-white"}`}
                         >
                           <ShoppingCart className="h-3.5 w-3.5" />
-                          {t("detail.addToCart")}
+                          {isInCart
+                            ? t("detail.addedToCart")
+                            : t("detail.addToCart")}
                         </button>
 
                         <QrCodeDialog
