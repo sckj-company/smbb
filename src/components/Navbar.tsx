@@ -1,26 +1,26 @@
-"use client";
+"use client"
 
-import { useTranslation } from "react-i18next";
-import Logo from "./Logo";
-import useTranslate from "@/hooks/useTranslate";
-import LanguageSelect from "./LanguageSelect";
-import NavLinks from "./nav/NavLinks";
-import { Menu, ShoppingCart, X } from "lucide-react";
-import { useState } from "react";
-import useCart from "@/hooks/useCart";
-import CartSheet from "./cart/CartSheet";
-import QrCodeDialog from "./QrCodeDialog";
+import { useTranslation } from "react-i18next"
+import Logo from "./Logo"
+import useTranslate from "@/hooks/useTranslate"
+import LanguageSelect from "./LanguageSelect"
+import NavLinks from "./nav/NavLinks"
+import { Menu, ShoppingCart, X } from "lucide-react"
+import { useState } from "react"
+import useCart from "@/hooks/useCart"
+import CartSheet from "./cart/CartSheet"
+import QrCodeDialog from "./QrCodeDialog"
 
 export default function Navbar() {
-  const { t } = useTranslation();
-  const { handleLanguageChange, selectedLanguage } = useTranslate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
-  const { totalItems } = useCart();
+  const { t } = useTranslation()
+  const { handleLanguageChange, selectedLanguage } = useTranslate()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [cartOpen, setCartOpen] = useState(false)
+  const { totalItems } = useCart()
 
   return (
     <>
-      <nav className="fixed left-1/2 px-4 sm:px-8 2xl:px-0 py-4 top-0 z-30 w-full -translate-x-1/2 bg-white/95 md:py-4 backdrop-blur border-b border-slate-200">
+      <nav className="fixed left-1/2  top-0 z-30 px-4 sm:px-8 2xl:px-0 py-4 md:py-4 w-full -translate-x-1/2 bg-white/95 backdrop-blur border-b border-slate-200">
         <div className="w-full md:max-w-5xl 2xl:max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-4 sm:gap-5.5">
             <Logo />
@@ -77,5 +77,5 @@ export default function Navbar() {
 
       <CartSheet open={cartOpen} onClose={() => setCartOpen(false)} />
     </>
-  );
+  )
 }
