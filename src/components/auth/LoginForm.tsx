@@ -37,7 +37,7 @@ export function LoginForm() {
     <section>
       <section className="login-form">
         <Image
-          src="/smbb-logo-dark-transparent.png"
+          src="/smbb-logo-dark-transparent.webp"
           alt="SMBB Logo"
           width="200"
           height="100"
