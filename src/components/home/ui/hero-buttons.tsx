@@ -16,7 +16,7 @@ export default function HeroButtons() {
 
       <Link
         href="#services"
-        className="flex items-center gap-2 rounded-full bg-white px-4.5 py-2 sm:py-2.5 text-sm font-semibold text-zinc-900 border border-transparent hover:border-zinc-200 hover:bg-zinc-50 transition"
+        className="flex items-center gap-2 rounded-full bg-transparent px-4.5 py-2 sm:py-2.5 text-sm font-semibold text-zinc-900 border border-transparent hover:border-zinc-200 hover:bg-zinc-50 transition"
       >
         {t("header.secondaryBtn")} <ArrowDown className="w-4 h-4" />
       </Link>
