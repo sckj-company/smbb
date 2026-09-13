@@ -1,16 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { setLanguage } from "@/i18n/config";
 import { getInitialLanguage, type Language } from "@/i18n/languages";
 
 export default function useTranslate() {
   const [selectedLanguage, setSelectedLanguage] =
-    useState<Language>(getInitialLanguage);
+    useState<Language>("zh");
 
   useEffect(() => {
     document.documentElement.lang = selectedLanguage;
   }, [selectedLanguage]);
+
+  useEffect(() => {
+    const savedLanguage = getInitialLanguage();
+    if (savedLanguage === "zh") return;
+
+    startTransition(() => {
+      setSelectedLanguage(savedLanguage);
+      setLanguage(savedLanguage);
+    });
+  }, []);
 
   const handleLanguageChange = (value: string | null) => {
     if (!value) return;
