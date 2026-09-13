@@ -6,18 +6,13 @@ import zh from "@/i18n/locales/zh.json";
 
 const defaultLanguage = "zh";
 
-const savedLanguage =
-  typeof window !== "undefined"
-    ? localStorage.getItem("smbb-language") || defaultLanguage
-    : defaultLanguage;
-
 if (!i18next.isInitialized) {
   i18next.use(initReactI18next).init({
     resources: {
       pt: { translation: pt },
       zh: { translation: zh }
     },
-    lng: savedLanguage,
+    lng: defaultLanguage,
     fallbackLng: defaultLanguage,
     interpolation: {
       escapeValue: false
