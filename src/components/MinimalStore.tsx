@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 interface ServiceItem {
-  cover: string;
-  title: string;
-  description: string;
+  cover: string
+  title: string
+  description: string
 }
 
 export default function MinimalStore() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const store = t("minimalStore.items", {
-    returnObjects: true
-  }) as ServiceItem[];
+    returnObjects: true,
+  }) as ServiceItem[]
 
   return (
-    <section className="relative overflow-hidden px-6 py-40 sm:px-0">
-      <div className="md:w-5xl 2xl:w-7xl mx-auto relative">
+    <section className="relative overflow-hidden px-6 sm:px-8 sm:px-0">
+      <div className="lg:w-5xl 2xl:w-7xl mx-auto relative ">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-blue-600">
             {t("minimalStore.eyebrow")}
@@ -30,7 +30,7 @@ export default function MinimalStore() {
           </p>
         </div>
 
-        <div className="mt-14 grid sm:grid-cols-4 gap-4">
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {store?.map((item, index) => (
             <article
               key={index}
@@ -38,9 +38,9 @@ export default function MinimalStore() {
                 backgroundImage: `linear-gradient(to top, rgb(0, 0, 0), transparent var(--gradient-stop)), url('${item.cover}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                backgroundRepeat: "no-repeat"
+                backgroundRepeat: "no-repeat",
               }}
-              className="h-6 lg:h-90 2xl:h-120 rounded-[0.5rem] relative [--gradient-stop:70%] sm:[--gradient-stop:45%]"
+              className="h-60 sm:h-90 2xl:h-120 rounded-[0.5rem] relative [--gradient-stop:70%] sm:[--gradient-stop:45%]"
             >
               <div className="p-4 absolute bottom-0">
                 <h1 className="text-white font-semibold">{item.title}</h1>
@@ -51,5 +51,5 @@ export default function MinimalStore() {
         </div>
       </div>
     </section>
-  );
+  )
 }
