@@ -12,7 +12,7 @@ const products = [
     oldPrice: 1100000,
     accent: "from-slate-700 via-stone-700 to-neutral-900",
     accentColor: "#facc15",
-    image: "/product.png",
+    image: "/product.webp",
     description:
       "Extintor multifuncional para uso em áreas comerciais, industriais e residenciais com alta confiabilidade.",
     descriptionZh: "适用于商业、工业和住宅区域的多功能灭火器，可靠性高。",
@@ -33,7 +33,7 @@ const products = [
     oldPrice: 1290000,
     accent: "from-zinc-700 via-slate-800 to-black",
     accentColor: "#e5e7eb",
-    image: "/product.png",
+    image: "/product.webp",
     description:
       "Detector inteligente com alarme sonoro, indicação visual e resposta rápida para proteção imediata.",
     descriptionZh:
@@ -55,7 +55,7 @@ const products = [
     oldPrice: 1430000,
     accent: "from-stone-500 via-zinc-700 to-black",
     accentColor: "#d4d4d8",
-    image: "/product.png",
+    image: "/product.webp",
     description:
       "Sistema automatizado de combate a incêndio para proteção contínua de áreas amplas e comerciais.",
     descriptionZh: "用于大型和商业区域持续防护的自动化灭火系统。",
@@ -76,7 +76,7 @@ const products = [
     oldPrice: 1100000,
     accent: "from-slate-700 via-stone-700 to-neutral-900",
     accentColor: "#facc15",
-    image: "/product.png",
+    image: "/product.webp",
     description:
       "Extintor multifuncional para uso em áreas comerciais, industriais e residenciais com alta confiabilidade.",
     descriptionZh: "适用于商业、工业和住宅区域的多功能灭火器，可靠性高。",
@@ -97,7 +97,7 @@ const products = [
     oldPrice: 1290000,
     accent: "from-zinc-700 via-slate-800 to-black",
     accentColor: "#e5e7eb",
-    image: "/product.png",
+    image: "/product.webp",
     description:
       "Detector inteligente com alarme sonoro, indicação visual e resposta rápida para proteção imediata.",
     descriptionZh:
@@ -119,7 +119,7 @@ const products = [
     oldPrice: 1430000,
     accent: "from-stone-500 via-zinc-700 to-black",
     accentColor: "#d4d4d8",
-    image: "/product.png",
+    image: "/product.webp",
     description:
       "Sistema automatizado de combate a incêndio para proteção contínua de áreas amplas e comerciais.",
     descriptionZh: "用于大型和商业区域持续防护的自动化灭火系统。",
