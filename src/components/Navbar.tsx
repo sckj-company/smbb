@@ -41,9 +41,9 @@ export default function Navbar() {
               type="button"
               onClick={() => setCartOpen(true)}
               aria-label={`Abrir carrinho (${totalItems} itens)`}
-              className="relative rounded-full p-2 text-slate-600 hover:bg-slate-100"
+              className="relative rounded-full p-2 text-slate-600 hover:bg-blue-50"
             >
-              <ShoppingCart className="h-5 w-5" />
+              <ShoppingCart className="h-4 w-4" />
               {totalItems > 0 && (
                 <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-600 px-1 text-[10px] font-bold text-white">
                   {totalItems}
