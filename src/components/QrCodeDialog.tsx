@@ -56,7 +56,7 @@ export default function QrCodeDialog({
       <DialogTrigger
         aria-label={label}
         className={cn(
-          "inline-flex items-center justify-center rounded-full p-2 text-slate-600 border border-transparent hover:bg-slate-100 hover",
+          "inline-flex items-center justify-center rounded-full p-2 text-slate-600 border border-transparent hover:bg-blue-50",
           className
         )}
       >
