@@ -8,7 +8,7 @@ CREATE TABLE "Product" (
     "oldPrice" INTEGER NOT NULL DEFAULT 0,
     "accent" TEXT NOT NULL DEFAULT 'from-slate-700 via-stone-700 to-neutral-900',
     "accentColor" TEXT NOT NULL DEFAULT '#facc15',
-    "image" TEXT NOT NULL DEFAULT '/product.png',
+    "image" TEXT NOT NULL DEFAULT '/product.webp',
     "description" TEXT NOT NULL,
     "highlights" TEXT[],
     "groupType" TEXT NOT NULL,
