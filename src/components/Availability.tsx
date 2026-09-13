@@ -7,12 +7,12 @@ export default function Availability() {
 
   return (
     <div
-      className={`mx-auto mt-10 flex h-fit w-fit items-center gap-1 rounded-[6rem] border px-2 py-1 md:mx-0 ${availability === "availability.open" ? "border-green-300 bg-green-100" : "border-red-300 bg-red-100"}`}
+      className={`mx-auto mt-10 flex h-fit w-fit items-center gap-1 rounded-[6rem] border px-2 py-1 lg:mx-0 ${availability === "availability.open" ? "border-green-300 bg-green-100" : "border-red-300 bg-red-100"}`}
     >
       <div
         className={`inline-flex ${availability === "availability.open" ? "bg-green-500" : "bg-red-500"} w-2 h-2 rounded-full animate-pulse`}
       />
-      <span className="text-xs sm:text-sm font-medium">{t(availability)}</span>
+      <span className="text-xs 2xl:text-sm font-medium">{t(availability)}</span>
     </div>
   );
 }
