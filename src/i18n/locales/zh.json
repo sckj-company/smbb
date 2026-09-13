@@ -143,22 +143,22 @@
     "description": "从购买灭火器到消防安全系统的完整维护 - SMBB 负责一切事务，从第一次联系到交付或现场干预。",
     "items": [
       {
-        "cover": "/extinguisher.jpg",
+        "cover": "/extinguisher.webp",
         "title": "灭火器",
         "description": "适用于所有类型空间的新型且经过认证的灭火器。"
       },
       {
-        "cover": "/plates.jpg",
+        "cover": "/plates.webp",
         "title": "路标",
         "description": "紧急和安全标志，符合标准。"
       },
       {
-        "cover": "/equipments.jpg",
+        "cover": "/equipments.webp",
         "title": "配件",
         "description": "完善您的防火保护的配件。"
       },
       {
-        "cover": "/service-image.jpg",
+        "cover": "/service-image.webp",
         "title": "维护",
         "description": "灭火器的检查、充电和维护。"
       }
