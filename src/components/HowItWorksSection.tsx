@@ -15,8 +15,8 @@ export default function HowItWorksSection() {
   const steps = t("howItWorks.items", { returnObjects: true }) as StepItem[];
 
   return (
-    <section className="relative overflow-hidden py-40 px-6 sm:px-0">
-      <div className="md:w-5xl 2xl:w-7xl mx-auto relative">
+    <section className="relative overflow-hidden my-25 sm:my-35 px-6 sm:px-8">
+      <div className="w-full md:max-w-5xl 2xl:max-w-7xl mx-auto relative">
         <span className="font-mono uppercase text-xs tracking-widest text-blue-600">
           {t("howItWorks.eyebrow")}
         </span>
