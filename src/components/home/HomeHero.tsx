@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import HeroButtons from "./ui/hero-buttons";
-import HeroContent from "./ui/hero-content";
+import HeroButtons from "./ui/hero-buttons"
+import HeroContent from "./ui/hero-content"
 
 export default function HomeHero() {
   return (
@@ -9,7 +9,7 @@ export default function HomeHero() {
       <div
         className="sm:mt-45 absolute inset-x-0 bottom-0 h-[48%] bg-[url('/hero-image-mobile.webp')] bg-position-[35%_bottom] bg-no-repeat md:inset-0 md:h-auto md:bg-[url('/hero-image.webp')] md:bg-position-[right_center]"
         style={{
-          backgroundSize: "contain"
+          backgroundSize: "contain",
         }}
       />
 
@@ -18,5 +18,5 @@ export default function HomeHero() {
         <HeroButtons />
       </div>
     </header>
-  );
+  )
 }
