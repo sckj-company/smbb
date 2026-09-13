@@ -1,37 +1,42 @@
-"use client";
+"use client"
 
-import { ShoppingCart, Trash2 } from "lucide-react";
-import useCart from "@/hooks/useCart";
-import QuantitySelector from "@/components/products/QuantitySelector";
-import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp";
+import { Download, ShoppingCart, Trash2 } from "lucide-react"
+import useCart from "@/hooks/useCart"
+import QuantitySelector from "@/components/products/QuantitySelector"
+import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp"
 import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
-  SheetTitle
-} from "@/components/ui/sheet";
-import { useTranslation } from "react-i18next";
-import Image from "next/image";
-import useCatalogLanguage from "@/hooks/useCatalogLanguage";
-import { formatKz } from "@/utils/formatKz";
+  SheetTitle,
+} from "@/components/ui/sheet"
+import { useTranslation } from "react-i18next"
+import Image from "next/image"
+import useCatalogLanguage from "@/hooks/useCatalogLanguage"
+import { formatKz } from "@/utils/formatKz"
+import { downloadCartInvoice } from "@/lib/invoice"
 
-type Props = { open: boolean; onClose: () => void };
+type Props = { open: boolean; onClose: () => void }
 
 export default function CartSheet({ open, onClose }: Props) {
-  const { t } = useTranslation();
-  const { localize } = useCatalogLanguage();
+  const { t } = useTranslation()
+  const { localize } = useCatalogLanguage()
   const { items, totalItems, totalPrice, updateQuantity, removeItem, clear } =
-    useCart();
+    useCart()
 
   function checkout() {
-    if (!items.length) return;
+    if (!items.length) return
     window.open(
       createWhatsAppLink(createProductOrderMessage(items, totalPrice)),
       "_blank",
-      "noopener,noreferrer"
-    );
+      "noopener,noreferrer",
+    )
+  }
+
+  function downloadInvoice() {
+    downloadCartInvoice(items, totalPrice)
   }
 
   return (
@@ -42,16 +47,28 @@ export default function CartSheet({ open, onClose }: Props) {
         className="w-full max-w-md gap-0 p-0"
       >
         <SheetHeader className="px-5 pb-4">
-          <SheetTitle className="pt-2 flex items-center gap-2 text-sm xl:text-lg 2xl:text-2xl font-semibold text-slate-900">
-            <ShoppingCart className="h-5 w-5 text-blue-500" />
-            {t("cart.title")}
+          <div className="flex items-center justify-between gap-3 pr-10">
+            <SheetTitle className="pt-2 flex items-center gap-2 text-sm xl:text-lg 2xl:text-2xl font-semibold text-slate-900">
+              <ShoppingCart className="h-5 w-5 text-blue-500" />
+              {t("cart.title")}
 
-            {totalItems > 1 && (
-              <span className="text-sm font-normal text-slate-400">
-                ({totalItems})
-              </span>
+              {totalItems > 1 && (
+                <span className="text-sm font-normal text-slate-400">
+                  ({totalItems})
+                </span>
+              )}
+            </SheetTitle>
+
+            {items.length > 0 && (
+              <button
+                type="button"
+                onClick={clear}
+                className="w-full text-sm text-slate-500 hover:text-red-500"
+              >
+                {t("cart.moveToTrash")}
+              </button>
             )}
-          </SheetTitle>
+          </div>
 
           <SheetClose
             className="absolute right-4 top-4 rounded-full p-2 text-slate-500 hover:bg-slate-100"
@@ -69,7 +86,7 @@ export default function CartSheet({ open, onClose }: Props) {
           ) : (
             <div className="space-y-8">
               {items.map((item, index) => {
-                const productName = localize(item.name, item.nameZh);
+                const productName = localize(item.name, item.nameZh)
 
                 return (
                   <div
@@ -115,7 +132,7 @@ export default function CartSheet({ open, onClose }: Props) {
                       </div>
                     </div>
                   </div>
-                );
+                )
               })}
             </div>
           )}
@@ -131,7 +148,7 @@ export default function CartSheet({ open, onClose }: Props) {
             type="button"
             onClick={checkout}
             disabled={!items.length}
-            className="mt-3 w-full rounded-full bg-green-600 px-5 py-2 text-sm font-semibold text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-3 w-full rounded-full bg-green-600 px-5 py-2 text-xs font-semibold text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {t("cart.buyViaWhatsApp")}
           </button>
@@ -139,14 +156,17 @@ export default function CartSheet({ open, onClose }: Props) {
           {items.length > 0 && (
             <button
               type="button"
-              onClick={clear}
-              className="w-full text-sm text-slate-500 hover:text-red-500"
+              onClick={downloadInvoice}
+              title="Baixar fatura em PDF"
+              aria-label="Baixar fatura em PDF"
+              className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-2 text-[0.7rem] font-semibold text-blue-700 hover:bg-blue-100"
             >
-              {t("cart.moveToTrash")}
+              <Download className="h-3.5 w-3.5" />
+              <span>Baixar PDF</span>
             </button>
           )}
         </SheetFooter>
       </SheetContent>
     </Sheet>
-  );
+  )
 }
