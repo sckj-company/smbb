@@ -48,7 +48,7 @@ export default function CartSheet({ open, onClose }: Props) {
       >
         <SheetHeader className="px-5 pb-4">
           <div className="pt-2 flex items-center justify-between gap-3 pr-10">
-            <SheetTitle className="flex items-center gap-2 text-sm xl:text-lg 2xl:text-2xl font-semibold text-slate-900">
+            <SheetTitle className="flex items-center gap-3 text-sm xl:text-base 2xl:text-xl font-semibold text-slate-900">
               <ShoppingCart className="h-5 w-5 text-blue-500" />
               {t("cart.title")}
 
