@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import Link from "next/link"
+import Link from "next/link";
 import {
   ArrowUpRight,
   FireExtinguisher,
@@ -8,53 +8,53 @@ import {
   Search,
   ShoppingCart,
   Signpost,
-  Wrench,
-} from "lucide-react"
-import { useState } from "react"
+  Wrench
+} from "lucide-react";
+import { useState } from "react";
 
-import SelectGroup from "@/components/products/SelectGroup"
-import useSelectGroup from "@/hooks/useSelectGroup"
-import Image from "next/image"
-import Loader from "@/components/ui/loader"
-import useCart from "@/hooks/useCart"
-import ProductQuickView from "@/components/products/ProductQuickView"
-import QrCodeDialog from "@/components/QrCodeDialog"
-import useCatalogLanguage from "@/hooks/useCatalogLanguage"
-import { useTranslation } from "react-i18next"
-import { groupTranslationKeys, productGroups } from "@/data/productGroups"
-import type { ProductGroup } from "@/data/productGroups"
+import SelectGroup from "@/components/products/SelectGroup";
+import useSelectGroup from "@/hooks/useSelectGroup";
+import Image from "next/image";
+import Loader from "@/components/ui/loader";
+import useCart from "@/hooks/useCart";
+import ProductQuickView from "@/components/products/ProductQuickView";
+import QrCodeDialog from "@/components/QrCodeDialog";
+import useCatalogLanguage from "@/hooks/useCatalogLanguage";
+import { useTranslation } from "react-i18next";
+import { groupTranslationKeys, productGroups } from "@/data/productGroups";
+import type { ProductGroup } from "@/data/productGroups";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { formatKz } from "@/utils/formatKz"
+  SelectValue
+} from "@/components/ui/select";
+import { formatKz } from "@/utils/formatKz";
 
 const groupIcons = {
   Extintor: FireExtinguisher,
   Suporte: Wrench,
-  "Placa de Sinalização": Signpost,
-} satisfies Record<ProductGroup, typeof Flame>
+  "Placa de Sinalização": Signpost
+} satisfies Record<ProductGroup, typeof Flame>;
 
 export default function Home() {
-  const { t } = useTranslation()
-  const { addItem, items } = useCart()
-  const { localize } = useCatalogLanguage()
-  const [searchQuery, setSearchQuery] = useState("")
+  const { t } = useTranslation();
+  const { addItem, items } = useCart();
+  const { localize } = useCatalogLanguage();
+  const [searchQuery, setSearchQuery] = useState("");
   const { selectedGroup, setSelectedGroup, visibleProducts, isLoading, error } =
     useSelectGroup({
-      searchQuery,
-    })
+      searchQuery
+    });
   const groupedProducts = productGroups
     .map((groupType) => ({
       groupType,
       products: visibleProducts.filter(
-        (product) => product.groupType === groupType,
-      ),
+        (product) => product.groupType === groupType
+      )
     }))
-    .filter(({ products }) => products.length > 0)
+    .filter(({ products }) => products.length > 0);
 
   return (
     <main className="min-h-screen mt-30 sm:mt-35 xl:mt-40 2xl:mt-45 w-full pb-12 px-4 sm:px-8 lg:px-0 md:w-5xl 2xl:w-7xl mx-auto">
@@ -79,7 +79,7 @@ export default function Home() {
               value={selectedGroup ?? "all"}
               onValueChange={(value) =>
                 setSelectedGroup(
-                  value === "all" ? null : (value as typeof selectedGroup),
+                  value === "all" ? null : (value as typeof selectedGroup)
                 )
               }
             >
@@ -91,7 +91,7 @@ export default function Home() {
                       ? t(
                           groupTranslationKeys[
                             selectedGroup as keyof typeof groupTranslationKeys
-                          ],
+                          ]
                         )
                       : t("filters.all")}
                 </SelectValue>
@@ -148,16 +148,16 @@ export default function Home() {
             <section key={groupType} className="space-y-6">
               <h2 className="flex items-center gap-2 bg-white text-lg font-semibold text-blue-500">
                 {(() => {
-                  const GroupIcon = groupIcons[groupType]
-                  return <GroupIcon aria-hidden="true" className="h-5 w-5" />
+                  const GroupIcon = groupIcons[groupType];
+                  return <GroupIcon aria-hidden="true" className="h-5 w-5" />;
                 })()}
                 {t(groupTranslationKeys[groupType as ProductGroup])}
               </h2>
 
               <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 md:grid-cols-4">
                 {products.map((product) => {
-                  const productName = localize(product.name, product.nameZh)
-                  const isInCart = items.some((item) => item.id === product.id)
+                  const productName = localize(product.name, product.nameZh);
+                  const isInCart = items.some((item) => item.id === product.id);
 
                   return (
                     <article
@@ -168,7 +168,7 @@ export default function Home() {
                         <ProductQuickView product={product} />
                       </div>
                       <Link href={`/${product.id}`} className="group md:hidden">
-                        <div className="border border-slate-200 bg-slate-50 p-2">
+                        <div className="border rounded-sm border-slate-200 bg-slate-50 p-2">
                           <Image
                             src={product.image}
                             alt={productName}
@@ -208,7 +208,7 @@ export default function Home() {
                         <button
                           type="button"
                           onClick={() => addItem(product)}
-                          className={`inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-colors ${isInCart ? "border-slate-300 bg-slate-200 text-slate-700 hover:bg-slate-300" : "border-blue-200 text-blue-500 hover:bg-blue-500 hover:text-white"}`}
+                          className={`inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-colors ${isInCart ? "border-blue-600 bg-blue-500 text-white hover:bg-blue-600" : "border-slate-200 text-blue-500 hover:border-slate-300 hover:bg-slate-200 hover:text-blue-600"}`}
                         >
                           <ShoppingCart className="h-3.5 w-3.5" />
                           {isInCart
@@ -223,7 +223,7 @@ export default function Home() {
                         />
                       </div>
                     </article>
-                  )
+                  );
                 })}
               </div>
             </section>
@@ -231,5 +231,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-  )
+  );
 }
