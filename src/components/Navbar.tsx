@@ -60,9 +60,9 @@ export default function Navbar() {
               className="rounded-full p-2 text-slate-600 hover:bg-slate-100 sm:hidden"
             >
               {menuOpen ? (
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="h-4 w-4" />
               )}
             </button>
           </div>
