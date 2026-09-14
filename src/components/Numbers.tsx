@@ -31,7 +31,7 @@ export default function Numbers() {
 
   return (
     <section className="border-y border-blue-200 bg-sky-50 py-8 lg:py-10 px-4 sm:px-0">
-      <div className="w-full md:max-w-5xl 2xl:max-w-7xl mx-auto  grid grid-cols-2 gap-y-8 lg:flex lg:justify-between lg:gap-10">
+      <div className="w-full md:max-w-5xl 2xl:max-w-7xl mx-auto grid grid-cols-2 gap-y-12 lg:flex lg:justify-between lg:gap-10">
         {numbers?.map((item, index) => (
           <div key={index} className="sm:space-y-4 text-center">
             <h1 className="text-[1.5rem] sm:text-4xl font-bold text-sky-900">
