@@ -1,48 +1,55 @@
-"use client"
+"use client";
 
-import { BanknoteArrowUp, ShoppingCart, Star } from "lucide-react"
-import { useState } from "react"
-import type { Product } from "@/interface/products"
-import useCart from "@/hooks/useCart"
-import QuantitySelector from "@/components/products/QuantitySelector"
-import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp"
-import Image from "next/image"
-import useCatalogLanguage from "@/hooks/useCatalogLanguage"
-import { useTranslation } from "react-i18next"
-import QrCodeDialog from "@/components/QrCodeDialog"
+import { ArrowLeft, BanknoteArrowUp, ShoppingCart, Star } from "lucide-react";
+import { useState } from "react";
+import type { Product } from "@/interface/products";
+import useCart from "@/hooks/useCart";
+import QuantitySelector from "@/components/products/QuantitySelector";
+import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp";
+import Image from "next/image";
+import useCatalogLanguage from "@/hooks/useCatalogLanguage";
+import { useTranslation } from "react-i18next";
+import QrCodeDialog from "@/components/QrCodeDialog";
+import Link from "next/link";
 
 export function CatalogDetailContent({ item }: { item: Product }) {
-  const { t } = useTranslation()
-  const [quantity, setQuantity] = useState(1)
-  const { addItem, items } = useCart()
-  const { localize } = useCatalogLanguage()
-  const productName = localize(item.name, item.nameZh)
-  const productDescription = localize(item.description, item.descriptionZh)
-  const isInCart = items.some((cartItem) => cartItem.id === item.id)
+  const { t } = useTranslation();
+  const [quantity, setQuantity] = useState(1);
+  const { addItem, items } = useCart();
+  const { localize } = useCatalogLanguage();
+  const productName = localize(item.name, item.nameZh);
+  const productDescription = localize(item.description, item.descriptionZh);
+  const isInCart = items.some((cartItem) => cartItem.id === item.id);
   function buyNow() {
-    addItem(item, quantity)
+    addItem(item, quantity);
     window.open(
       createWhatsAppLink(
         createProductOrderMessage(
           [{ ...item, quantity }],
-          item.price * quantity,
-        ),
+          item.price * quantity
+        )
       ),
       "_blank",
-      "noopener,noreferrer",
-    )
+      "noopener,noreferrer"
+    );
   }
   return (
-    <div className="grid gap-8 p-5 sm:p-8 md:grid-cols-2 md:gap-12">
-      <section className="flex items-center rounded-xl border border-slate-200 bg-slate-50 py-4 xl:p-6">
-        <Image
-          src={item.image}
-          alt={productName}
-          width={400}
-          height={400}
-          className={`relative h-50 ${item.groupType === "Extintor" ? "lg:h-95" : item.groupType === "Placa de Sinalização" ? "lg:h-30" : ""} w-full object-contain`}
-        />
-      </section>
+    <div className="grid gap-8 px-5 sm:p-8 md:grid-cols-2 md:gap-12">
+      <div className="space-y-4">
+        <Link href="/products" className="flex items-center gap-2 text-sm text-blue-500 hover:text-blue-600">
+          <ArrowLeft className="w-4 h-4" /> Voltar
+        </Link>
+
+        <section className="flex items-center rounded-xl border border-slate-200 bg-slate-50 py-4 xl:p-6">
+          <Image
+            src={item.image}
+            alt={productName}
+            width={400}
+            height={400}
+            className={`relative h-50 ${item.groupType === "Extintor" ? "lg:h-95" : item.groupType === "Placa de Sinalização" ? "lg:h-30" : ""} w-full object-contain`}
+          />
+        </section>
+      </div>
 
       <aside className="py-5">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400 border-b border-slate-300 w-fit pb-0.5 pr-5">
@@ -101,7 +108,7 @@ export function CatalogDetailContent({ item }: { item: Product }) {
         </div>
       </aside>
     </div>
-  )
+  );
 }
 
 export default function CatalogDetail({ item }: { item: Product }) {
@@ -109,5 +116,5 @@ export default function CatalogDetail({ item }: { item: Product }) {
     <main className="mx-auto max-w-7xl bg-white px-4 pb-12 pt-28 sm:px-6 md:pt-35">
       <CatalogDetailContent item={item} />
     </main>
-  )
+  );
 }
