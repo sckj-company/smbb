@@ -11,14 +11,16 @@ import CompanySupportButton from "./ui/company-support-button"
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const isAdminRoute = pathname.startsWith("/admin")
+  const isTestStoreRoute = pathname === "/teste"
+  const showPublicShell = !isAdminRoute && !isTestStoreRoute
 
   return (
     <CartProvider>
       <ScrollToTop />
-      {!isAdminRoute && <Navbar />}
+      {showPublicShell && <Navbar />}
       {children}
-      {!isAdminRoute && <Footer />}
-      {!isAdminRoute && <CompanySupportButton />}
+      {showPublicShell && <Footer />}
+      {showPublicShell && <CompanySupportButton />}
     </CartProvider>
   )
 }
