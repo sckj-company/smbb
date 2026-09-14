@@ -156,6 +156,14 @@ body::selection {
   color: var(--color-blue-900);
 }
 
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: inherit;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
