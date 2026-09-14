@@ -7,6 +7,14 @@ export function createWhatsAppLink(message: string) {
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
+export function createSupportMessage() {
+  return [
+    "Olá, SMBB! 👋",
+    "",
+    "Gostaria de entrar em contacto com a equipa de suporte da SMBB."
+  ].join("\n");
+}
+
 export function createProductOrderMessage(items: CartItem[], total: number) {
   const lines = items.map(
     (item) =>
