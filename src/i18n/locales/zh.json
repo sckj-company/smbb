@@ -7,8 +7,8 @@
     "name": "SMBB - 商业和服务"
   },
   "header": {
-    "title": "您抵御火灾的第一道防线。",
-    "description": "为安哥拉的公司和家庭提供可靠的消防安全。",
+    "title": "消防设备与专业服务。",
+    "description": "SMBB 为安哥拉的企业和家庭提供、安装并维护消防安全解决方案。",
     "primaryBtn": "查看产品",
     "secondaryBtn": "请求服务"
   },
@@ -37,6 +37,7 @@
     ]
   },
   "nav": {
+    "home": "首页",
     "store": "店铺",
     "services": "服务"
   },
@@ -46,20 +47,17 @@
     "not-found": "返回主页。"
   },
   "services": {
-    "startingAt": "起价：",
-    "bookService": "预约服务",
+    "startingAt": "从：",
+    "bookService": "安排服务",
     "client": "顾客",
     "clientPlaceholder": "客户名称",
-    "date": "日期",
-    "selectDate": "选择日期",
-    "time": "时间",
-    "selectTime": "选择时间",
-    "location": "服务地点",
-    "locationPlaceholder": "地址或参考地点",
-    "observation": "备注",
-    "optional": "可选",
-    "observationPlaceholder": "其他补充信息",
-    "requestOnWhatsApp": "通过 WhatsApp 请求"
+    "phone": "电话",
+    "phonePlaceholder": "900 000 000",
+    "kilos": "灭火器公斤数",
+    "kilosPlaceholder": "2",
+    "totalValue": "全面维护",
+    "totalValuePlaceholder": "5 000 kz",
+    "requestOnWhatsApp": "要求"
   },
   "filters": {
     "all": "全部",
@@ -88,7 +86,13 @@
     "totalText": "全部的",
     "emptyTrash": "您的购物车是空的",
     "moveToTrash": "清洁",
-    "buyViaWhatsApp": "通过 WhatsApp 购买",
+    "buyViaWhatsApp": "Solicitar",
+    "requestChannel": "请选择提交请求的方式",
+    "phone": "电话号码",
+    "phonePlaceholder": "900 000 000",
+    "channelWhatsApp": "通过WhatsApp",
+    "channelDashboard": "按系统",
+    "submitRequest": "提交请求",
     "downloadPdf": "下载PDF"
   },
   "cta": {
