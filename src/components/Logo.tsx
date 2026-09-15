@@ -20,7 +20,7 @@ export default function Logo({
         }
         alt="SMBB Logo"
         width="200"
-        height="100"
+        height="250"
         className={`h-6.5 sm:h-6.5 xl:h-7.5 w-auto ${className}`}
       />
     </Link>
