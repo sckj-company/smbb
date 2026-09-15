@@ -51,7 +51,6 @@ export default function useSubmitService({ service }: ServiceProps) {
     setClient,
     phone,
     setPhone,
-    location,
     kilos,
     setKilos,
     totalKz,
