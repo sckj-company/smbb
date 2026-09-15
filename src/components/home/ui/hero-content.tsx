@@ -1,8 +1,8 @@
-import Availability from "@/components/Availability"
-import { useTranslation } from "react-i18next"
+import Availability from "@/components/Availability";
+import { useTranslation } from "react-i18next";
 
 export default function HeroContent() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <div className="mt-0 lg:mt-20 2xl:mt-0 max-w-164 text-center lg:text-left">
@@ -15,5 +15,5 @@ export default function HeroContent() {
         {t("header.description")}
       </p>
     </div>
-  )
+  );
 }
