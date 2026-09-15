@@ -28,3 +28,32 @@ model Product {
 
   @@index([groupType])
 }
+
+model Order {
+  id        String      @id @default(cuid())
+  type      String      @default("product")
+  channel   String      @default("whatsapp")
+  status    String      @default("pending")
+  total     Int         @default(0)
+  customer  String      @default("")
+  phone     String      @default("")
+  metadata  String      @default("{}") @db.Text
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  items     OrderItem[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  name      String
+  category  String   @default("")
+  quantity  Int
+  unitPrice Int
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+}
