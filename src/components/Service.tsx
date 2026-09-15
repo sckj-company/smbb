@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import { ArrowUpRight } from "lucide-react"
-import Image from "next/image"
-import ServiceBookingForm from "./services/ServiceBookingForm"
-import useCatalogLanguage from "@/hooks/useCatalogLanguage"
-import { serviceDataSection } from "@/data/service"
-import { useTranslation } from "react-i18next"
-import { formatKz } from "@/utils/formatKz"
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import ServiceBookingForm from "./services/ServiceBookingForm";
+import useCatalogLanguage from "@/hooks/useCatalogLanguage";
+import { serviceDataSection } from "@/data/service";
+import { useTranslation } from "react-i18next";
+import { formatKz } from "@/utils/formatKz";
 
 export default function Service() {
-  const { t } = useTranslation()
-  const { localize } = useCatalogLanguage()
-  const service = serviceDataSection
+  const { t } = useTranslation();
+  const { localize } = useCatalogLanguage();
+  const service = serviceDataSection;
 
-  const serviceName = localize(service.name, service.nameZh)
+  const serviceName = localize(service.name, service.nameZh);
   const serviceDescription = localize(
     service.description,
-    service.descriptionZh,
-  )
+    service.descriptionZh
+  );
 
   return (
     <section
@@ -40,20 +40,10 @@ export default function Service() {
           <p className="mb-4 text-sm leading-6 text-slate-600">
             {serviceDescription}
           </p>
-          <div className="flex items-center justify-between border-t border-slate-200 pt-4">
-            <div className="flex gap-1.5 text-sm font-medium text-slate-700">
-              <span className="text-sm font-semibold text-slate-800">
-                {t("services.startingAt")}
-              </span>
-              <span className="text-green-700 font-semibold">
-                {formatKz(service.price)}
-              </span>
-            </div>
-            <ArrowUpRight className="h-4 w-4 text-blue-700" />
-          </div>
+
           <ServiceBookingForm service={{ ...service, name: serviceName }} />
         </div>
       </div>
     </section>
-  )
+  );
 }
