@@ -124,7 +124,7 @@ export default function CatalogForm({ kind, item, backHref }: Props) {
         className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-blue-500"
       >
         <ArrowLeft className="h-4 w-4" />
-        Voltar
+        {}
       </Link>
       <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6 md:p-8">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
