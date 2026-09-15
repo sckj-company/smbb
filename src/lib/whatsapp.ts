@@ -15,13 +15,18 @@ export function createSupportMessage() {
   ].join("\n");
 }
 
-export function createProductOrderMessage(items: CartItem[], total: number) {
+export function createProductOrderMessage(
+  items: CartItem[],
+  total: number,
+  phone = ""
+) {
   const lines = items.map(
     (item) =>
       `- ${item.name} (${item.quantity}x): ${formatKz(item.price * item.quantity)}`
   );
   return [
     "*Olá, SMBB!* 🧯🔥",
+    phone ? `Telefone: *${phone}*` : "",
     "",
     "> Quero comprar:",
     ...lines,
