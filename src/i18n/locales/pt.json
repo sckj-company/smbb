@@ -7,8 +7,8 @@
     "name": "SMBB - Comércio e Serviços"
   },
   "header": {
-    "title": "A Sua Primeira Linha de Defesa Contra o Fogo.",
-    "description": "Segurança contra incêndio de confiança, para empresas e residências em Angola.",
+    "title": "Equipamentos e serviços contra incêndios.",
+    "description": "A SMBB fornece, instala e mantém soluções de segurança contra incêndios para empresas e residências em Angola.",
     "primaryBtn": "Ver Produtos",
     "secondaryBtn": "Solicitar Serviço"
   },
@@ -37,6 +37,7 @@
     ]
   },
   "nav": {
+    "home": "Início",
     "store": "Loja",
     "services": "Serviços"
   },
@@ -50,16 +51,13 @@
     "bookService": "Agendar serviço",
     "client": "Cliente",
     "clientPlaceholder": "Nome do Cliente",
-    "date": "Data",
-    "selectDate": "Selecione uma data",
-    "time": "Horário",
-    "selectTime": "Selecione um horário",
-    "location": "Local de atendimento",
-    "locationPlaceholder": "Morada ou referência",
-    "observation": "Observação",
-    "optional": "opcional",
-    "observationPlaceholder": "Alguma informação adicional",
-    "requestOnWhatsApp": "Solicitar pelo WhatsApp"
+    "phone": "Telefone",
+    "phonePlaceholder": "900 000 000",
+    "kilos": "Quilos do Extintor",
+    "kilosPlaceholder": "2",
+    "totalValue": "Total da Manutenção",
+    "totalValuePlaceholder": "5 000 kz",
+    "requestOnWhatsApp": "Solicitar"
   },
   "filters": {
     "all": "Todos",
@@ -88,7 +86,13 @@
     "totalText": "Total",
     "emptyTrash": "Seu carrinho está vazio.",
     "moveToTrash": "Limpar",
-    "buyViaWhatsApp": "Comprar pelo WhatsApp",
+    "buyViaWhatsApp": "Solicitar",
+    "requestChannel": "Como deseja enviar a solicitação?",
+    "phone": "Número de telefone",
+    "phonePlaceholder": "900 000 000",
+    "channelWhatsApp": "Pelo WhatsApp",
+    "channelDashboard": "Pelo Sistema",
+    "submitRequest": "Enviar solicitação",
     "downloadPdf": "Baixar PDF"
   },
   "cta": {
