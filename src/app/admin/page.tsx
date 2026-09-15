@@ -1,13 +1,19 @@
 import Link from "next/link";
 import { ArrowRight, Package, Wrench } from "lucide-react";
 import { prisma } from "@/lib/prisma";
+import OrdersTable from "@/components/admin/OrdersTable";
 
 export default async function AdminPage() {
-  const [products, services] = await Promise.all([
-    prisma.product.count({ where: { type: "product" } }),
-    prisma.product.count({ where: { type: "service" } })
-  ]);
-  
+  const products = await prisma.product.count({ where: { type: "product" } });
+  const services = await prisma.product.count({ where: { type: "service" } });
+  let orders = 0;
+
+  try {
+    orders = await prisma.order.count();
+  } catch (error) {
+    console.error("Não foi possível carregar a contagem de pedidos:", error);
+  }
+
   const sections = [
     {
       href: "/admin/products",
@@ -20,10 +26,16 @@ export default async function AdminPage() {
       title: "Serviços",
       count: `${services} itens`,
       icon: Wrench
+    },
+    {
+      href: "#orders",
+      title: "Pedidos",
+      count: `${orders} solicitações`,
+      icon: Package
     }
   ];
   return (
-    <main className="w-full md:max-w-5xl 2xl:max-w-7xl mx-auto pb-12 px-4 sm:px-8 2xl:px-0">
+    <main className="mx-auto w-full max-w-7xl px-4 pb-12 sm:px-8 2xl:px-0">
       <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
         Administração
       </p>
@@ -33,7 +45,7 @@ export default async function AdminPage() {
       <p className="mt-2 text-sm text-slate-500">
         Gerencie o catálogo da SMBB.
       </p>
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
+      <div className="mt-8 grid gap-4 md:grid-cols-3">
         {sections.map(({ href, title, count, icon: Icon }) => (
           <Link
             key={href}
@@ -52,6 +64,9 @@ export default async function AdminPage() {
             </div>
           </Link>
         ))}
+      </div>
+      <div id="orders">
+        <OrdersTable />
       </div>
     </main>
   );
