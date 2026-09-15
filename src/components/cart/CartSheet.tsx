@@ -1,42 +1,64 @@
-"use client"
+"use client";
 
-import { Download, ShoppingCart, Trash2 } from "lucide-react"
-import useCart from "@/hooks/useCart"
-import QuantitySelector from "@/components/products/QuantitySelector"
-import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp"
+import { Download, ShoppingCart, Trash2 } from "lucide-react";
+import useCart from "@/hooks/useCart";
+import QuantitySelector from "@/components/products/QuantitySelector";
+import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp";
 import {
   Sheet,
   SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet"
-import { useTranslation } from "react-i18next"
-import Image from "next/image"
-import useCatalogLanguage from "@/hooks/useCatalogLanguage"
-import { formatKz } from "@/utils/formatKz"
-import { downloadCartInvoice } from "@/lib/invoice"
+  SheetTitle
+} from "@/components/ui/sheet";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import Image from "next/image";
+import useCatalogLanguage from "@/hooks/useCatalogLanguage";
+import { formatKz } from "@/utils/formatKz";
+import { downloadCartInvoice } from "@/lib/invoice";
 
-type Props = { open: boolean; onClose: () => void }
+type Props = { open: boolean; onClose: () => void };
 
 export default function CartSheet({ open, onClose }: Props) {
-  const { t } = useTranslation()
-  const { localize } = useCatalogLanguage()
+  const { t } = useTranslation();
+  const { localize } = useCatalogLanguage();
   const { items, totalItems, totalPrice, updateQuantity, removeItem, clear } =
-    useCart()
+    useCart();
+  const [channel, setChannel] = useState<"whatsapp" | "dashboard">("whatsapp");
+  const [phone, setPhone] = useState("");
 
-  function checkout() {
-    if (!items.length) return
-    window.open(
-      createWhatsAppLink(createProductOrderMessage(items, totalPrice)),
-      "_blank",
-      "noopener,noreferrer",
-    )
+  async function checkout() {
+    if (!items.length) return;
+    await fetch("/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type: "product",
+        channel,
+        total: totalPrice,
+        phone,
+        items: items.map((item) => ({
+          name: item.name,
+          quantity: item.quantity,
+          unitPrice: item.price
+        }))
+      })
+    });
+    if (channel === "whatsapp") {
+      window.open(
+        createWhatsAppLink(createProductOrderMessage(items, totalPrice, phone)),
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
+    clear();
+    onClose();
   }
 
   function downloadInvoice() {
-    downloadCartInvoice(items, totalPrice)
+    downloadCartInvoice(items, totalPrice);
   }
 
   return (
@@ -86,7 +108,7 @@ export default function CartSheet({ open, onClose }: Props) {
           ) : (
             <div className="space-y-8">
               {items.map((item, index) => {
-                const productName = localize(item.name, item.nameZh)
+                const productName = localize(item.name, item.nameZh);
 
                 return (
                   <div
@@ -134,7 +156,7 @@ export default function CartSheet({ open, onClose }: Props) {
                       </div>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
           )}
@@ -146,13 +168,40 @@ export default function CartSheet({ open, onClose }: Props) {
             <span>{formatKz(totalPrice)}</span>
           </div>
 
+          <label className="mt-3 grid gap-1 text-xs font-medium text-slate-600">
+            {t("cart.phone")}
+            <input
+              type="tel"
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
+              placeholder={t("cart.phonePlaceholder")}
+              className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-normal text-slate-700 outline-none focus:border-blue-500"
+            />
+          </label>
+
+          <label className="mt-3 grid gap-1 text-xs font-medium text-slate-600">
+            {t("cart.requestChannel")}
+            <select
+              value={channel}
+              onChange={(event) =>
+                setChannel(event.target.value as typeof channel)
+              }
+              className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-normal text-slate-700"
+            >
+              <option value="whatsapp">{t("cart.channelWhatsApp")}</option>
+              <option value="dashboard">{t("cart.channelDashboard")}</option>
+            </select>
+          </label>
+
           <button
             type="button"
             onClick={checkout}
             disabled={!items.length}
-            className="mt-3 w-full rounded-full bg-green-600 px-5 py-2 text-xs font-semibold text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="mt-3 w-full rounded-full bg-blue-500 px-5 py-2 text-xs font-semibold text-white hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {t("cart.buyViaWhatsApp")}
+            {channel === "whatsapp"
+              ? t("cart.buyViaWhatsApp")
+              : t("cart.submitRequest")}
           </button>
 
           {items.length > 0 && (
@@ -170,5 +219,5 @@ export default function CartSheet({ open, onClose }: Props) {
         </SheetFooter>
       </SheetContent>
     </Sheet>
-  )
+  );
 }
