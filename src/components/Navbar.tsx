@@ -25,7 +25,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed left-1/2 top-0 z-30 w-full -translate-x-1/2 border-b border-slate-200 bg-white/95 px-4 py-4 backdrop-blur sm:px-8 2xl:px-0 ${isProductsPage ? "hidden sm:block" : "block"}`}
+        className={`fixed left-1/2 top-0 z-30 w-full -translate-x-1/2 border-b border-slate-200 bg-white/95 px-4 py-4 backdrop-blur sm:px-8 2xl:px-0 ${isProductsPage ? "hidden lg:block" : "block"}`}
       >
         <div className="w-full md:max-w-5xl 2xl:max-w-7xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-4 sm:gap-5.5">
@@ -82,7 +82,7 @@ export default function Navbar() {
       </nav>
 
       {isProductsPage && (
-        <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-slate-200 bg-white/95 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur sm:hidden">
+        <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-slate-200 bg-white/95 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur lg:hidden">
           <Link
             href="/"
             className="flex flex-col items-center gap-1 text-[0.65rem] text-slate-500"
