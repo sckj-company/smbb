@@ -60,9 +60,9 @@ export default function QrCodeDialog({
           className
         )}
       >
-        <QrCode className="h-4 w-4" />
+        <QrCode className="h-3 w-3 sm:h-4 sm:w-4" />
       </DialogTrigger>
-      
+
       <DialogContent className="max-w-sm p-6">
         <DialogTitle>{t(title)}</DialogTitle>
         <DialogDescription className="mt-1">
