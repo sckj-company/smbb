@@ -3,7 +3,7 @@ import "ldrs/react/Ring2.css"
 
 export default function Loader() {
   return (
-    <div className="mt-40 flex items-center justify-center w-full h-full">
+    <div className="-mt-20 lg:mt-40 flex items-center justify-center w-full h-full">
       <Ring2
         size="40"
         stroke="5"
