@@ -189,7 +189,7 @@ export default function Home() {
                         href={`/${product.id}`}
                         className="group flex min-w-0 flex-1 items-start gap-3 lg:hidden"
                       >
-                        <div className="h-20 w-20 shrink-0 rounded-sm border border-slate-100 bg-slate-50 p-2 lg:h-auto lg:w-auto lg:border-slate-200">
+                        <div className="h-[90%] sm:h-20 w-20 shrink-0 rounded-sm border border-slate-100 bg-slate-50 p-2 lg:h-auto lg:w-auto lg:border-slate-200">
                           <Image
                             src={product.image}
                             alt={productName}
