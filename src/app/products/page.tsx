@@ -222,40 +222,40 @@ export default function Home() {
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </Link>
 
-                      <div className="flex w-24 shrink-0 flex-col items-end justify-between gap-2 lg:mt-1 lg:w-auto lg:flex-row lg:items-center">
-                        {isInCart && (
-                          <div className="lg:hidden">
-                            <QuantitySelector
-                              value={
-                                items.find((item) => item.id === product.id)
-                                  ?.quantity ?? 1
-                              }
-                              onChange={(quantity) =>
-                                updateQuantity(product.id, quantity)
-                              }
+                          <div className="flex  items-end justify-between gap-2 lg:mt-1 lg:w-auto lg:flex-row lg:items-center">
+                            {isInCart && (
+                              <div className="lg:hidden">
+                                <QuantitySelector
+                                  value={
+                                    items.find((item) => item.id === product.id)
+                                      ?.quantity ?? 1
+                                  }
+                                  onChange={(quantity) =>
+                                    updateQuantity(product.id, quantity)
+                                  }
+                                />
+                              </div>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => addItem(product)}
+                              className={`${isInCart ? "hidden lg:inline-flex" : "inline-flex"} min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-colors ${isInCart ? "border-blue-600 bg-blue-500 text-white hover:bg-blue-600" : "border-slate-200 text-blue-500 hover:border-slate-300 hover:bg-slate-200 hover:text-blue-600"}`}
+                            >
+                              <ShoppingCart className="h-3.5 w-3.5" />
+                              {isInCart
+                                ? t("detail.addedToCart")
+                                : t("detail.addToCart")}
+                            </button>
+
+                            <QrCodeDialog
+                              href={`/${product.id}`}
+                              label={`Mostrar QR Code de ${productName}`}
+                              className="shrink-0 border border-slate-200"
                             />
                           </div>
-                        )}
-                        <button
-                          type="button"
-                          onClick={() => addItem(product)}
-                          className={`${isInCart ? "hidden lg:inline-flex" : "inline-flex"} min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-colors ${isInCart ? "border-blue-600 bg-blue-500 text-white hover:bg-blue-600" : "border-slate-200 text-blue-500 hover:border-slate-300 hover:bg-slate-200 hover:text-blue-600"}`}
-                        >
-                          <ShoppingCart className="h-3.5 w-3.5" />
-                          {isInCart
-                            ? t("detail.addedToCart")
-                            : t("detail.addToCart")}
-                        </button>
-
-                        <QrCodeDialog
-                          href={`/${product.id}`}
-                          label={`Mostrar QR Code de ${productName}`}
-                          className="shrink-0 border border-slate-200"
-                        />
-                      </div>
+                        </div>
+                      </Link>
                     </article>
                   );
                 })}
