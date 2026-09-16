@@ -185,10 +185,8 @@ export default function Home() {
                       <div className="hidden lg:block">
                         <ProductQuickView product={product} />
                       </div>
-                      <Link
-                        href={`/${product.id}`}
-                        className="group flex min-w-0 flex-1 items-start gap-3 lg:hidden"
-                      >
+
+                      <div className="group flex min-w-0 flex-1 items-start gap-3 lg:hidden">
                         <div className="h-[90%] sm:h-20 w-20 shrink-0 rounded-sm border border-slate-100 bg-slate-50 p-2 lg:h-auto lg:w-auto lg:border-slate-200">
                           <Image
                             src={product.image}
@@ -199,8 +197,8 @@ export default function Home() {
                           />
                         </div>
 
-                        <div className="min-w-0 flex-1 space-y-3 px-1 pt-1 pb-2.5 lg:px-2 lg:pt-4">
-                          <div>
+                        <div className="min-w-0 flex-1 flex flex-col justify-between space-y-3 pr-2 pb-1 sm:px-1 pt-1 sm:pb-2.5 lg:px-2 lg:pt-4">
+                          <Link href={`/${product.id}`}>
                             <h3 className="text-sm sm:text-lg font-bold text-slate-800 line-clamp-1">
                               {productName}
                             </h3>
@@ -221,7 +219,7 @@ export default function Home() {
                                 <ArrowUpRight className="h-4 w-4 md:h-3 md:w-3 2xl:h-4 2xl:w-4" />
                               </div>
                             </div>
-                          </div>
+                          </Link>
 
                           <div className="flex  items-end justify-between gap-2 lg:mt-1 lg:w-auto lg:flex-row lg:items-center">
                             {isInCart && (
@@ -234,6 +232,7 @@ export default function Home() {
                                   onChange={(quantity) =>
                                     updateQuantity(product.id, quantity)
                                   }
+                                  variant="card"
                                 />
                               </div>
                             )}
@@ -255,7 +254,7 @@ export default function Home() {
                             />
                           </div>
                         </div>
-                      </Link>
+                      </div>
                     </article>
                   );
                 })}
