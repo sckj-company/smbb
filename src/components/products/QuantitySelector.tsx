@@ -6,19 +6,23 @@ type Props = {
   value: number;
   onChange: (value: number) => void;
   label?: string;
+  variant?: "default" | "card";
 };
 
 export default function QuantitySelector({
   value,
   onChange,
-  label = "Quantidade"
+  label = "Quantidade",
+  variant = "default"
 }: Props) {
+  const minimum = variant === "card" ? 0 : 1;
+
   return (
     <div className="inline-flex items-center gap-2" aria-label={label}>
       <button
         type="button"
-        onClick={() => onChange(Math.max(1, value - 1))}
-        disabled={value === 1}
+        onClick={() => onChange(Math.max(minimum, value - 1))}
+        disabled={value === minimum}
         className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:border-0 disabled:bg-slate-100 lg:h-5.5 lg:w-5.5 2xl:h-8 2xl:w-8"
         aria-label="Diminuir quantidade"
       >
