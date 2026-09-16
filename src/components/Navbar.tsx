@@ -82,7 +82,7 @@ export default function Navbar() {
       </nav>
 
       {isProductsPage && (
-        <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-slate-200 bg-white/95 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur lg:hidden">
+        <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-slate-200 bg-white/95 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur lg:hidden">
           <Link
             href="/"
             className="flex flex-col items-center gap-1 text-[0.65rem] text-slate-500"
