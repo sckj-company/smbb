@@ -154,7 +154,7 @@ export default function Home() {
           <p className="text-sm text-slate-500">Nenhum produto encontrado.</p>
         )}
 
-        <div className="mt-10 space-y-15">
+        <div className="mt-2 lg:mt-10 space-y-10 lg:space-y-15">
           {groupedProducts.map(({ groupType, products }) => (
             <section
               key={groupType}
@@ -164,7 +164,7 @@ export default function Home() {
               }}
               className="scroll-mt-4 space-y-6"
             >
-              <h2 className="flex items-center gap-2 bg-white text-lg font-semibold text-blue-500">
+              <h2 className="flex items-center gap-2 bg-white font-semibold">
                 {(() => {
                   const GroupIcon = groupIcons[groupType];
                   return <GroupIcon aria-hidden="true" className="h-5 w-5" />;
@@ -201,7 +201,7 @@ export default function Home() {
 
                         <div className="min-w-0 flex-1 space-y-3 px-1 pt-1 pb-2.5 lg:px-2 lg:pt-4">
                           <div>
-                            <h3 className="2xl:text-lg font-bold text-slate-800 line-clamp-1">
+                            <h3 className="text-sm sm:text-lg font-bold text-slate-800 line-clamp-1">
                               {productName}
                             </h3>
                             <div className="flex items-end justify-between gap-3">
@@ -240,7 +240,7 @@ export default function Home() {
                             <button
                               type="button"
                               onClick={() => addItem(product)}
-                              className={`${isInCart ? "hidden lg:inline-flex" : "inline-flex"} min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-colors ${isInCart ? "border-blue-600 bg-blue-500 text-white hover:bg-blue-600" : "border-slate-200 text-blue-500 hover:border-slate-300 hover:bg-slate-200 hover:text-blue-600"}`}
+                              className={`${isInCart ? "hidden lg:inline-flex" : "inline-flex"} min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-1.5 sm:py-2 text-xs font-semibold transition-colors ${isInCart ? "border-blue-600 bg-blue-500 text-white hover:bg-blue-600" : "border-slate-200 text-blue-500 hover:border-slate-300 hover:bg-slate-200 hover:text-blue-600"}`}
                             >
                               <ShoppingCart className="h-3.5 w-3.5" />
                               {isInCart
