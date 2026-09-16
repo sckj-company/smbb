@@ -186,6 +186,25 @@ export default function Home() {
                         <ProductQuickView product={product} />
                       </div>
 
+                      <div className="hidden items-center gap-2 px-2 pb-2 lg:flex">
+                        <button
+                          type="button"
+                          onClick={() => addItem(product)}
+                          className={`inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-1.5 sm:py-2 text-xs font-semibold transition-colors ${isInCart ? "bg-blue-500 hover:bg-blue-600 text-white hover:text-white border-blue-600" : "text-blue-500 hover:bg-slate-200 border-slate-200 hover:border-slate-300"} hover:text-blue-600`}
+                        >
+                          <ShoppingCart className="h-3.5 w-3.5" />
+                          {isInCart
+                            ? t("detail.addedToCart")
+                            : t("detail.addToCart")}
+                        </button>
+
+                        <QrCodeDialog
+                          href={`/${product.id}`}
+                          label={`Mostrar QR Code de ${productName}`}
+                          className="shrink-0 border border-slate-200"
+                        />
+                      </div>
+
                       <div className="group flex min-w-0 flex-1 items-start gap-3 lg:hidden">
                         <div className="h-[90%] sm:h-20 w-20 shrink-0 rounded-sm border border-slate-100 bg-slate-50 p-2 lg:h-auto lg:w-auto lg:border-slate-200">
                           <Image
