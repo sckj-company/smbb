@@ -15,7 +15,7 @@ export default function MinimalStore() {
   }) as ServiceItem[]
 
   return (
-    <section className="relative overflow-hidden px-6 sm:px-8 sm:px-0">
+    <section className="relative overflow-hidden px-6 sm:px-8">
       <div className="lg:w-5xl 2xl:w-7xl mx-auto relative ">
         <div>
           <span className="font-mono text-xs uppercase tracking-widest text-blue-600">
