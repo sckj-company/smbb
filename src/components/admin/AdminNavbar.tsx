@@ -1,42 +1,35 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import {
-  LayoutDashboard,
-  LogOut,
-  Menu,
-  Package,
-  Wrench,
-  X
-} from "lucide-react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
-import Logo from "../Logo";
+import Link from "next/link"
+import { LayoutDashboard, LogOut, Menu, Package, Wrench, X } from "lucide-react"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
+import Logo from "../Logo"
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/products", label: "Produtos", icon: Package },
-  { href: "/admin/services", label: "Serviços", icon: Wrench }
-];
+  { href: "/admin/services", label: "Serviços", icon: Wrench },
+]
 
 export default function AdminNavbar() {
-  const pathname = usePathname();
-  const router = useRouter();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname()
+  const router = useRouter()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   if (pathname === "/admin/login") {
-    return null;
+    return null
   }
 
   async function logout() {
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.replace("/admin/login");
-    router.refresh();
+    await fetch("/api/admin/logout", { method: "POST" })
+    router.replace("/admin/login")
+    router.refresh()
   }
 
   return (
-    <nav className="fixed left-1/2 px-4 sm:px-8 2xl:px-0 py-4 top-0 z-30 w-full md:max-w-5xl 2xl:max-w-7xl mx-auto -translate-x-1/2 bg-white/95 md:py-4 backdrop-blur border-b border-slate-200">
+    <nav className="fixed left-1/2 py-4 top-0 z-30 w-full md:max-w-5xl 2xl:max-w-7xl mx-auto -translate-x-1/2 bg-white/95 md:py-4 backdrop-blur border-b border-slate-200">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
         <Logo link="/admin" />
 
@@ -53,7 +46,7 @@ export default function AdminNavbar() {
         >
           {links.map(({ href, label, icon: Icon }) => {
             const isActive =
-              href === "/admin" ? pathname === href : pathname.startsWith(href);
+              href === "/admin" ? pathname === href : pathname.startsWith(href)
 
             return (
               <Link
@@ -65,7 +58,7 @@ export default function AdminNavbar() {
                 <Icon size={16} />
                 {label}
               </Link>
-            );
+            )
           })}
           <button
             type="button"
@@ -78,5 +71,5 @@ export default function AdminNavbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
