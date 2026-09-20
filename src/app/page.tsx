@@ -1,10 +1,11 @@
-import CTA from "@/components/CTA";
-import { Faq } from "@/components/Faq";
-import HomeHero from "@/components/home/HomeHero";
-import HowItWorksSection from "@/components/HowItWorksSection";
-import MinimalStore from "@/components/MinimalStore";
-import Numbers from "@/components/Numbers";
-import Service from "@/components/Service";
+import ContactSection from "@/components/ContactSection"
+import CTA from "@/components/CTA"
+import { Faq } from "@/components/Faq"
+import HomeHero from "@/components/home/HomeHero"
+import HowItWorksSection from "@/components/HowItWorksSection"
+import MinimalStore from "@/components/MinimalStore"
+import Numbers from "@/components/Numbers"
+import Service from "@/components/Service"
 
 export default function HomePage() {
   return (
@@ -16,8 +17,9 @@ export default function HomePage() {
         <Service />
         <MinimalStore />
         <Faq />
+        <ContactSection />
         <CTA />
       </div>
     </main>
-  );
+  )
 }
