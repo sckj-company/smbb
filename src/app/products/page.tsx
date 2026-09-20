@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import Link from "next/link";
+import Link from "next/link"
 import {
   ArrowUpRight,
   FireExtinguisher,
@@ -8,51 +8,51 @@ import {
   Search,
   ShoppingCart,
   Signpost,
-  Wrench
-} from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+  Wrench,
+} from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
-import SelectGroup from "@/components/products/SelectGroup";
-import useSelectGroup from "@/hooks/useSelectGroup";
-import Image from "next/image";
-import Loader from "@/components/ui/loader";
-import useCart from "@/hooks/useCart";
-import ProductQuickView from "@/components/products/ProductQuickView";
-import QrCodeDialog from "@/components/QrCodeDialog";
-import useCatalogLanguage from "@/hooks/useCatalogLanguage";
-import { useTranslation } from "react-i18next";
-import { groupTranslationKeys, productGroups } from "@/data/productGroups";
-import type { ProductGroup } from "@/data/productGroups";
-import { formatKz } from "@/utils/formatKz";
-import QuantitySelector from "@/components/products/QuantitySelector";
+import SelectGroup from "@/components/products/SelectGroup"
+import useSelectGroup from "@/hooks/useSelectGroup"
+import Image from "next/image"
+import Loader from "@/components/ui/loader"
+import useCart from "@/hooks/useCart"
+import ProductQuickView from "@/components/products/ProductQuickView"
+import QrCodeDialog from "@/components/QrCodeDialog"
+import useCatalogLanguage from "@/hooks/useCatalogLanguage"
+import { useTranslation } from "react-i18next"
+import { groupTranslationKeys, productGroups } from "@/data/productGroups"
+import type { ProductGroup } from "@/data/productGroups"
+import { formatKz } from "@/utils/formatKz"
+import QuantitySelector from "@/components/products/QuantitySelector"
 
 const groupIcons = {
   Extintor: FireExtinguisher,
   Suporte: Wrench,
-  "Placa de Sinalização": Signpost
-} satisfies Record<ProductGroup, typeof Flame>;
+  "Placa de Sinalização": Signpost,
+} satisfies Record<ProductGroup, typeof Flame>
 
 export default function Home() {
-  const { t } = useTranslation();
-  const { addItem, items, updateQuantity } = useCart();
-  const { localize } = useCatalogLanguage();
-  const [searchQuery, setSearchQuery] = useState("");
+  const { t } = useTranslation()
+  const { addItem, items, updateQuantity } = useCart()
+  const { localize } = useCatalogLanguage()
+  const [searchQuery, setSearchQuery] = useState("")
   const [activeMobileGroup, setActiveMobileGroup] =
-    useState<ProductGroup | null>(null);
-  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  const productsScrollRef = useRef<HTMLElement | null>(null);
+    useState<ProductGroup | null>(null)
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({})
+  const productsScrollRef = useRef<HTMLElement | null>(null)
   const { selectedGroup, setSelectedGroup, visibleProducts, isLoading, error } =
     useSelectGroup({
-      searchQuery
-    });
+      searchQuery,
+    })
   const groupedProducts = productGroups
     .map((groupType) => ({
       groupType,
       products: visibleProducts.filter(
-        (product) => product.groupType === groupType
-      )
+        (product) => product.groupType === groupType,
+      ),
     }))
-    .filter(({ products }) => products.length > 0);
+    .filter(({ products }) => products.length > 0)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -60,25 +60,25 @@ export default function Home() {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort(
-            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
-          )[0];
-        if (visible) setActiveMobileGroup(visible.target.id as ProductGroup);
+            (a, b) => a.boundingClientRect.top - b.boundingClientRect.top,
+          )[0]
+        if (visible) setActiveMobileGroup(visible.target.id as ProductGroup)
       },
       {
         root: productsScrollRef.current,
         rootMargin: "-18% 0px -65% 0px",
-        threshold: 0
-      }
-    );
+        threshold: 0,
+      },
+    )
 
     Object.values(sectionRefs.current).forEach((section) => {
-      if (section) observer.observe(section);
-    });
-    return () => observer.disconnect();
-  }, [groupedProducts.length, selectedGroup]);
+      if (section) observer.observe(section)
+    })
+    return () => observer.disconnect()
+  }, [groupedProducts.length, selectedGroup])
 
   return (
-    <main className="fixed inset-x-0 top-0 bottom-18 z-10 flex flex-col overflow-hidden bg-white pl-28 lg:relative lg:inset-auto lg:z-auto lg:mx-auto lg:block lg:min-h-screen lg:w-full lg:overflow-visible lg:px-0 lg:pb-24 lg:pt-0 lg:mt-35 xl:mt-40 2xl:w-7xl 2xl:mt-45">
+    <main className="fixed inset-x-0 top-0 bottom-18 z-10 flex flex-col overflow-hidden bg-white pl-28 lg:relative lg:inset-auto lg:z-auto lg:mx-auto lg:block lg:min-h-screen lg:w-5xl lg:overflow-visible lg:px-0 lg:pb-24 lg:pt-0 lg:mt-35 xl:mt-40 2xl:w-7xl 2xl:mt-45">
       <aside className="fixed left-0 top-0 bottom-18 z-30 flex h-auto w-30 flex-col border-r border-white/70 bg-white/70 backdrop-blur-xl lg:hidden">
         <div className="flex h-16 shrink-0 items-center border-b border-r border-slate-200/70 bg-white/55 px-3">
           <p className="truncate text-sm font-semibold text-slate-900">
@@ -90,15 +90,15 @@ export default function Home() {
           {[null, ...productGroups].map((groupType) => {
             const isActive =
               activeMobileGroup === groupType ||
-              (!activeMobileGroup && groupType === null);
-            const GroupIcon = groupType ? groupIcons[groupType] : Flame;
+              (!activeMobileGroup && groupType === null)
+            const GroupIcon = groupType ? groupIcons[groupType] : Flame
             return (
               <button
                 key={groupType ?? "all"}
                 type="button"
                 onClick={() => {
-                  setActiveMobileGroup(groupType);
-                  setSelectedGroup(groupType);
+                  setActiveMobileGroup(groupType)
+                  setSelectedGroup(groupType)
                 }}
                 className={`flex min-h-20 items-center gap-2 border-l-2 px-3 text-left text-xs font-medium transition-colors ${isActive ? "border-blue-500 bg-white/85 text-slate-900" : "border-transparent text-slate-500 hover:bg-white/45"}`}
               >
@@ -109,7 +109,7 @@ export default function Home() {
                     : t("filters.all")}
                 </span>
               </button>
-            );
+            )
           })}
         </div>
       </aside>
@@ -160,22 +160,22 @@ export default function Home() {
               key={groupType}
               id={groupType}
               ref={(section) => {
-                sectionRefs.current[groupType] = section;
+                sectionRefs.current[groupType] = section
               }}
               className="scroll-mt-4 space-y-6"
             >
               <h2 className="flex items-center gap-2 bg-white font-semibold">
                 {(() => {
-                  const GroupIcon = groupIcons[groupType];
-                  return <GroupIcon aria-hidden="true" className="h-5 w-5" />;
+                  const GroupIcon = groupIcons[groupType]
+                  return <GroupIcon aria-hidden="true" className="h-5 w-5" />
                 })()}
                 {t(groupTranslationKeys[groupType as ProductGroup])}
               </h2>
 
               <div className="grid w-full grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-5">
                 {products.map((product) => {
-                  const productName = localize(product.name, product.nameZh);
-                  const isInCart = items.some((item) => item.id === product.id);
+                  const productName = localize(product.name, product.nameZh)
+                  const isInCart = items.some((item) => item.id === product.id)
 
                   return (
                     <article
@@ -275,7 +275,7 @@ export default function Home() {
                         </div>
                       </div>
                     </article>
-                  );
+                  )
                 })}
               </div>
             </section>
@@ -283,5 +283,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-  );
+  )
 }
