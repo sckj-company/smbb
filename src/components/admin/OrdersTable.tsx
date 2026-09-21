@@ -1,23 +1,30 @@
-"use client"
+"use client";
 
-import { TABLE_COLUMNS } from "@/constants/order"
-import useDialogTarget from "@/hooks/orders/useDialogTarget"
-import useOrderDeletion from "@/hooks/orders/useOrderDeletion"
-import useOrderFilter from "@/hooks/orders/useOrderFilter"
-import useOrders from "@/hooks/orders/useOrders"
-import OrdersTableRow from "../orders/OrdersTableRow"
-import OrderDetailsDialog from "../orders/OrderDetailsDialog"
-import DeleteOrderDialog from "../orders/DeleteOrderDialog"
-import { Order } from "@/interface/order"
-import OrderFilterTabs from "../orders/OrderFilterTabs"
+import { TABLE_COLUMNS } from "@/constants/order";
+import useDialogTarget from "@/hooks/orders/useDialogTarget";
+import useOrderFilter from "@/hooks/orders/useOrderFilter";
+import useOrders from "@/hooks/orders/useOrders";
+import OrdersTableRow from "../orders/OrdersTableRow";
+import OrderDetailsDialog from "../orders/OrderDetailsDialog";
+import { Order } from "@/interface/order";
+import OrderFilterTabs from "../orders/OrderFilterTabs";
+import ConfirmDeleteDialog from "../orders/ConfirmDeleteDialog";
+import { useCallback } from "react";
+import useDeleteFlow from "@/hooks/orders/useDeleteFlow";
+import { formatOrderCode } from "@/utils/orderFormat";
 
 export default function OrdersTable() {
-  const { orders, isLoading, error, updateStatus, removeOrder } = useOrders()
-  const { filter, setFilter, filteredOrders } = useOrderFilter(orders)
-  const details = useDialogTarget<Order>()
-  const deletion = useOrderDeletion(removeOrder)
+  const { orders, isLoading, error, updateStatus, removeOrder } = useOrders();
+  const { filter, setFilter, filteredOrders } = useOrderFilter(orders);
+  const details = useDialogTarget<Order>();
+  const removeSelected = useCallback(
+    (order: Order) => removeOrder(order.id),
+    [removeOrder]
+  );
+  const deletion = useDeleteFlow<Order>(removeSelected);
+  const orderCode = deletion.item ? formatOrderCode(deletion.item.id) : "";
 
-  const isEmpty = !isLoading && !error && filteredOrders.length === 0
+  const isEmpty = !isLoading && !error && filteredOrders.length === 0;
 
   return (
     <section className="mt-10 overflow-hidden rounded-xl border border-slate-200 bg-white">
@@ -84,14 +91,16 @@ export default function OrdersTable() {
         open={details.isOpen}
         onClose={details.close}
       />
-      <DeleteOrderDialog
-        order={deletion.order}
+      <ConfirmDeleteDialog
         open={deletion.isOpen}
+        title={`Apagar o pedido ${orderCode}?`}
+        description="Esta ação é permanente. O pedido deixa de existir na lista e na base de dados, e não pode ser recuperado."
+        confirmLabel="Apagar pedido"
         isDeleting={deletion.isDeleting}
         error={deletion.error}
         onConfirm={deletion.confirm}
         onClose={deletion.close}
       />
     </section>
-  )
+  );
 }
