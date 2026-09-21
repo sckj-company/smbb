@@ -48,7 +48,7 @@ export default function OrderDetailsDialog({ order, open, onClose }: Props) {
           </div>
         </DialogHeader>
 
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-4">
+        <dl className="my-5 grid grid-cols-2 gap-x-6 gap-y-4">
           <DetailField label="Estado">
             <OrderStatusBadge status={order.status} />
           </DetailField>
