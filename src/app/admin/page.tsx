@@ -1,39 +1,78 @@
-import Link from "next/link"
-import { ArrowRight, Package, Wrench } from "lucide-react"
-import { prisma } from "@/lib/prisma"
-import OrdersTable from "@/components/admin/OrdersTable"
+import Link from "next/link";
+import { connection } from "next/server";
+import { ArrowDown, ArrowUpRight, Mail, Package, Wrench } from "lucide-react";
+import { prisma } from "@/lib/prisma";
+import OrdersTable from "@/components/admin/OrdersTable";
+
+async function countSafely(
+  label: string,
+  query: () => Promise<number>
+): Promise<number> {
+  try {
+    return await query();
+  } catch (error) {
+    console.error(`Não foi possível carregar a contagem de ${label}:`, error);
+    return 0;
+  }
+}
 
 export default async function AdminPage() {
-  const products = await prisma.product.count({ where: { type: "product" } })
-  const services = await prisma.product.count({ where: { type: "service" } })
-  let orders = 0
+  await connection();
 
-  try {
-    orders = await prisma.order.count()
-  } catch (error) {
-    console.error("Não foi possível carregar a contagem de pedidos:", error)
-  }
+  const [products, services, orders, unreadMessages] = await Promise.all([
+    prisma.product.count({ where: { type: "product" } }),
+    prisma.product.count({ where: { type: "service" } }),
+    countSafely("pedidos", () => prisma.order.count()),
+    countSafely("mensagens", () =>
+      prisma.message.count({ where: { read: false, archived: false } })
+    )
+  ]);
 
   const sections = [
     {
+      href: "#orders",
+      title: "Pedidos",
+      count:
+        orders === 0
+          ? "Sem solicitações"
+          : orders === 1
+            ? `${orders} solicitação`
+            : `${orders} solicitações`,
+      icon: Package,
+      arrow: ArrowDown
+    },
+    {
+      href: "/admin/messages",
+      title: "Mensagens",
+      count: unreadMessages === 0 ? "Sem Mensagens" : "por ler",
+      icon: Mail,
+      arrow: ArrowUpRight
+    },
+    {
       href: "/admin/products",
       title: "Produtos",
-      count: `${products} itens`,
+      count:
+        products === 0
+          ? "Sem Produtos"
+          : products === 1
+            ? `${products} produto`
+            : `${products} produtos`,
       icon: Package,
+      arrow: ArrowUpRight
     },
     {
       href: "/admin/services",
       title: "Serviços",
-      count: `${services} itens`,
+      count:
+        services === 0
+          ? "Sem serviços"
+          : services === 1
+            ? `${services} serviço`
+            : `${services} serviços`,
       icon: Wrench,
-    },
-    {
-      href: "#orders",
-      title: "Pedidos",
-      count: `${orders} solicitações`,
-      icon: Package,
-    },
-  ]
+      arrow: ArrowUpRight
+    }
+  ];
 
   return (
     <main className="px-6 pb-12 sm:px-8">
@@ -47,8 +86,8 @@ export default async function AdminPage() {
         <p className="mt-2 text-sm text-slate-500">
           Gerencie o catálogo da SMBB.
         </p>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {sections.map(({ href, title, count, icon: Icon }) => (
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {sections.map(({ href, title, count, icon: Icon, arrow: Arrow }) => (
             <Link
               key={href}
               href={href}
@@ -62,7 +101,7 @@ export default async function AdminPage() {
                   </h2>
                   <p className="mt-1 text-sm text-slate-500">{count}</p>
                 </div>
-                <ArrowRight className="h-5 w-5 text-blue-500" />
+                <Arrow className="h-5 w-5 text-blue-500" />
               </div>
             </Link>
           ))}
@@ -72,5 +111,5 @@ export default async function AdminPage() {
         </div>
       </div>
     </main>
-  )
+  );
 }

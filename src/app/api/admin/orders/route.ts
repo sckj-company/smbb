@@ -27,3 +27,15 @@ export async function PATCH(request: Request) {
   const order = await prisma.order.update({ where: { id }, data: parsed.data });
   return NextResponse.json(order);
 }
+
+export async function DELETE(request: Request) {
+  if (!(await isAdminAuthenticated()))
+    return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
+
+  const id = new URL(request.url).searchParams.get("id");
+  if (!id)
+    return NextResponse.json({ error: "Pedido inválido" }, { status: 400 });
+
+  await prisma.order.delete({ where: { id } });
+  return new NextResponse(null, { status: 204 });
+}

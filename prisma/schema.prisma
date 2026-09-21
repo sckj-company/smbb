@@ -57,3 +57,17 @@ model OrderItem {
 
   @@index([orderId])
 }
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  subject   String
+  body      String
+  read      Boolean  @default(false)
+  archived  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([archived, createdAt])
+  @@index([phone, createdAt])
+}

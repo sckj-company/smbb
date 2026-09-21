@@ -1,38 +1,44 @@
-"use client"
+"use client";
 
-import type { KeyboardEvent, MouseEvent } from "react"
-import { formatKz } from "@/utils/formatKz"
-import { Order, OrderStatus } from "@/interface/order"
-import { formatOrderCode, formatOrderDate, formatOrderItems, getChannelLabel, getTypeLabel, NOT_INFORMED } from "@/utils/orderFormat"
-import OrderTypeIcon from "./OrderTypeIcon"
-import OrderStatusSelect from "./OrderStatusSelect"
-import DeleteOrderButton from "./DeleteOrderButton"
-
+import type { KeyboardEvent, MouseEvent } from "react";
+import { formatKz } from "@/utils/formatKz";
+import { Order, OrderStatus } from "@/interface/order";
+import {
+  formatOrderCode,
+  formatOrderItems,
+  getChannelLabel,
+  getTypeLabel,
+  NOT_INFORMED
+} from "@/utils/orderFormat";
+import OrderTypeIcon from "./OrderTypeIcon";
+import OrderStatusSelect from "./OrderStatusSelect";
+import DeleteOrderButton from "./DeleteOrderButton";
+import { formatTimestampDate } from "@/utils/formatDate";
 
 type Props = {
-  order: Order
-  onView: (order: Order) => void
-  onDelete: (order: Order) => void
-  onStatusChange: (id: string, status: OrderStatus) => void
-}
+  order: Order;
+  onView: (order: Order) => void;
+  onDelete: (order: Order) => void;
+  onStatusChange: (id: string, status: OrderStatus) => void;
+};
 
 function stopPropagation(event: MouseEvent) {
-  event.stopPropagation()
+  event.stopPropagation();
 }
 
 export default function OrdersTableRow({
   order,
   onView,
   onDelete,
-  onStatusChange,
+  onStatusChange
 }: Props) {
-  const code = formatOrderCode(order.id)
+  const code = formatOrderCode(order.id);
 
   function handleKeyDown(event: KeyboardEvent<HTMLTableRowElement>) {
-    if (event.target !== event.currentTarget) return
+    if (event.target !== event.currentTarget) return;
     if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault()
-      onView(order)
+      event.preventDefault();
+      onView(order);
     }
   }
 
@@ -49,7 +55,7 @@ export default function OrdersTableRow({
           <div>
             <p className="font-medium text-slate-800">{code}</p>
             <p className="text-xs text-slate-400">
-              {formatOrderDate(order.createdAt)}
+              {formatTimestampDate(order.createdAt)}
             </p>
           </div>
         </div>
@@ -82,5 +88,5 @@ export default function OrdersTableRow({
         <DeleteOrderButton orderCode={code} onClick={() => onDelete(order)} />
       </td>
     </tr>
-  )
+  );
 }

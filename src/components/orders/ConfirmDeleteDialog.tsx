@@ -10,6 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   open: boolean;
@@ -52,14 +53,19 @@ export default function ConfirmDeleteDialog({
         )}
 
         <AlertDialogFooter>
-          <AlertDialogCancel disabled={isDeleting}>Cancelar</AlertDialogCancel>
+          <AlertDialogCancel
+            render={<Button variant="outline" />}
+            disabled={isDeleting}
+          >
+            Cancelar
+          </AlertDialogCancel>
           <AlertDialogAction
+            render={<Button variant="destructive" />}
             disabled={isDeleting}
             onClick={(event) => {
               event.preventDefault();
               onConfirm();
             }}
-            className="bg-red-600 text-white hover:bg-red-700"
           >
             {isDeleting ? "A apagar..." : confirmLabel}
           </AlertDialogAction>

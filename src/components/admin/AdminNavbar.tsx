@@ -1,35 +1,42 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { LayoutDashboard, LogOut, Menu, Package, Wrench, X } from "lucide-react"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { usePathname } from "next/navigation"
-import Logo from "../Logo"
+import Link from "next/link";
+import { LayoutDashboard, LogOut, Mail, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import Logo from "../Logo";
+import useUnreadMessagesCount from "@/hooks/messages/useUnreadMessagesCount";
+import UnreadBadge from "./UnreadBadge";
+import useMessageFilter from "@/hooks/messages/useMessageFilter";
+import useMessages from "@/hooks/messages/useMessages";
+
+const LOGIN_PATH = "/admin/login";
+const MESSAGES_PATH = "/admin/messages";
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/products", label: "Produtos", icon: Package },
-  { href: "/admin/services", label: "Serviços", icon: Wrench },
-]
+  { href: MESSAGES_PATH, label: "Mensagens", icon: Mail }
+];
 
 export default function AdminNavbar() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname();
+  const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  if (pathname === "/admin/login") {
-    return null
+  const { messages } = useMessages();
+  const { unreadCount } = useMessageFilter(messages);
+
+  if (pathname === LOGIN_PATH) {
+    return null;
   }
-
   async function logout() {
-    await fetch("/api/admin/logout", { method: "POST" })
-    router.replace("/admin/login")
-    router.refresh()
+    await fetch("/api/admin/logout", { method: "POST" });
+    router.replace(LOGIN_PATH);
+    router.refresh();
   }
 
   return (
-    <nav className="fixed left-1/2 py-4 top-0 z-30 w-full md:max-w-5xl 2xl:max-w-7xl mx-auto -translate-x-1/2 bg-white/95 md:py-4 backdrop-blur border-b border-slate-200">
+    <nav className="fixed left-1/2 top-0 z-30 w-full -translate-x-1/2 border-b border-slate-200 bg-white/95 px-4 py-5 backdrop-blur sm:px-8 2xl:px-0">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
         <Logo link="/admin" />
 
@@ -46,19 +53,22 @@ export default function AdminNavbar() {
         >
           {links.map(({ href, label, icon: Icon }) => {
             const isActive =
-              href === "/admin" ? pathname === href : pathname.startsWith(href)
+              href === "/admin" ? pathname === href : pathname.startsWith(href);
 
             return (
               <Link
                 key={href}
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm transition-colors ${isActive ? "bg-blue-50 font-medium text-blue-500" : "text-gray-500 hover:text-blue-500"}`}
+                className={`relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm transition-colors ${isActive ? "bg-blue-50 font-medium text-blue-500" : "text-gray-500 hover:text-blue-500"}`}
               >
                 <Icon size={16} />
                 {label}
+                {href === MESSAGES_PATH && (
+                  <UnreadBadge count={unreadCount} />
+                )}
               </Link>
-            )
+            );
           })}
           <button
             type="button"
@@ -71,5 +81,5 @@ export default function AdminNavbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

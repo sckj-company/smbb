@@ -1,16 +1,38 @@
-"use client"
+"use client";
 
+import { CONTACT_ERROR_DEFAULTS } from "@/lib/messageSchema";
 import {
   ClockFading,
   CornerUpRight,
   Headset,
   MapPin,
-  Phone,
-} from "lucide-react"
-import { useTranslation } from "react-i18next"
+  Phone
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
+import ContactField from "./messages/ContactField";
+import useContactForm, { ContactFormStatus } from "@/hooks/messages/useContactForm";
 
 export default function ContactSection() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+  const { values, errors, status, isSubmitting, handleChange, handleSubmit } =
+    useContactForm();
+
+  const translateError = (key?: string) =>
+    key ? t(key, { defaultValue: CONTACT_ERROR_DEFAULTS[key] }) : undefined;
+
+  const statusMessages: Partial<Record<ContactFormStatus, string>> = {
+    success: t("contact.success", {
+      defaultValue: "Mensagem enviada! Entraremos em contacto em breve."
+    }),
+    error: t("contact.error", {
+      defaultValue: "Não foi possível enviar a mensagem. Tente novamente."
+    }),
+    tooManyRequests: t("contact.tooManyRequests", {
+      defaultValue:
+        "Enviou várias mensagens seguidas. Tente daqui a alguns minutos."
+    })
+  };
+  const statusMessage = statusMessages[status];
 
   return (
     <section
@@ -30,65 +52,95 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <form className="bg-white p-5 grid gap-8 rounded-4xl shadow-sm">
+        <form
+          onSubmit={handleSubmit}
+          noValidate
+          className="relative bg-white p-5 grid gap-8 rounded-4xl shadow-sm"
+        >
           <h2 className="font-semibold text-lg flex items-center gap-2.5">
             <Headset className="h-5 w-5" /> {t("contact.cardTitle")}
           </h2>
 
           <div className="grid gap-8">
-            <label htmlFor="name" className="space-y-3">
-              <p className="font-medium text-xs text-slate-600">
-                {t("contact.nameLabel")}
-              </p>
-              <input
-                type="text"
-                name="iname"
-                id="name"
-                placeholder="John Doe"
-                className="w-full rounded-sm py-1 px-2 text-sm placeholder:text-xs border outline-none focus:border-blue-500"
-              />
-            </label>
-            <label htmlFor="number" className="space-y-3">
-              <p className="font-medium text-xs text-slate-600">
-                {t("contact.phoneLabel")}
-              </p>
-              <input
-                type="number"
-                name="inumber"
-                id="number"
-                placeholder="900 000 000"
-                className="w-full rounded-sm py-1 px-2 text-sm placeholder:text-xs border outline-none focus:border-blue-500"
-              />
-            </label>
-            <label htmlFor="subject" className="space-y-3">
-              <p className="font-medium text-xs text-slate-600">
-                {t("contact.subjectLabel")}
-              </p>
-              <input
-                type="text"
-                name="isubject"
-                id="subject"
-                placeholder={t("contact.subjectPlaceholder")}
-                className="w-full rounded-sm py-1 px-2 text-sm placeholder:text-xs border outline-none focus:border-blue-500"
-              />
-            </label>
-            <label htmlFor="message" className="space-y-3">
-              <p className="font-medium text-xs text-slate-600">
-                {t("contact.messageLabel")}
-              </p>
-              <textarea
-                name="imessage"
-                id="message"
-                placeholder={t("contact.messagePlaceholder")}
-                className="min-h-30 w-full rounded-sm py-1 px-2 text-sm placeholder:text-xs border outline-none focus:border-blue-500"
-              />
-            </label>
-            <button
-              type="submit"
-              className="transition-colors bg-blue-500 hover:bg-blue-600 text-white text-sm py-2 rounded-2xl"
+            <ContactField
+              id="name"
+              name="name"
+              label={t("contact.nameLabel")}
+              placeholder="John Doe"
+              maxLength={80}
+              value={values.name}
+              error={translateError(errors.name)}
+              onChange={handleChange}
+            />
+            <ContactField
+              id="phone"
+              name="phone"
+              type="tel"
+              inputMode="tel"
+              label={t("contact.phoneLabel")}
+              placeholder="900 000 000"
+              maxLength={20}
+              value={values.phone}
+              error={translateError(errors.phone)}
+              onChange={handleChange}
+            />
+            <ContactField
+              id="subject"
+              name="subject"
+              label={t("contact.subjectLabel")}
+              placeholder={t("contact.subjectPlaceholder")}
+              maxLength={120}
+              value={values.subject}
+              error={translateError(errors.subject)}
+              onChange={handleChange}
+            />
+            <ContactField
+              id="message"
+              name="message"
+              multiline
+              label={t("contact.messageLabel")}
+              placeholder={t("contact.messagePlaceholder")}
+              maxLength={2000}
+              value={values.message}
+              error={translateError(errors.message)}
+              onChange={handleChange}
+            />
+
+            {/* Honeypot: invisível para pessoas, preenchido por bots. */}
+            <div
+              aria-hidden="true"
+              className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
             >
-              {t("contact.submitMessage")}
-            </button>
+              <label htmlFor="website">Website</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={values.website}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="grid gap-3">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="transition-colors bg-blue-500 hover:bg-blue-600 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm py-2 rounded-2xl"
+              >
+                {isSubmitting
+                  ? t("contact.sending", { defaultValue: "A enviar..." })
+                  : t("contact.submitMessage")}
+              </button>
+              <p
+                role="status"
+                aria-live="polite"
+                className={`text-xs ${status === "success" ? "text-green-700" : "text-red-600"}`}
+              >
+                {statusMessage}
+              </p>
+            </div>
           </div>
         </form>
 
@@ -151,5 +203,5 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
