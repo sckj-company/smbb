@@ -42,6 +42,7 @@
     "services": "服务"
   },
   "pageTitle": {
+    "categories": "类别",
     "products": "产品",
     "services": "提供服务",
     "not-found": "返回主页。"
@@ -108,8 +109,8 @@
     "messagePlaceholder": "写留言...",
     "submitMessage": "发送消息",
     "locationTitle": "地点",
-    "locationDescription1": "Angola, Luanda, Calumbo, Ícolo e Bengo, Cidade do Século, Bloco K2-12-1",
-    "locationDescription2": "Angola, Luanda, Kilamba, 11 de Novembro, Kilamba Shopping",
+    "locationDescription1": "Cidade do Século, Bloco K2-12-1",
+    "locationDescription2": "11 de Novembro, Kilamba Shopping",
     "ContactTitle": "接触",
     "ContactDescription": "+244 951 116 116",
     "ScheduleTitle": "时间",
