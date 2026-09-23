@@ -55,7 +55,7 @@ export default function MessagesInbox() {
   }
 
   return (
-    <section className="grid h-[70dvh] min-h-112 grid-rows-[minmax(0,1fr)] overflow-hidden rounded-xl border border-slate-200 bg-white lg:grid-cols-[22rem_1fr]">
+    <section className="grid h-[70dvh] min-h-112 grid-rows-[minmax(0,1fr)] overflow-hidden rounded-xl border sm:border-slate-200 bg-white lg:grid-cols-[22rem_1fr]">
       <div
         className={cn(
           "flex min-h-0 flex-col border-slate-200 lg:border-r",
