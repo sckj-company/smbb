@@ -4,9 +4,10 @@ import Image from "next/image";
 import { CheckCircle2, CircleX, MapPin, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import useAvailability from "@/hooks/useAvailability";
+import Link from "next/link";
 
 const STORE_NAME = "SMBB";
-const PHONE = "+244 946 205 888";
+const PHONES = ["951116116", "951611611", "933267925"];
 const COVER_SRC = "/extinguisher-cover.webp";
 
 export default function MobileStoreHeader() {
@@ -46,9 +47,9 @@ export default function MobileStoreHeader() {
             </div>
 
             <div className="min-w-0 flex-1">
-              <h1 className="truncate text-xl font-bold">{STORE_NAME}</h1>
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className="truncate text-xl font-bold">{STORE_NAME}</h1>
 
-              <div className="mt-3 flex flex-wrap items-center gap-2">
                 <span
                   className={`inline-flex items-center gap-1.5 rounded-full  px-2 py-1 text-xs font-semibold ${availabilityLabel === "Aberto" ? "bg-emerald-500/15 text-emerald-300" : "bg-red-500/15 text-red-300"}`}
                 >
@@ -60,11 +61,19 @@ export default function MobileStoreHeader() {
 
                   {availabilityLabel}
                 </span>
+              </div>
 
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300">
-                  <Phone aria-hidden="true" className="h-3 w-3 shrink-0" />
-                  {PHONE}
-                </span>
+              <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+                {PHONES.map((number, index) => (
+                  <Link
+                    href={`tel:${number}`}
+                    key={index}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300"
+                  >
+                    <Phone aria-hidden="true" className="h-3 w-3 shrink-0" />
+                    {number}
+                  </Link>
+                ))}
               </div>
 
               <ul className="mt-4 space-y-2 text-sm text-slate-300">
