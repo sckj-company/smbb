@@ -4,7 +4,7 @@ import MessagesInbox from "@/components/messages/MessagesInbox";
 
 export default function AdminMessagesPage() {
   return (
-    <main className="px-6 pb-12 sm:px-8">
+    <main className="px-4 pb-12 sm:px-8">
       <div className="mx-auto w-full lg:w-5xl 2xl:w-7xl">
         <Link
           href="/admin"
@@ -19,6 +19,7 @@ export default function AdminMessagesPage() {
         <p className="mb-6 text-sm text-slate-500">
           Mensagens enviadas pelo formulário de contacto da loja.
         </p>
+        
         <MessagesInbox />
       </div>
     </main>
