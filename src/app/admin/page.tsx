@@ -75,7 +75,7 @@ export default async function AdminPage() {
   ];
 
   return (
-    <main className="px-6 pb-12 sm:px-8">
+    <main className="px-4 pb-12 sm:px-8">
       <div className="mx-auto w-full lg:w-5xl 2xl:w-7xl">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
           Administração
