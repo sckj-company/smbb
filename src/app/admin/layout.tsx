@@ -13,7 +13,7 @@ export default function AdminLayout({
   return (
     <>
       <AdminNavbar />
-      <div className="px-4 pb-12 mt-30 sm:mt-35 xl:mt-40 2xl:mt-45 md:px-6">
+      <div className="pb-12 mt-30 sm:mt-35 xl:mt-40 2xl:mt-45 md:px-6">
         {children}
       </div>
     </>
