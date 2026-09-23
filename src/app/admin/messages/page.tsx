@@ -16,7 +16,7 @@ export default function AdminMessagesPage() {
         <h1 className="mt-4 mb-1 text-2xl font-semibold text-slate-900">
           Mensagens
         </h1>
-        <p className="mb-6 text-sm text-slate-500">
+        <p className="mb-12 text-sm text-slate-500">
           Mensagens enviadas pelo formulário de contacto da loja.
         </p>
         
