@@ -14,7 +14,6 @@ import Image from "next/image";
 
 import MobileStoreHeader from "@/components/products/MobileStoreHeader";
 import ProductQuickView from "@/components/products/ProductQuickView";
-import QrCodeDialog from "@/components/QrCodeDialog";
 import QuantitySelector from "@/components/products/QuantitySelector";
 import SelectGroup from "@/components/products/SelectGroup";
 import Loader from "@/components/ui/loader";
@@ -234,12 +233,6 @@ export default function Home() {
                                 ? t("detail.addedToCart")
                                 : t("detail.addToCart")}
                             </button>
-
-                            <QrCodeDialog
-                              href={`/${product.id}`}
-                              label={`Mostrar QR Code de ${productName}`}
-                              className="shrink-0 border border-slate-200"
-                            />
                           </div>
 
                           <div className="flex min-w-0 flex-1 items-center gap-3 lg:hidden">
@@ -289,12 +282,6 @@ export default function Home() {
                                     {t("detail.addToCart")}
                                   </button>
                                 )}
-
-                                <QrCodeDialog
-                                  href={`/${product.id}`}
-                                  label={`Mostrar QR Code de ${productName}`}
-                                  className="shrink-0 border border-slate-200"
-                                />
                               </div>
                             </div>
                           </div>
