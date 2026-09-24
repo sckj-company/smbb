@@ -39,7 +39,8 @@
   "nav": {
     "home": "首页",
     "store": "店铺",
-    "services": "維護"
+    "services": "維護",
+    "orders": "订单"
   },
   "pageTitle": {
     "categories": "类别",

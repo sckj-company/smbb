@@ -39,7 +39,8 @@
   "nav": {
     "home": "Início",
     "store": "Loja",
-    "services": "Serviços"
+    "services": "Serviços",
+    "orders": "Pedidos"
   },
   "pageTitle": {
     "categories": "Categorias",
