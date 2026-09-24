@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { createSupportMessage, createWhatsAppLink } from "@/lib/whatsapp";
 import { useMediaQuery } from "react-responsive";
@@ -10,17 +9,15 @@ import { RiWhatsappLine } from "@remixicon/react";
 
 export default function CompanySupportButton() {
   const { t } = useTranslation();
-  const pathname = usePathname();
   const isMobile = useMediaQuery({ maxWidth: 884 });
 
-  if (pathname === "/products") return null;
 
   return (
     <Link
       href={createWhatsAppLink(createSupportMessage())}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed right-6 bottom-6 z-40 flex w-fit items-center gap-1.5 rounded-2xl bg-green-500 px-2.5 py-1 text-xs text-white transition-all duration-300 hover:bg-green-600/90 md:text-sm"
+      className="fixed right-6 bottom-20 sm:bottom-6 z-40 flex w-fit items-center gap-1.5 rounded-2xl bg-green-500 px-2.5 py-1 text-xs text-white transition-all duration-300 hover:bg-green-600/90 md:text-sm"
     >
       <RiWhatsappLine className="h-4 w-4" />
       {isMobile ? "SMBB" : t("smbbSupport.text")}
