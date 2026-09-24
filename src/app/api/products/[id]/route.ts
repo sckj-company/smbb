@@ -64,7 +64,14 @@ export async function PATCH(
       body.description ||
       existing.description
   };
-  const parsed = productSchema.partial().safeParse(legacySafeBody);
+  const schema = existing.type === "service"
+    ? productSchema.omit({ brand: true, groupType: true, type: true }).extend({
+        brand: z.string().optional(),
+        groupType: z.string().optional(),
+        type: z.literal("service").optional()
+      }).partial()
+    : productSchema.partial();
+  const parsed = schema.safeParse(legacySafeBody);
   if (!parsed.success)
     return NextResponse.json({ error: "Dados inválidos" }, { status: 400 });
   const product = await prisma.product.update({
