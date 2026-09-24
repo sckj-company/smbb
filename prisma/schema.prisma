@@ -27,6 +27,7 @@ model Product {
   updatedAt   DateTime @updatedAt
 
   @@index([groupType])
+  @@map("product")
 }
 
 model Order {
@@ -44,6 +45,7 @@ model Order {
 
   @@index([status])
   @@index([createdAt])
+  @@map("orders")
 }
 
 model OrderItem {
@@ -56,6 +58,7 @@ model OrderItem {
   order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   @@index([orderId])
+  @@map("order_items")
 }
 
 model Message {
@@ -70,4 +73,5 @@ model Message {
 
   @@index([archived, createdAt])
   @@index([phone, createdAt])
+  @@map("message")
 }
