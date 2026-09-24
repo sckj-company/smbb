@@ -1,44 +1,29 @@
 "use client";
 
-import { RiWhatsappLine } from "@remixicon/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 import { createSupportMessage, createWhatsAppLink } from "@/lib/whatsapp";
+import { useMediaQuery } from "react-responsive";
+
+import { RiWhatsappLine } from "@remixicon/react";
 
 export default function CompanySupportButton() {
   const { t } = useTranslation();
-  const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
+  const isMobile = useMediaQuery({ maxWidth: 884 });
 
-  useEffect(() => {
-    const updateVisibility = () => {
-      const hero = document.getElementById("home-hero");
-
-      if (!hero) {
-        setIsVisible(true);
-        return;
-      }
-
-      setIsVisible(hero.getBoundingClientRect().bottom <= 0);
-    };
-
-    updateVisibility();
-    window.addEventListener("scroll", updateVisibility, { passive: true });
-
-    return () => window.removeEventListener("scroll", updateVisibility);
-  }, []);
+  if (pathname === "/products") return null;
 
   return (
     <Link
       href={createWhatsAppLink(createSupportMessage())}
       target="_blank"
       rel="noopener noreferrer"
-      aria-hidden={!isVisible}
-      tabIndex={isVisible ? 0 : -1}
-      className={`fixed right-6 bottom-6 flex items-center gap-1.5 rounded-2xl bg-green-500 px-2.5 py-1 text-sm text-white transition-all duration-300 hover:bg-green-600/90 ${isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"}`}
+      className="fixed right-6 bottom-6 z-40 flex w-fit items-center gap-1.5 rounded-2xl bg-green-500 px-2.5 py-1 text-xs text-white transition-all duration-300 hover:bg-green-600/90 md:text-sm"
     >
-      <RiWhatsappLine className="w-4 h-4" />
-      {t("smbbSupport.text")}
+      <RiWhatsappLine className="h-4 w-4" />
+      {isMobile ? "SMBB" : t("smbbSupport.text")}
     </Link>
   );
 }
