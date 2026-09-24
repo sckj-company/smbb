@@ -18,7 +18,7 @@ export default function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
           key={link.href}
           href={link.href}
           onClick={onNavigate}
-          className={`flex items-center gap-1.5 text-sm 2xl:text-base rounded-4xl py-1 px-3 transition-colors ${
+          className={`flex items-center gap-1.5 text-sm md:text-xs 2xl:text-base rounded-4xl py-1 px-3 transition-colors ${
             isActive(link.href)
               ? "bg-blue-50 rounded-4xl py-1 px-3 text-blue-500 font-medium"
               : "text-gray-500 hover:text-blue-500"
