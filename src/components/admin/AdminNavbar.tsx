@@ -1,43 +1,43 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { LayoutDashboard, LogOut, Mail, Menu, X } from "lucide-react";
-import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import Logo from "../Logo";
-import useUnreadMessagesCount from "@/hooks/messages/useUnreadMessagesCount";
-import UnreadBadge from "./UnreadBadge";
-import useMessageFilter from "@/hooks/messages/useMessageFilter";
-import useMessages from "@/hooks/messages/useMessages";
+import Link from "next/link"
+import { LayoutDashboard, LogOut, Mail, Menu, X } from "lucide-react"
+import { useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
+import Logo from "../Logo"
+import useUnreadMessagesCount from "@/hooks/messages/useUnreadMessagesCount"
+import UnreadBadge from "./UnreadBadge"
+import useMessageFilter from "@/hooks/messages/useMessageFilter"
+import useMessages from "@/hooks/messages/useMessages"
 
-const LOGIN_PATH = "/admin/login";
-const MESSAGES_PATH = "/admin/messages";
+const LOGIN_PATH = "/admin/login"
+const MESSAGES_PATH = "/admin/messages"
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: MESSAGES_PATH, label: "Mensagens", icon: Mail }
-];
+  { href: MESSAGES_PATH, label: "Mensagens", icon: Mail },
+]
 
 export default function AdminNavbar() {
-  const pathname = usePathname();
-  const router = useRouter();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname()
+  const router = useRouter()
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  const { messages } = useMessages();
-  const { unreadCount } = useMessageFilter(messages);
+  const { messages } = useMessages()
+  const { unreadCount } = useMessageFilter(messages)
 
   if (pathname === LOGIN_PATH) {
-    return null;
+    return null
   }
   async function logout() {
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.replace(LOGIN_PATH);
-    router.refresh();
+    await fetch("/api/admin/logout", { method: "POST" })
+    router.replace(LOGIN_PATH)
+    router.refresh()
   }
 
   return (
-    <nav className="fixed left-1/2 top-0 z-30 w-full -translate-x-1/2 border-b border-slate-200 bg-white/95 px-4 py-5 backdrop-blur sm:px-8 2xl:px-0">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+    <nav className="fixed left-1/2 top-0 z-30 w-full -translate-x-1/2 border-b border-slate-200 bg-white/95 px-4 py-4 backdrop-blur sm:px-8 2xl:px-0">
+      <div className="mx-auto flex w-full items-center justify-between gap-4 md:max-w-5xl 2xl:max-w-7xl">
         <Logo link="/admin" />
 
         <button
@@ -53,7 +53,7 @@ export default function AdminNavbar() {
         >
           {links.map(({ href, label, icon: Icon }) => {
             const isActive =
-              href === "/admin" ? pathname === href : pathname.startsWith(href);
+              href === "/admin" ? pathname === href : pathname.startsWith(href)
 
             return (
               <Link
@@ -64,11 +64,9 @@ export default function AdminNavbar() {
               >
                 <Icon size={16} />
                 {label}
-                {href === MESSAGES_PATH && (
-                  <UnreadBadge count={unreadCount} />
-                )}
+                {href === MESSAGES_PATH && <UnreadBadge count={unreadCount} />}
               </Link>
-            );
+            )
           })}
           <button
             type="button"
@@ -81,5 +79,5 @@ export default function AdminNavbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
