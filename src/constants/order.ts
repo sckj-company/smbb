@@ -36,3 +36,12 @@ export const TABLE_COLUMNS = [
   "Total",
   "Estado",
 ] as const
+
+export const CLIENT_TABLE_COLUMNS = [
+  "orders.table.columns.order",
+  "orders.table.columns.type",
+  "orders.table.columns.name",
+  "orders.table.columns.phone",
+  "orders.table.columns.total",
+  "orders.table.columns.status",
+] as const

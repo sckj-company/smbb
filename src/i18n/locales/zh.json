@@ -46,6 +46,7 @@
     "categories": "类别",
     "products": "产品",
     "services": "提供服务",
+    "orders": "您的订单",
     "not-found": "返回主页。"
   },
   "services": {
@@ -231,5 +232,30 @@
   },
   "smbbSupport": {
     "text": "SMBB 支持"
+  },
+  "orders": {
+    "table": {
+      "title": "订单",
+      "description": "请求发送到SMBB 存储。",
+      "status": {
+        "all": "全部",
+        "pending": "待办的",
+        "processing": "分析中",
+        "completed": "完全的",
+        "cancelled": "取消"
+      },
+      "columns": {
+        "order": "订单",
+        "type": "类型",
+        "name": "姓名",
+        "phone": "电话",
+        "total": "总计",
+        "status": "状态"
+      },
+      "empty": "该状态下没有订单。",
+      "loading": "正在加载订单...",
+      "error": "无法加载订单。重新加载页面或检查数据库连接。",
+      "actions": "行动"
+    }
   }
 }

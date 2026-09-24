@@ -106,6 +106,7 @@ export default async function AdminPage() {
             </Link>
           ))}
         </div>
+        
         <div id="orders">
           <OrdersTable />
         </div>

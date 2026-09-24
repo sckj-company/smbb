@@ -63,7 +63,7 @@ export default function QrCodeDialog({
         <QrCode className="h-3 w-3 sm:h-4 sm:w-4" />
       </DialogTrigger>
 
-      <DialogContent className="max-w-sm p-6">
+      <DialogContent className="w-full max-w-[calc(100%-2rem)]">
         <DialogTitle>{t(title)}</DialogTitle>
         <DialogDescription className="mt-1">
           {t("qrModal.description")}

@@ -46,6 +46,7 @@
     "categories": "Categorias",
     "products": "Produtos",
     "services": "Prestação de Serviços",
+    "orders": "Seus Pedidos",
     "not-found": "Voltar à Página Inicial."
   },
   "services": {
@@ -231,5 +232,30 @@
   },
   "smbbSupport": {
     "text": "Suporte SMBB"
+  },
+  "orders": {
+    "table": {
+      "title": "Pedidos",
+      "description": "Solicitações enviadas à loja SMBB.",
+      "status": {
+        "all": "Todos",
+        "pending": "Pendentes",
+        "processing": "Em Análise",
+        "completed": "Concluídos",
+        "cancelled": "Cancelados"
+      },
+      "columns": {
+        "order": "Pedido",
+        "type": "Tipo",
+        "name": "Nome",
+        "phone": "Telefone",
+        "total": "Total",
+        "status": "Estado"
+      },
+      "empty": "Nenhum pedido neste estado.",
+      "loading": "A carregar pedidos...",
+      "error": "Não foi possível carregar os pedidos. Recarregue a página ou verifique a ligação à base de dados.",
+      "actions": "Ações"
+    }
   }
 }

@@ -1,41 +1,41 @@
-"use client";
+"use client"
 
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
-import { formatKz } from "@/utils/formatKz";
+  DialogTitle,
+} from "@/components/ui/dialog"
+import { formatKz } from "@/utils/formatKz"
 import {
   getTypeLabel,
   NOT_INFORMED,
   countOrderUnits,
   formatOrderCode,
-  getChannelLabel
-} from "@/utils/orderFormat";
-import OrderTypeIcon from "./OrderTypeIcon";
-import { Order } from "@/interface/order";
-import OrderStatusBadge from "./OrderStatusBadge";
-import OrderItemsList from "./OrderItemsList";
-import DetailField from "./DetailField";
-import { formatTimestampDate } from "@/utils/formatDate";
+  getChannelLabel,
+} from "@/utils/orderFormat"
+import OrderTypeIcon from "./OrderTypeIcon"
+import { Order } from "@/interface/order"
+import OrderStatusBadge from "./OrderStatusBadge"
+import OrderItemsList from "./OrderItemsList"
+import DetailField from "./DetailField"
+import { formatTimestampDate } from "@/utils/formatDate"
 
 type Props = {
-  order: Order | null;
-  open: boolean;
-  onClose: () => void;
-};
+  order: Order | null
+  open: boolean
+  onClose: () => void
+}
 
 export default function OrderDetailsDialog({ order, open, onClose }: Props) {
-  if (!order) return null;
+  if (!order) return null
 
-  const units = countOrderUnits(order.items);
+  const units = countOrderUnits(order.items)
 
   return (
     <Dialog open={open} onOpenChange={(next) => !next && onClose()}>
-      <DialogContent className="sm:max-w-lg">
+      <DialogContent className="w-full max-w-[calc(100%-2rem)]">
         <DialogHeader>
           <div className="flex items-center gap-3">
             <OrderTypeIcon type={order.type} className="h-10 w-10" />
@@ -53,9 +53,6 @@ export default function OrderDetailsDialog({ order, open, onClose }: Props) {
             <OrderStatusBadge status={order.status} />
           </DetailField>
           <DetailField label="Tipo">{getTypeLabel(order.type)}</DetailField>
-          <DetailField label="Cliente">
-            {order.customer || NOT_INFORMED}
-          </DetailField>
           <DetailField label="Telefone">
             {order.phone ? (
               <a
@@ -97,5 +94,5 @@ export default function OrderDetailsDialog({ order, open, onClose }: Props) {
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
