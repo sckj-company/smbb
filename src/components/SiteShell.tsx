@@ -8,13 +8,11 @@ import Footer from "./Footer";
 import { CartProvider } from "@/hooks/useCart";
 import CompanySupportButton from "./ui/company-support-button";
 import { Toaster } from "./ui/toaster";
-import MobileCartButton from "./ui/mobile-cart-button";
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdminRoute = pathname.startsWith("/admin");
-  const isTestStoreRoute = pathname === "/teste";
-  const showPublicShell = !isAdminRoute && !isTestStoreRoute;
+  const showPublicShell = !isAdminRoute;
 
   return (
     <CartProvider>
@@ -23,7 +21,6 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       {children}
       {showPublicShell && <Footer />}
       {showPublicShell && <CompanySupportButton />}
-      {showPublicShell && <MobileCartButton />}
       <Toaster />
     </CartProvider>
   );
