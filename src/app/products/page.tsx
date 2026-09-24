@@ -264,24 +264,23 @@ export default function Home() {
                               </Link>
 
                               <div className="flex items-center justify-between gap-2">
-                                {cartItem ? (
-                                  <QuantitySelector
-                                    value={cartItem.quantity}
-                                    onChange={(quantity) =>
-                                      updateQuantity(product.id, quantity)
+                                <QuantitySelector
+                                  value={cartItem?.quantity ?? 0}
+                                  onChange={(quantity) => {
+                                    if (quantity === 0) {
+                                      updateQuantity(product.id, 0);
+                                      return;
                                     }
-                                    variant="card"
-                                  />
-                                ) : (
-                                  <button
-                                    type="button"
-                                    onClick={() => addItem(product)}
-                                    className="inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border border-slate-200 px-3 py-1.5 text-xs font-semibold text-blue-500 transition-colors hover:border-slate-300 hover:bg-slate-200 hover:text-blue-600 sm:py-2"
-                                  >
-                                    <ShoppingCart className="h-3.5 w-3.5" />
-                                    {t("detail.addToCart")}
-                                  </button>
-                                )}
+
+                                    if (!cartItem) {
+                                      addItem(product);
+                                      return;
+                                    }
+
+                                    updateQuantity(product.id, quantity);
+                                  }}
+                                  variant="card"
+                                />
                               </div>
                             </div>
                           </div>
