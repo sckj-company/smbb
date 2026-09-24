@@ -12,7 +12,7 @@ export default function HeroContent() {
         alt=""
         width={200}
         height={200}
-        className="h-6 w-auto mx-auto -mb-4"
+        className="block md:hidden h-6 w-auto mx-auto -mb-4"
       />
 
       <Availability />
