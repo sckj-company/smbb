@@ -11,20 +11,20 @@ model Product {
   id          String   @id @default(cuid())
   slug        String   @unique
   name        String
-  nameZh      String   @default("")
+  nameZh      String   @default("") @map("name_zh")
   brand       String
   price       Int
-  oldPrice    Int      @default(0)
+  oldPrice    Int      @default(0) @map("old_price")
   accent      String   @default("from-slate-700 via-stone-700 to-neutral-900")
-  accentColor String   @default("#facc15")
+  accentColor String   @default("#facc15") @map("accent_color")
   image       String   @db.Text
   description String
-  descriptionZh String @default("")
+  descriptionZh String @default("") @map("description_zh")
   highlights  String[]
-  groupType   String
+  groupType   String   @map("group_type")
   type        String   @default("product")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   @@index([groupType])
   @@map("product")
@@ -39,8 +39,8 @@ model Order {
   customer  String      @default("")
   phone     String      @default("")
   metadata  String      @default("{}") @db.Text
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
   items     OrderItem[]
 
   @@index([status])
@@ -50,11 +50,11 @@ model Order {
 
 model OrderItem {
   id        String   @id @default(cuid())
-  orderId   String
+  orderId   String   @map("order_id")
   name      String
   category  String   @default("")
   quantity  Int
-  unitPrice Int
+  unitPrice Int      @map("unit_price")
   order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   @@index([orderId])
@@ -69,7 +69,7 @@ model Message {
   body      String
   read      Boolean  @default(false)
   archived  Boolean  @default(false)
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@index([archived, createdAt])
   @@index([phone, createdAt])
