@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { Edit, Plus, Search, Trash2 } from "lucide-react";
-import { useState } from "react";
-import SelectGroup from "../products/SelectGroup";
-import type { Product } from "@/interface/products";
-import useSelectGroup from "@/hooks/useSelectGroup";
-import { Button } from "@/components/ui/button";
+import Image from "next/image"
+import Link from "next/link"
+import { Edit, Plus, Search, Trash2 } from "lucide-react"
+import { useState } from "react"
+import SelectGroup from "../products/SelectGroup"
+import type { Product } from "@/interface/products"
+import useSelectGroup from "@/hooks/useSelectGroup"
+import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,49 +16,49 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle
-} from "@/components/ui/alert-dialog";
-import Loader from "../ui/loader";
-import QrCodeDialog from "../QrCodeDialog";
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
+import Loader from "../ui/loader"
+import QrCodeDialog from "../QrCodeDialog"
 
 export default function AdminProductList() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
-  const [deleteError, setDeleteError] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("")
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null)
+  const [deleteError, setDeleteError] = useState("")
+  const [isDeleting, setIsDeleting] = useState(false)
   const {
     selectedGroup,
     setSelectedGroup,
     visibleProducts,
     isLoading,
     error,
-    mutate
+    mutate,
   } = useSelectGroup({
-    searchQuery
-  });
+    searchQuery,
+  })
 
   async function remove() {
-    if (!productToDelete) return;
-    setIsDeleting(true);
-    setDeleteError("");
+    if (!productToDelete) return
+    setIsDeleting(true)
+    setDeleteError("")
     try {
       const response = await fetch(`/api/products/${productToDelete.id}`, {
-        method: "DELETE"
-      });
+        method: "DELETE",
+      })
       if (!response.ok) {
-        const result = await response.json().catch(() => ({}));
-        setDeleteError(result.error ?? "Não foi possível apagar o produto.");
-        return;
+        const result = await response.json().catch(() => ({}))
+        setDeleteError(result.error ?? "Não foi possível apagar o produto.")
+        return
       }
-      await mutate();
-      setProductToDelete(null);
+      await mutate()
+      setProductToDelete(null)
     } finally {
-      setIsDeleting(false);
+      setIsDeleting(false)
     }
   }
 
   return (
-    <main className="w-full pb-12 px-4 sm:px-8 2xl:px-0 md:w-5xl 2xl:w-7xl mx-auto">
+    <main className="w-full pb-12 px-4 lg:px-0 md:w-5xl 2xl:w-7xl mx-auto">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
@@ -161,7 +161,7 @@ export default function AdminProductList() {
       <AlertDialog
         open={productToDelete !== null}
         onOpenChange={(open) => {
-          if (!open && !isDeleting) setProductToDelete(null);
+          if (!open && !isDeleting) setProductToDelete(null)
         }}
       >
         <AlertDialogContent>
@@ -186,5 +186,5 @@ export default function AdminProductList() {
         </AlertDialogContent>
       </AlertDialog>
     </main>
-  );
+  )
 }

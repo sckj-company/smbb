@@ -1,34 +1,36 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { Edit, Plus, Search } from "lucide-react";
-import useSWR from "swr";
-import { useState } from "react";
-import Loader from "../ui/loader";
-import Image from "next/image";
+import Link from "next/link"
+import { Edit, Plus, Search } from "lucide-react"
+import useSWR from "swr"
+import { useState } from "react"
+import Loader from "../ui/loader"
+import Image from "next/image"
 
 type Service = {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  slug: string;
-};
-const fetcher = (url: string) => fetch(url).then((response) => response.json());
+  id: string
+  name: string
+  description: string
+  image: string
+  slug: string
+}
+const fetcher = (url: string) => fetch(url).then((response) => response.json())
 
 export default function AdminServiceList() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("")
   const { data: services = [], isLoading } = useSWR<Service[]>(
     "/api/products?type=service",
-    fetcher
-  );
-  const query = searchQuery.trim().toLocaleLowerCase();
+    fetcher,
+  )
+  const query = searchQuery.trim().toLocaleLowerCase()
   const visibleServices = services.filter((service) =>
-    `${service.name} ${service.description}`.toLocaleLowerCase().includes(query)
-  );
+    `${service.name} ${service.description}`
+      .toLocaleLowerCase()
+      .includes(query),
+  )
 
   return (
-    <main className="w-full pb-12 px-4 sm:px-8 2xl:px-0 md:w-5xl 2xl:w-7xl mx-auto">
+    <main className="w-full pb-12 px-4 lg:px-0 md:w-5xl 2xl:w-7xl mx-auto">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
@@ -96,5 +98,5 @@ export default function AdminServiceList() {
         </div>
       )}
     </main>
-  );
+  )
 }
