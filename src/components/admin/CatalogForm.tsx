@@ -330,7 +330,7 @@ export default function CatalogForm({ kind, item, backHref }: Props) {
           )}
           <button
             disabled={pending}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 px-5 py-3 font-medium text-white disabled:opacity-60"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 hover:bg-blue-600/90 transition-colors px-5 py-2 font-medium text-white disabled:opacity-60"
           >
             <Save className="h-4 w-4" />
             {pending ? "A guardar..." : "Salvar"}
