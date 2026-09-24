@@ -91,6 +91,7 @@ export function CatalogDetailContent({ item }: { item: Product }) {
               <ShoppingCart className="h-4 w-4" />
               {isInCart ? t("detail.addedToCart") : t("detail.addToCart")}
             </button>
+            
             <QrCodeDialog
               href={`/${item.id}`}
               label={`Mostrar QR Code de ${productName}`}
