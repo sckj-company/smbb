@@ -11,7 +11,6 @@ export default function CompanySupportButton() {
   const { t } = useTranslation();
   const isMobile = useMediaQuery({ maxWidth: 884 });
 
-
   return (
     <Link
       href={createWhatsAppLink(createSupportMessage())}
