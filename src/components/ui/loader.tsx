@@ -1,9 +1,11 @@
-import { Ring2 } from "ldrs/react"
-import "ldrs/react/Ring2.css"
+import { Ring2 } from "ldrs/react";
+import "ldrs/react/Ring2.css";
 
-export default function Loader() {
+export default function Loader({ className }: { className?: string }) {
   return (
-    <div className="-mt-20 lg:mt-40 flex items-center justify-center w-full h-full">
+    <div
+      className={`-mt-20 lg:mt-40 flex items-center justify-center w-full h-full ${className}`}
+    >
       <Ring2
         size="40"
         stroke="5"
@@ -13,5 +15,5 @@ export default function Loader() {
         color="oklch(62.3% 0.214 259.815)"
       />
     </div>
-  )
+  );
 }

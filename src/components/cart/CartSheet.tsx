@@ -12,49 +12,139 @@ import {
   SheetHeader,
   SheetTitle
 } from "@/components/ui/sheet";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import useCatalogLanguage from "@/hooks/useCatalogLanguage";
 import { formatKz } from "@/utils/formatKz";
 import { downloadCartInvoice } from "@/lib/invoice";
+import { useToast } from "@/hooks/useToast";
 
 type Props = { open: boolean; onClose: () => void };
 
+const PHONE_REGEX = /^9\d{8}$/;
+
+type CartItem = {
+  id: string | number;
+  quantity: number;
+};
+
+function buildOrderSignature(phone: string, items: CartItem[]) {
+  const itemsKey = [...items]
+    .map((item) => `${item.id}:${item.quantity}`)
+    .sort()
+    .join(",");
+  return `${phone.trim()}|${itemsKey}`;
+}
+
 export default function CartSheet({ open, onClose }: Props) {
   const { t } = useTranslation();
+  const { toast } = useToast();
   const { localize } = useCatalogLanguage();
   const { items, totalItems, totalPrice, updateQuantity, removeItem, clear } =
     useCart();
-  const [channel, setChannel] = useState<"whatsapp" | "dashboard">("whatsapp");
+  const [channel, setChannel] = useState<"dashboard" | "whatsapp">("dashboard");
   const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const lastSentOrderRef = useRef<string | null>(null);
+
+  function validatePhone(value: string) {
+    if (!value.trim()) {
+      return t("cart.phoneRequired", "O número de telefone é obrigatório");
+    }
+    if (!PHONE_REGEX.test(value.trim())) {
+      return t(
+        "cart.phoneInvalid",
+        "O número deve começar com 9 e ter 9 dígitos"
+      );
+    }
+    return "";
+  }
+
+  function handlePhoneChange(value: string) {
+    setPhone(value);
+    if (phoneError) {
+      setPhoneError(validatePhone(value));
+    }
+  }
 
   async function checkout() {
     if (!items.length) return;
-    await fetch("/api/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        type: "product",
-        channel,
-        total: totalPrice,
-        phone,
-        items: items.map((item) => ({
-          name: item.name,
-          quantity: item.quantity,
-          unitPrice: item.price
-        }))
-      })
-    });
-    if (channel === "whatsapp") {
-      window.open(
-        createWhatsAppLink(createProductOrderMessage(items, totalPrice, phone)),
-        "_blank",
-        "noopener,noreferrer"
-      );
+
+    const validationError = validatePhone(phone);
+    if (validationError) {
+      setPhoneError(validationError);
+      return;
     }
-    clear();
-    onClose();
+    setPhoneError("");
+
+    const orderSignature = buildOrderSignature(phone, items);
+    if (lastSentOrderRef.current === orderSignature) {
+      toast({
+        title: t("cart.duplicateOrderTitle", "Pedido já enviado"),
+        description: t(
+          "cart.duplicateOrderDescription",
+          "Este pedido já foi enviado para este número. Altera o carrinho ou o telefone para enviar de novo."
+        ),
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "product",
+          channel,
+          total: totalPrice,
+          phone,
+          items: items.map((item) => ({
+            name: item.name,
+            quantity: item.quantity,
+            unitPrice: item.price
+          }))
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      lastSentOrderRef.current = orderSignature;
+
+      if (channel === "whatsapp") {
+        window.open(
+          createWhatsAppLink(
+            createProductOrderMessage(items, totalPrice, phone)
+          ),
+          "_blank",
+          "noopener,noreferrer"
+        );
+      }
+
+      toast({
+        title: t("cart.orderSentSuccessTitle", "Pedido enviado"),
+        description: t("cart.orderSentSuccess", "Pedido enviado com sucesso!")
+      });
+
+      // clear();
+      onClose();
+    } catch (error) {
+      toast({
+        title: t("cart.orderSentErrorTitle", "Falha no envio"),
+        description: t(
+          "cart.orderSentError",
+          "Não foi possível enviar o pedido. Tenta novamente."
+        ),
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function downloadInvoice() {
@@ -172,15 +262,29 @@ export default function CartSheet({ open, onClose }: Props) {
             {t("cart.phone")}
             <input
               type="tel"
+              inputMode="numeric"
+              maxLength={9}
               value={phone}
-              onChange={(event) => setPhone(event.target.value)}
+              onChange={(event) =>
+                handlePhoneChange(event.target.value.replace(/\D/g, ""))
+              }
+              onBlur={() => setPhoneError(validatePhone(phone))}
               placeholder={t("cart.phonePlaceholder")}
-              className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-normal text-slate-700 outline-none focus:border-blue-500"
+              aria-invalid={Boolean(phoneError)}
+              className={`rounded-lg border bg-white px-3 py-2 text-sm font-normal text-slate-700 outline-none focus:border-blue-500 ${
+                phoneError ? "border-red-400" : "border-slate-200"
+              }`}
             />
+            {phoneError && (
+              <span className="text-[0.7rem] font-normal text-red-500">
+                {phoneError}
+              </span>
+            )}
           </label>
 
           <label className="mt-3 grid gap-1 text-xs font-medium text-slate-600">
             {t("cart.requestChannel")}
+
             <select
               value={channel}
               onChange={(event) =>
@@ -188,20 +292,22 @@ export default function CartSheet({ open, onClose }: Props) {
               }
               className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-normal text-slate-700"
             >
-              <option value="whatsapp">{t("cart.channelWhatsApp")}</option>
               <option value="dashboard">{t("cart.channelDashboard")}</option>
+              <option value="whatsapp">{t("cart.channelWhatsApp")}</option>
             </select>
           </label>
 
           <button
             type="button"
             onClick={checkout}
-            disabled={!items.length}
+            disabled={!items.length || isSubmitting}
             className="mt-3 w-full rounded-full bg-blue-500 px-5 py-2 text-xs font-semibold text-white hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {channel === "whatsapp"
-              ? t("cart.buyViaWhatsApp")
-              : t("cart.submitRequest")}
+            {isSubmitting
+              ? t("cart.sending", "A enviar...")
+              : channel === "dashboard"
+                ? t("cart.submitRequest")
+                : t("cart.buyViaWhatsApp")}
           </button>
 
           {items.length > 0 && (

@@ -47,7 +47,7 @@ export default function ServicesPage() {
           </div>
         </div>
         {isLoading ? (
-          <Loader />
+          <Loader className="mt-40" />
         ) : services.length === 0 ? (
           <p className="rounded-xl border border-dashed border-slate-300 p-10 text-center text-sm text-slate-500">
             {t("detail.emptyService")}

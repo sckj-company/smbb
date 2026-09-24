@@ -160,9 +160,9 @@ export default function Home() {
 
           <section
             ref={productsScrollRef}
-            className="min-h-0 flex-1 overflow-y-auto px-4 pb-6 pt-4 lg:block lg:min-h-0 lg:w-full lg:space-y-10 lg:overflow-visible lg:px-0 lg:pb-0 lg:pt-0"
+            className="min-h-0 flex-1 overflow-y-auto px-4 pb-15 pt-4 lg:block lg:min-h-0 lg:w-full lg:space-y-10 lg:overflow-visible lg:px-0 lg:pb-0 lg:pt-0"
           >
-            {isLoading && <Loader />}
+            {isLoading && <Loader className="-mt-10" />}
 
             {error && (
               <p className="text-sm text-red-600">
