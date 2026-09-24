@@ -27,7 +27,7 @@ model Product {
   updatedAt   DateTime @updatedAt @map("updated_at")
 
   @@index([groupType])
-  @@map("product")
+  @@map("products")
 }
 
 model Order {
@@ -73,5 +73,5 @@ model Message {
 
   @@index([archived, createdAt])
   @@index([phone, createdAt])
-  @@map("message")
+  @@map("messages")
 }
