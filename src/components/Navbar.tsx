@@ -1,43 +1,43 @@
-"use client";
+"use client"
 
-import { useTranslation } from "react-i18next";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import Logo from "./Logo";
-import useTranslate from "@/hooks/useTranslate";
-import LanguageSelect from "./LanguageSelect";
-import NavLinks from "./nav/NavLinks";
-import { Home, Menu, ShoppingCart, Wrench, X, Package } from "lucide-react";
-import { useState } from "react";
-import useCart from "@/hooks/useCart";
-import CartSheet from "./cart/CartSheet";
-import QrCodeDialog from "./QrCodeDialog";
-import { useMediaQuery } from "react-responsive";
-import { whatsappNumber } from "@/lib/whatsapp";
-import { RiWhatsappLine } from "@remixicon/react";
+import { useTranslation } from "react-i18next"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import Logo from "./Logo"
+import useTranslate from "@/hooks/useTranslate"
+import LanguageSelect from "./LanguageSelect"
+import NavLinks from "./nav/NavLinks"
+import { Home, Menu, ShoppingCart, Wrench, X, Package } from "lucide-react"
+import { useState } from "react"
+import useCart from "@/hooks/useCart"
+import CartSheet from "./cart/CartSheet"
+import QrCodeDialog from "./QrCodeDialog"
+import { useMediaQuery } from "react-responsive"
+import { whatsappNumber } from "@/lib/whatsapp"
+import { RiWhatsappLine } from "@remixicon/react"
 
 export default function Navbar() {
-  const isMobile = useMediaQuery({ maxWidth: 884 });
-  const { t } = useTranslation();
-  const { handleLanguageChange, selectedLanguage } = useTranslate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
-  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
-  const { totalItems } = useCart();
-  const pathname = usePathname();
+  const isMobile = useMediaQuery({ maxWidth: 884 })
+  const { t } = useTranslation()
+  const { handleLanguageChange, selectedLanguage } = useTranslate()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [cartOpen, setCartOpen] = useState(false)
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`
+  const { totalItems } = useCart()
+  const pathname = usePathname()
 
-  const isHomePage = pathname === "/";
-  const isActive = (href: string) => pathname === href;
+  const isHomePage = pathname === "/"
+  const isActive = (href: string) => pathname === href
 
   return (
     <>
       <nav
-        className={`fixed left-1/2 top-0 z-30 w-full -translate-x-1/2 border-b border-slate-200 bg-white/95 px-4 py-4 backdrop-blur sm:px-8 2xl:px-0 ${isMobile && !isHomePage ? "hidden lg:block" : "block"}`}
+        className={`fixed left-1/2 top-0 z-30 w-full -translate-x-1/2 border-b border-slate-200/90 bg-white/95 px-4 py-4 backdrop-blur sm:px-8 2xl:px-0 ${isMobile && !isHomePage ? "hidden lg:block" : "block"}`}
       >
         <div className="mx-auto flex w-full items-center justify-between gap-4 md:max-w-5xl 2xl:max-w-7xl">
           <div className="flex items-center gap-4 sm:gap-5.5">
             <Logo />
-            <div className="hidden h-6 w-px border-l border-blue-100 sm:block" />
+            <div className="hidden h-4 w-px border-l border-blue-100 sm:block" />
             <div className="hidden sm:block">
               <NavLinks />
             </div>
@@ -63,6 +63,8 @@ export default function Navbar() {
                 </span>
               )}
             </button>
+
+            <div className="hidden h-4 w-px border-l border-blue-100 lg:block" />
 
             <QrCodeDialog className="hidden lg:inline-flex" />
 
@@ -159,5 +161,5 @@ export default function Navbar() {
 
       <CartSheet open={cartOpen} onClose={() => setCartOpen(false)} />
     </>
-  );
+  )
 }
