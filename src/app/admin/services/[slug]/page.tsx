@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import CatalogForm from "@/components/admin/CatalogForm";
-import { services } from "@/interface/services";
+import { prisma } from "@/lib/prisma";
 
 export default async function EditServicePage({
   params
@@ -8,7 +8,9 @@ export default async function EditServicePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const service = services.find((item) => item.id === slug);
+  const service = await prisma.product.findFirst({
+    where: { OR: [{ id: slug }, { slug }], type: "service" }
+  });
 
   if (!service) notFound();
 
@@ -17,15 +19,16 @@ export default async function EditServicePage({
       kind="Serviço"
       backHref="/admin/services"
       item={{
-        name: service.title,
-        nameZh: service.titleZh,
-        brand: "SMBB",
+        id: service.id,
+        name: service.name,
+        nameZh: service.nameZh || service.name,
+        brand: service.brand,
         description: service.description,
-        descriptionZh: service.descriptionZh,
+        descriptionZh: service.descriptionZh || service.description,
         price: service.price,
-        oldPrice: "",
+        oldPrice: service.oldPrice,
         image: service.image,
-        highlights: [""],
+        highlights: service.highlights,
         groupType: "Extintor"
       }}
     />
