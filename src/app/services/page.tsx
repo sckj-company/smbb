@@ -70,7 +70,7 @@ export default function ServicesPage() {
                     alt={serviceName}
                     width={200}
                     height={200}
-                    className="h-48 md:h-60 w-full rounded-sm object-cover object-bottom"
+                    className="h-48 md:h-60 w-full rounded-sm object-cover object-top"
                   />
                   <div className="px-5 pb-4 pt-4">
                     <h3 className="mb-2 text-xl font-semibold text-blue-900">
