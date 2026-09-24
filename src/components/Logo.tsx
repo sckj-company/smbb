@@ -21,7 +21,7 @@ export default function Logo({
         alt="SMBB Logo"
         width="200"
         height="250"
-        className={`h-6.5 sm:h-6.5 xl:h-7.5 w-auto ${className}`}
+        className={`h-6.5 sm:h-5.5 2xl:h-6.5 w-auto ${className}`}
       />
     </Link>
   );
