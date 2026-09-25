@@ -14,14 +14,13 @@ import NavLinks from "./nav/NavLinks";
 import useCart from "@/hooks/useCart";
 import CartSheet from "./cart/CartSheet";
 import QrCodeDialog from "./QrCodeDialog";
-import { whatsappNumber } from "@/lib/whatsapp";
+import { createSupportMessage, createWhatsAppLink } from "@/lib/whatsapp";
 
 export default function Navbar() {
   const { t } = useTranslation();
   const { handleLanguageChange, selectedLanguage } = useTranslate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
   const { totalItems } = useCart();
   const pathname = usePathname();
 
@@ -95,8 +94,8 @@ export default function Navbar() {
               </div>
             </button>
 
-            <a
-              href={whatsappUrl}
+            <Link
+              href={createWhatsAppLink(createSupportMessage())}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Falar com a empresa pelo WhatsApp"
@@ -104,7 +103,7 @@ export default function Navbar() {
             >
               <RiWhatsappLine className="h-3.5 w-3.5" />
               <p className="text-xs">WhatsApp</p>
-            </a>
+            </Link>
           </div>
         )}
 
