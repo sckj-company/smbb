@@ -74,8 +74,8 @@ export default function Navbar() {
         )}
       </nav>
 
-      {!isHomePage && (
-        <>
+      <>
+        {!isHomePage && (
           <div className="fixed inset-x-3 bottom-17 z-40 flex h-8 items-center justify-between overflow-hidden rounded-2xl bg-slate-950 shadow-[0_8px_30px_rgba(15,23,42,0.25)] sm:hidden">
             <button
               type="button"
@@ -106,42 +106,42 @@ export default function Navbar() {
               <p className="text-xs">WhatsApp</p>
             </a>
           </div>
+        )}
 
-          <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-slate-200 bg-white/95 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur sm:hidden lg:hidden">
-            <Link
-              href="/"
-              className={`flex flex-col items-center gap-1 text-[0.65rem] ${isActive("/") ? "text-blue-600" : "text-slate-500"}`}
-            >
-              <Home className="h-5 w-5" />
-              {t("nav.home")}
-            </Link>
+        <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-slate-200 bg-white/95 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur sm:hidden lg:hidden">
+          <Link
+            href="/"
+            className={`flex flex-col items-center gap-1 text-[0.65rem] ${isActive("/") ? "text-blue-600" : "text-slate-500"}`}
+          >
+            <Home className="h-5 w-5" />
+            {t("nav.home")}
+          </Link>
 
-            <Link
-              href="/products"
-              className={`flex flex-col items-center gap-1 text-[0.65rem] ${isActive("/products") ? "text-blue-600" : "text-slate-500"}`}
-            >
-              <Store className="h-5 w-5" />
-              {t("nav.store")}
-            </Link>
+          <Link
+            href="/products"
+            className={`flex flex-col items-center gap-1 text-[0.65rem] ${isActive("/products") ? "text-blue-600" : "text-slate-500"}`}
+          >
+            <Store className="h-5 w-5" />
+            {t("nav.store")}
+          </Link>
 
-            <Link
-              href="/services"
-              className={`flex flex-col items-center gap-1 text-[0.65rem] ${isActive("/services") ? "text-blue-600" : "text-slate-500"}`}
-            >
-              <Wrench className="h-5 w-5" />
-              {t("nav.services")}
-            </Link>
+          <Link
+            href="/services"
+            className={`flex flex-col items-center gap-1 text-[0.65rem] ${isActive("/services") ? "text-blue-600" : "text-slate-500"}`}
+          >
+            <Wrench className="h-5 w-5" />
+            {t("nav.services")}
+          </Link>
 
-            <Link
-              href="/orders"
-              className={`flex flex-col items-center gap-1 text-[0.65rem] ${isActive("/orders") ? "text-blue-600" : "text-slate-500"}`}
-            >
-              <Package className="h-5 w-5" />
-              {t("nav.orders")}
-            </Link>
-          </nav>
-        </>
-      )}
+          <Link
+            href="/orders"
+            className={`flex flex-col items-center gap-1 text-[0.65rem] ${isActive("/orders") ? "text-blue-600" : "text-slate-500"}`}
+          >
+            <Package className="h-5 w-5" />
+            {t("nav.orders")}
+          </Link>
+        </nav>
+      </>
 
       <CartSheet open={cartOpen} onClose={() => setCartOpen(false)} />
     </>
