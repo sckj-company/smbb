@@ -34,4 +34,3 @@ export const getCatalogCounts = unstable_cache(
   { tags: [PRODUCTS_TAG] }
 );
 
-export const invalidateProducts = () => undefined;

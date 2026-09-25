@@ -2,6 +2,7 @@ import Link from "next/link";
 import { connection } from "next/server";
 import { ArrowDown, ArrowUpRight, Mail, Package, Wrench } from "lucide-react";
 import { prisma } from "@/lib/prisma";
+import { getCatalogCounts } from "@/lib/data/products";
 import OrdersTable from "@/components/admin/OrdersTable";
 
 async function countSafely(
@@ -19,9 +20,8 @@ async function countSafely(
 export default async function AdminPage() {
   await connection();
 
-  const [products, services, orders, unreadMessages] = await Promise.all([
-    prisma.product.count({ where: { type: "product" } }),
-    prisma.product.count({ where: { type: "service" } }),
+  const [[products, services], orders, unreadMessages] = await Promise.all([
+    getCatalogCounts(),
     countSafely("pedidos", () => prisma.order.count()),
     countSafely("mensagens", () =>
       prisma.message.count({ where: { read: false, archived: false } })

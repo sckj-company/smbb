@@ -1,3 +1,4 @@
+import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import requireAdmin from "@/lib/requireAdmin";
@@ -44,6 +45,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Message not found" }, { status: 404 });
   }
 
+  revalidateTag("messages", "max");
   return new NextResponse(null, { status: 204 });
 }
 
@@ -61,5 +63,6 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Message not found" }, { status: 404 });
   }
 
+  revalidateTag("messages", "max");
   return new NextResponse(null, { status: 204 });
 }

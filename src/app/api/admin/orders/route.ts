@@ -7,6 +7,8 @@ const statusSchema = z.object({
   status: z.enum(["pending", "processing", "completed", "cancelled"])
 });
 
+export const revalidate = 30;
+
 export async function GET() {
   if (!(await isAdminAuthenticated()))
     return NextResponse.json({ error: "Não autorizado" }, { status: 401 });

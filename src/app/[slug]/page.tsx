@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { getProductBySlug } from "@/lib/data/products";
 import CatalogDetail from "./CatalogDetail";
 
 export default async function CatalogDetailPage({
@@ -8,9 +8,7 @@ export default async function CatalogDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = await prisma.product.findFirst({
-    where: { OR: [{ id: slug }, { slug }] }
-  });
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
   return (
     <CatalogDetail
