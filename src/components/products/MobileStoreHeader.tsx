@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const STORE_NAME = "SMBB";
 const PHONES = ["951116116", "951611611", "933267925"];
-const COVER_SRC = "/extinguisher-cover.webp";
+const COVER_SRC = "/product-hero-bg.webp";
 
 export default function MobileStoreHeader() {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ export default function MobileStoreHeader() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-bottom"
           />
         )}
       </div>
