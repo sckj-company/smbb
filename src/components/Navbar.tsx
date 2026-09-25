@@ -1,39 +1,35 @@
-"use client"
+"use client";
 
-import { useTranslation } from "react-i18next"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import Logo from "./Logo"
-import useTranslate from "@/hooks/useTranslate"
-import LanguageSelect from "./LanguageSelect"
-import NavLinks from "./nav/NavLinks"
-import { Home, Menu, ShoppingCart, Wrench, X, Package } from "lucide-react"
-import { useState } from "react"
-import useCart from "@/hooks/useCart"
-import CartSheet from "./cart/CartSheet"
-import QrCodeDialog from "./QrCodeDialog"
-import { useMediaQuery } from "react-responsive"
-import { whatsappNumber } from "@/lib/whatsapp"
-import { RiWhatsappLine } from "@remixicon/react"
+import { useTranslation } from "react-i18next";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import Logo from "./Logo";
+import useTranslate from "@/hooks/useTranslate";
+import LanguageSelect from "./LanguageSelect";
+import NavLinks from "./nav/NavLinks";
+import { Home, ShoppingCart, Wrench, Package } from "lucide-react";
+import { useState } from "react";
+import useCart from "@/hooks/useCart";
+import CartSheet from "./cart/CartSheet";
+import QrCodeDialog from "./QrCodeDialog";
+import { whatsappNumber } from "@/lib/whatsapp";
+import { RiWhatsappLine } from "@remixicon/react";
 
 export default function Navbar() {
-  const isMobile = useMediaQuery({ maxWidth: 884 })
-  const { t } = useTranslation()
-  const { handleLanguageChange, selectedLanguage } = useTranslate()
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [cartOpen, setCartOpen] = useState(false)
-  const whatsappUrl = `https://wa.me/${whatsappNumber}`
-  const { totalItems } = useCart()
-  const pathname = usePathname()
+  const { t } = useTranslation();
+  const { handleLanguageChange, selectedLanguage } = useTranslate();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+  const { totalItems } = useCart();
+  const pathname = usePathname();
 
-  const isHomePage = pathname === "/"
-  const isActive = (href: string) => pathname === href
+  const isHomePage = pathname === "/";
+  const isActive = (href: string) => pathname === href;
 
   return (
     <>
-      <nav
-        className={`fixed left-1/2 top-0 z-30 w-full -translate-x-1/2 border-b border-slate-200/90 bg-white/95 px-4 py-4 backdrop-blur sm:px-8 2xl:px-0 ${isMobile && !isHomePage ? "hidden lg:block" : "block"}`}
-      >
+      <nav className="fixed left-1/2 top-0 z-30 w-full -translate-x-1/2 border-b border-slate-200/90 bg-white/95 px-4 py-4 backdrop-blur sm:px-8 2xl:px-0">
         <div className="mx-auto flex w-full items-center justify-between gap-4 md:max-w-5xl 2xl:max-w-7xl">
           <div className="flex items-center gap-4 sm:gap-5.5">
             <Logo />
@@ -54,7 +50,7 @@ export default function Navbar() {
               type="button"
               onClick={() => setCartOpen(true)}
               aria-label={`Abrir carrinho (${totalItems} itens)`}
-              className="relative rounded-full p-2 text-slate-600 transition hover:bg-blue-50"
+              className="hidden lg:block relative rounded-full p-2 text-slate-600 transition hover:bg-blue-50"
             >
               <ShoppingCart className="h-4 w-4" />
               {totalItems > 0 && (
@@ -67,19 +63,6 @@ export default function Navbar() {
             <div className="hidden h-4 w-px border-l border-blue-100 lg:block" />
 
             <QrCodeDialog className="hidden lg:inline-flex" />
-
-            <button
-              type="button"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Abrir menu"
-              className="rounded-full p-2 text-slate-600 hover:bg-slate-100 sm:hidden"
-            >
-              {menuOpen ? (
-                <X className="h-4 w-4" />
-              ) : (
-                <Menu className="h-4 w-4" />
-              )}
-            </button>
           </div>
         </div>
 
@@ -161,5 +144,5 @@ export default function Navbar() {
 
       <CartSheet open={cartOpen} onClose={() => setCartOpen(false)} />
     </>
-  )
+  );
 }
