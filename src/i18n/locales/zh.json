@@ -49,7 +49,11 @@
     "orders": "您的订单",
     "not-found": "返回主页。"
   },
+  "products": {
+    "description": "滅火器、支架與消防標示牌。"
+  },
   "services": {
+    "description": "消防維護與安全服務，線上預約。",
     "startingAt": "从：",
     "bookService": "安排服务",
     "client": "顾客",
@@ -227,13 +231,18 @@
     ]
   },
   "availability": {
-    "open": "开放服务",
-    "closed": "封闭式服务"
+    "open": "营业中",
+    "closed": "已打烊",
+    "short": {
+      "open": "营业中",
+      "closed": "打烊"
+    }
   },
   "smbbSupport": {
     "text": "SMBB 支持"
   },
   "orders": {
+    "description": "請輸入您的電話號碼以查詢訂單狀態。",
     "table": {
       "title": "订单",
       "description": "请求发送到SMBB 存储。",
