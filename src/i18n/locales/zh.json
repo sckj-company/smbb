@@ -90,6 +90,7 @@
   },
   "cart": {
     "title": "你的购物车",
+    "label": "大车",
     "totalText": "全部的",
     "emptyTrash": "您的购物车是空的",
     "moveToTrash": "清洁",
