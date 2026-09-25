@@ -12,11 +12,11 @@ const COVER_SRC = "/extinguisher-cover.webp";
 
 export default function MobileStoreHeader() {
   const { t } = useTranslation();
-  const availability = useAvailability();
-  const availabilityLabel = t(availability).split(" ")[1];
+  const availability = useAvailability("short");
+  const isOpen = availability.endsWith(".open");
 
   return (
-    <header className="lg:hidden">
+    <header className="mt-15 lg:hidden">
       <div className="relative h-44 overflow-hidden bg-linear-to-br from-sky-900 via-blue-700 to-blue-500">
         {COVER_SRC && (
           <Image
@@ -51,15 +51,19 @@ export default function MobileStoreHeader() {
                 <h1 className="truncate text-xl font-bold">{STORE_NAME}</h1>
 
                 <span
-                  className={`inline-flex items-center gap-1.5 rounded-full  px-2 py-1 text-xs font-semibold ${availabilityLabel === "Aberto" ? "bg-emerald-500/15 text-emerald-300" : "bg-red-500/15 text-red-300"}`}
+                  className={`inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs font-semibold ${
+                    isOpen
+                      ? "bg-emerald-500/15 text-emerald-300"
+                      : "bg-red-500/15 text-red-300"
+                  }`}
                 >
-                  {availabilityLabel == "Aberto" ? (
+                  {isOpen ? (
                     <CheckCircle2 aria-hidden="true" className="h-3 w-3" />
                   ) : (
                     <CircleX aria-hidden="true" className="h-3 w-3" />
                   )}
 
-                  {availabilityLabel}
+                  {t(availability)}
                 </span>
               </div>
 
