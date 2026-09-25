@@ -12,11 +12,20 @@ export const revalidate = 30;
 export async function GET() {
   if (!(await isAdminAuthenticated()))
     return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
-  const orders = await prisma.order.findMany({
-    include: { items: true },
-    orderBy: { createdAt: "desc" }
-  });
-  return NextResponse.json(orders);
+
+  try {
+    const orders = await prisma.order.findMany({
+      include: { items: true },
+      orderBy: { createdAt: "desc" }
+    });
+    return NextResponse.json(orders);
+  } catch (error) {
+    console.error("Não foi possível carregar os pedidos:", error);
+    return NextResponse.json(
+      { error: "A base de dados não está disponível." },
+      { status: 503 }
+    );
+  }
 }
 
 export async function PATCH(request: Request) {
