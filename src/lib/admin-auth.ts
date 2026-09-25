@@ -25,8 +25,8 @@ export async function createAdminSession() {
     .sign(SESSION_SECRET);
   (await cookies()).set(COOKIE_NAME, token, {
     httpOnly: true,
-    secure: true,
-    sameSite: process.env.NODE_ENV === "development" ? "none" : "lax",
+    secure: process.env.NODE_ENV === "production" || process.env.VERCEL === "1",
+    sameSite: process.env.NODE_ENV === "development" ? "lax" : "lax",
     path: "/",
     maxAge: 60 * 60 * 24 * 7
   });
