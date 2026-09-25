@@ -1,5 +1,4 @@
 import Availability from "@/components/Availability";
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
 export default function HeroContent() {
@@ -7,14 +6,6 @@ export default function HeroContent() {
 
   return (
     <div className="mt-0 lg:mt-20 2xl:mt-0 max-w-164 text-center lg:text-left">
-      <Image
-        src="/smbb-logo-dark-transparent.webp"
-        alt=""
-        width={200}
-        height={200}
-        className="block md:hidden h-6 w-auto mx-auto -mb-4"
-      />
-
       <Availability />
       <h1 className="mt-8 text-4xl font-bold tracking-tighter sm:text-6xl lg:text-5xl 2xl:text-[4.2rem]">
         {t("header.title")}
