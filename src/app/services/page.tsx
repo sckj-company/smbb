@@ -36,16 +36,21 @@ export default function ServicesPage() {
     <>
       <MobileStoreHeader />
       <main className="min-h-screen mt-8 sm:mt-35 xl:mt-40 2xl:mt-45 w-full pb-12 px-4 sm:px-8 lg:px-0 md:w-5xl 2xl:w-7xl mx-auto">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div className="mb-15 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
               SMBB
             </p>
-            <h1 className="mt-2 mb-4 text-2xl font-semibold text-slate-900">
-              {t("pageTitle.services")}
-            </h1>
+
+            <div className="space-y-2">
+              <h1 className="mt-2 text-2xl font-semibold text-slate-900">
+                {t("pageTitle.services")}
+              </h1>
+              <p className="text-gray-500 text-sm">{t("services.description")}</p>
+            </div>
           </div>
         </div>
+
         {isLoading ? (
           <Loader className="mt-40" />
         ) : services.length === 0 ? (

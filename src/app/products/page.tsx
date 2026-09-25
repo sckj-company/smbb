@@ -134,9 +134,20 @@ export default function Home() {
         <div className="flex min-w-0 flex-1 flex-col lg:block">
           <div className="flex h-16 flex-none items-center border-y border-slate-200/80 px-4 py-3 backdrop-blur-xl lg:mb-8 lg:h-auto lg:items-end lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:shadow-none lg:backdrop-blur-none">
             <div className="hidden w-full min-w-0 items-center justify-between gap-4 lg:block">
-              <h1 className="mt-2 mb-4 hidden text-2xl font-semibold text-slate-900 lg:block">
-                {t("pageTitle.products")}
-              </h1>
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
+                  SMBB
+                </p>
+                <div className="space-y-2 mt-2 mb-12">
+                  <h1 className="text-2xl font-semibold text-slate-900 lg:block">
+                    {t("pageTitle.products")}
+                  </h1>
+
+                  <p className="text-gray-500 text-sm">
+                    {t("products.description")}
+                  </p>
+                </div>
+              </div>
 
               <div className="hidden lg:block">
                 <SelectGroup
