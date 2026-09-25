@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { revalidateTag } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { getProducts } from "@/lib/data/products";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 const sharedSchema = z.object({
@@ -43,10 +45,7 @@ const slugify = (value: string) =>
 
 export async function GET(request: Request) {
   const type = new URL(request.url).searchParams.get("type") ?? "product";
-  const products = await prisma.product.findMany({
-    where: { type },
-    orderBy: { createdAt: "desc" }
-  });
+  const products = await getProducts(type);
   return NextResponse.json(products);
 }
 
@@ -60,5 +59,6 @@ export async function POST(request: Request) {
   const baseSlug = slugify(data.name);
   const slug = `${baseSlug}-${Date.now().toString(36)}`;
   const product = await prisma.product.create({ data: { ...data, slug } });
+  revalidateTag("products", "max");
   return NextResponse.json(product, { status: 201 });
 }

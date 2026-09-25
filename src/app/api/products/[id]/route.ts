@@ -1,3 +1,4 @@
+import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
@@ -78,6 +79,7 @@ export async function PATCH(
     where: { id: existing.id },
     data: parsed.data
   });
+  revalidateTag("products", "max");
   return NextResponse.json(product);
 }
 
@@ -97,5 +99,6 @@ export async function DELETE(
       { status: 404 }
     );
   await prisma.product.delete({ where: { id: existing.id } });
+  revalidateTag("products", "max");
   return new NextResponse(null, { status: 204 });
 }
