@@ -44,12 +44,16 @@
   },
   "pageTitle": {
     "categories": "Categorias",
-    "products": "Produtos",
+    "products": "Nossos Produtos",
     "services": "Prestação de Serviços",
     "orders": "Seus Pedidos",
     "not-found": "Voltar à Página Inicial."
   },
+  "products": {
+    "description": "Extintores, suportes e sinalização contra incêndio."
+  },
   "services": {
+    "description": "Manutenção e segurança contra incêndio, com agendamento online.",
     "startingAt": "A partir de:",
     "bookService": "Agendar serviço",
     "client": "Cliente",
@@ -228,12 +232,17 @@
   },
   "availability": {
     "open": "Atendimento Aberto",
-    "closed": "Atendimento Fechado"
+    "closed": "Atendimento Fechado",
+    "short": {
+      "open": "Aberto",
+      "closed": "Fechado"
+    }
   },
   "smbbSupport": {
     "text": "Suporte SMBB"
   },
   "orders": {
+    "description": "Insira o seu número de telefone para consultar o estado dos seus pedidos.",
     "table": {
       "title": "Pedidos",
       "description": "Solicitações enviadas à loja SMBB.",
