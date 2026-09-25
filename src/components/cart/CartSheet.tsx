@@ -131,7 +131,9 @@ export default function CartSheet({ open, onClose }: Props) {
         description: t("cart.orderSentSuccess", "Pedido enviado com sucesso!")
       });
 
-      // clear();
+      setPhone("");
+      setChannel("dashboard");
+      clear();
       onClose();
     } catch (error) {
       toast({
