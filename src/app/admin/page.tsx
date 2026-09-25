@@ -21,7 +21,14 @@ export default async function AdminPage() {
   await connection();
 
   const [[products, services], orders, unreadMessages] = await Promise.all([
-    getCatalogCounts(),
+    (async () => {
+      try {
+        return await getCatalogCounts();
+      } catch (error) {
+        console.error("Não foi possível carregar a contagem do catálogo:", error);
+        return [0, 0] as const;
+      }
+    })(),
     countSafely("pedidos", () => prisma.order.count()),
     countSafely("mensagens", () =>
       prisma.message.count({ where: { read: false, archived: false } })
