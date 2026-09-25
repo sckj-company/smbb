@@ -90,6 +90,7 @@
   },
   "cart": {
     "title": "Seu carrinho",
+    "label": "Carrinho",
     "totalText": "Total",
     "emptyTrash": "Seu carrinho está vazio.",
     "moveToTrash": "Limpar",
