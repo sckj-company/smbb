@@ -63,18 +63,18 @@ export default function QrCodeDialog({
         <QrCode className="h-3 w-3 sm:h-4 sm:w-4" />
       </DialogTrigger>
 
-      <DialogContent className="w-full max-w-[calc(100%-2rem)]">
-        <DialogTitle>{t(title)}</DialogTitle>
-        <DialogDescription className="mt-1">
+      <DialogContent className="max-w-md rounded-2xl p-6 shadow-xl sm:max-w-lg">
+        <DialogTitle className="text-lg">{t(title)}</DialogTitle>
+        <DialogDescription className="mt-1 text-sm text-slate-500">
           {t("qrModal.description")}
         </DialogDescription>
 
-        <div className="mt-6 flex flex-col items-center gap-5" data-qr-code>
+        <div className="mt-6 flex flex-col items-center gap-6" data-qr-code>
           {pageUrl && (
-            <div className="rounded-xl border border-slate-200 bg-white p-4">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <QRCodeCanvas
                 value={pageUrl}
-                size={220}
+                size={240}
                 level="H"
                 includeMargin
               />
@@ -86,7 +86,7 @@ export default function QrCodeDialog({
           <button
             type="button"
             onClick={downloadQrCode}
-            className="inline-flex items-center gap-2 rounded-full transition-colors bg-blue-500 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-600"
+            className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-600"
           >
             <Download className="h-4 w-4" />
             {t("qrModal.download")}
