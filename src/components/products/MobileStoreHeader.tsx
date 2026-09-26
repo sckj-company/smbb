@@ -7,7 +7,7 @@ import useAvailability from "@/hooks/useAvailability";
 import Link from "next/link";
 
 const STORE_NAME = "SMBB";
-const PHONES = ["951116116", "951611611", "933267925"];
+const PHONES = ["951611611", "951116116", "933267925"];
 const COVER_SRC = "/product-hero-bg.webp";
 
 export default function MobileStoreHeader() {
@@ -67,38 +67,61 @@ export default function MobileStoreHeader() {
                 </span>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
-                {PHONES.map((number, index) => (
-                  <Link
-                    href={`tel:${number}`}
-                    key={index}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300"
-                  >
-                    <Phone aria-hidden="true" className="h-3 w-3 shrink-0" />
-                    {number}
-                  </Link>
-                ))}
-              </div>
+              <ul className="mt-4 space-y-3.5 text-sm text-slate-300">
+                <li className="space-y-1.5">
+                  <div className="flex items-start gap-2">
+                    <MapPin
+                      aria-hidden="true"
+                      className="mt-0.5 h-3 w-3 shrink-0 text-slate-400"
+                    />
+                    <span className="text-xs">
+                      {t("contact.locationDescription1")}
+                    </span>
+                  </div>
 
-              <ul className="mt-4 space-y-2 text-sm text-slate-300">
-                <li className="flex items-start gap-2">
-                  <MapPin
-                    aria-hidden="true"
-                    className="mt-0.5 h-3 w-3 shrink-0 text-slate-400"
-                  />
-                  <span className="text-xs">
-                    {t("contact.locationDescription1")}
-                  </span>
+                  <div className="flex flex-wrap gap-x-4 gap-y-2">
+                    {PHONES.slice(0, 1).map((number, index) => (
+                      <Link
+                        href={`tel:${number}`}
+                        key={index}
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-white/95"
+                      >
+                        <Phone
+                          aria-hidden="true"
+                          className="h-3 w-3 shrink-0"
+                        />
+                        {number}
+                      </Link>
+                    ))}
+                  </div>
                 </li>
 
-                <li className="flex items-start gap-2">
-                  <MapPin
-                    aria-hidden="true"
-                    className="mt-0.5 h-3 w-3 shrink-0 text-slate-400"
-                  />
-                  <span className="text-xs">
-                    {t("contact.locationDescription2")}
-                  </span>
+                <li className="space-y-1.5">
+                  <div className="flex items-start gap-2">
+                    <MapPin
+                      aria-hidden="true"
+                      className="mt-0.5 h-3 w-3 shrink-0 text-slate-400"
+                    />
+                    <span className="text-xs">
+                      {t("contact.locationDescription2")}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-x-4 gap-y-2">
+                    {PHONES.slice(1, 3).map((number, index) => (
+                      <Link
+                        href={`tel:${number}`}
+                        key={index}
+                        className="inline-flex items-center gap-1.5 text-xs font-medium text-white/95"
+                      >
+                        <Phone
+                          aria-hidden="true"
+                          className="h-3 w-3"
+                        />
+                        {number}
+                      </Link>
+                    ))}
+                  </div>
                 </li>
               </ul>
             </div>
