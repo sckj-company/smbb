@@ -18,16 +18,45 @@ type CartContextValue = {
 const CartContext = createContext<CartContextValue | null>(null);
 const storageKey = "smbb-cart";
 
-type StoredCartItem = Pick<CartItem, "id" | "quantity">;
+export function getChargeItemId(productId: string) {
+  return `carga-${productId}`;
+}
+
+export function isChargeItem(itemId: string) {
+  return itemId.startsWith("carga-");
+}
+
+type StoredCartItem =
+  | { kind: "product"; id: string; quantity: number }
+  | { kind: "charge"; item: CartItem };
 
 function isStoredCartItem(value: unknown): value is StoredCartItem {
   if (!value || typeof value !== "object") return false;
-  const item = value as Partial<StoredCartItem>;
+  const entry = value as Partial<StoredCartItem>;
+
+  if (entry.kind === "charge") {
+    const item = entry.item as CartItem | undefined;
+    return (
+      !!item &&
+      typeof item === "object" &&
+      typeof item.id === "string" &&
+      typeof item.quantity === "number" &&
+      Number.isFinite(item.quantity) &&
+      item.quantity > 0
+    );
+  }
+
+  const productEntry = entry as {
+    kind?: string;
+    id?: unknown;
+    quantity?: unknown;
+  };
   return (
-    typeof item.id === "string" &&
-    typeof item.quantity === "number" &&
-    Number.isFinite(item.quantity) &&
-    item.quantity > 0
+    productEntry.kind === "product" &&
+    typeof productEntry.id === "string" &&
+    typeof productEntry.quantity === "number" &&
+    Number.isFinite(productEntry.quantity) &&
+    productEntry.quantity > 0
   );
 }
 
@@ -47,19 +76,37 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         const storedItems = parsed.filter(isStoredCartItem);
         if (!storedItems.length) return;
 
-        const response = await fetch("/api/products?type=product");
-        if (!response.ok) return;
+        const chargeEntries = storedItems.filter(
+          (entry): entry is Extract<StoredCartItem, { kind: "charge" }> =>
+            entry.kind === "charge"
+        );
+        const productEntries = storedItems.filter(
+          (entry): entry is Extract<StoredCartItem, { kind: "product" }> =>
+            entry.kind === "product"
+        );
 
-        const products = (await response.json()) as Product[];
-        const productsById = new Map(
-          products.map((product) => [product.id, product])
-        );
-        setItems(
-          storedItems.flatMap((item) => {
-            const product = productsById.get(item.id);
-            return product ? [{ ...product, quantity: item.quantity }] : [];
-          })
-        );
+        let restored: CartItem[] = chargeEntries.map((entry) => entry.item);
+
+        if (productEntries.length) {
+          const response = await fetch("/api/products?type=product");
+          if (response.ok) {
+            const products = (await response.json()) as Product[];
+            const productsById = new Map(
+              products.map((product) => [product.id, product])
+            );
+
+            restored = restored.concat(
+              productEntries.flatMap((entry) => {
+                const product = productsById.get(entry.id);
+                return product
+                  ? [{ ...product, quantity: entry.quantity }]
+                  : [];
+              })
+            );
+          }
+        }
+
+        setItems(restored);
       } catch {
         window.localStorage.removeItem(storageKey);
       } finally {
@@ -74,10 +121,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (!isHydrated) return;
 
     try {
-      const storedItems: StoredCartItem[] = items.map(({ id, quantity }) => ({
-        id,
-        quantity
-      }));
+      const storedItems: StoredCartItem[] = items.map((item) =>
+        isChargeItem(item.id)
+          ? { kind: "charge", item }
+          : { kind: "product", id: item.id, quantity: item.quantity }
+      );
       window.localStorage.setItem(storageKey, JSON.stringify(storedItems));
     } catch {}
   }, [items, isHydrated]);
@@ -85,7 +133,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const value = useMemo<CartContextValue>(
     () => ({
       items,
-      totalItems: items.reduce((sum, item) => sum + item.quantity, 0),
+      totalItems: items.reduce(
+        (sum, item) => sum + (isChargeItem(item.id) ? 1 : item.quantity),
+        0
+      ),
       totalPrice: items.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0
