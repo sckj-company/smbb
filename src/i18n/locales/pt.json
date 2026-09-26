@@ -52,6 +52,10 @@
   "products": {
     "description": "Extintores, suportes e sinalização contra incêndio."
   },
+  "extinguisher": {
+    "chargeName": "Carga de pó",
+    "charge": "Carregar Extintor"
+  },
   "services": {
     "description": "Manutenção e segurança contra incêndio, com agendamento online.",
     "startingAt": "A partir de:",
@@ -70,6 +74,7 @@
     "all": "Todos",
     "extinguishers": "Extintores",
     "supports": "Suportes",
+    "accessories": "Acessórios",
     "plates": "Sinalização",
     "placeholder": "Pesquisar produto"
   },
