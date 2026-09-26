@@ -7,7 +7,7 @@ interface SelectGroupProps {
   selectedGroup: string | null;
   language?: string;
   setSelectedGroup: (
-    groupType: "Extintor" | "Suporte" | "Placa de Sinalização" | null
+    groupType: "Extintor" | "Suporte" | "Acessório" | "Placa de Sinalização" | null
   ) => void;
 }
 
