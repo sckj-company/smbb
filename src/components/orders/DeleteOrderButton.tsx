@@ -4,7 +4,7 @@ import AnimatedTrashIcon from "./AnimatedTrashIcon";
 type DeleteOrderButtonProps = {
   orderCode: string;
   onClick: () => void;
-  status: string;
+  status?: string;
 };
 
 export default function DeleteOrderButton({
