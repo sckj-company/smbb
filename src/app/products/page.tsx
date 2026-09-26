@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  Cog,
   FireExtinguisher,
   Flame,
   Search,
@@ -12,6 +13,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
+import ExtinguisherChargeControl from "@/components/products/ExtinguisherChargeControl";
 import MobileStoreHeader from "@/components/products/MobileStoreHeader";
 import ProductQuickView from "@/components/products/ProductQuickView";
 import QuantitySelector from "@/components/products/QuantitySelector";
@@ -19,7 +21,7 @@ import SelectGroup from "@/components/products/SelectGroup";
 import Loader from "@/components/ui/loader";
 import { groupTranslationKeys, productGroups } from "@/data/productGroups";
 import type { ProductGroup } from "@/data/productGroups";
-import useCart from "@/hooks/useCart";
+import useCart, { getChargeItemId } from "@/hooks/useCart";
 import useCatalogLanguage from "@/hooks/useCatalogLanguage";
 import useSelectGroup from "@/hooks/useSelectGroup";
 import { formatKz } from "@/utils/formatKz";
@@ -28,6 +30,7 @@ import { useTranslation } from "react-i18next";
 const groupIcons = {
   Extintor: FireExtinguisher,
   Suporte: Wrench,
+  Acessório: Cog,
   "Placa de Sinalização": Signpost
 } satisfies Record<ProductGroup, typeof Flame>;
 
@@ -209,7 +212,7 @@ export default function Home() {
                     {t(groupTranslationKeys[groupType])}
                   </h2>
 
-                  <div className="grid w-full grid-cols-1 gap-3 lg:grid-cols-4 lg:gap-5">
+                  <div className="grid w-full grid-cols-1 sm:grid-cols-2 gap-3 lg:grid-cols-3 2xl:grid-cols-4 lg:gap-5">
                     {products.map((product) => {
                       const productName = localize(
                         product.name,
@@ -219,6 +222,12 @@ export default function Home() {
                         (item) => item.id === product.id
                       );
                       const isInCart = Boolean(cartItem);
+                      const isExtinguisher = groupType === "Extintor";
+                      const isCharging =
+                        isExtinguisher &&
+                        items.some(
+                          (item) => item.id === getChargeItemId(product.id)
+                        );
 
                       return (
                         <article
@@ -226,24 +235,30 @@ export default function Home() {
                           className="group relative flex gap-3 rounded-lg border border-slate-200 bg-white p-2 transition hover:bg-slate-50 lg:block"
                         >
                           <div className="hidden lg:block">
-                            <ProductQuickView product={product} />
+                            <ProductQuickView product={product} isCharging={isCharging} />
                           </div>
 
-                          <div className="hidden items-center gap-2 px-2 pb-2 lg:flex">
-                            <button
-                              type="button"
-                              onClick={() => addItem(product)}
-                              className={`inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors sm:py-2 ${
-                                isInCart
-                                  ? "border-blue-600 bg-blue-500 text-white hover:bg-blue-600"
-                                  : "border-slate-200 text-blue-500 hover:border-slate-300 hover:bg-slate-200 hover:text-blue-600"
-                              }`}
-                            >
-                              <ShoppingCart className="h-3.5 w-3.5" />
-                              {isInCart
-                                ? t("detail.addedToCart")
-                                : t("detail.addToCart")}
-                            </button>
+                          <div className="hidden lg:flex gap-2 px-2 pb-2">
+                            {!isCharging && (
+                              <button
+                                type="button"
+                                onClick={() => addItem(product)}
+                                className={`inline-flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors sm:py-2 ${
+                                  isInCart
+                                    ? "border-blue-600 bg-blue-500 text-white hover:bg-blue-600"
+                                    : "border-slate-200 text-blue-500 hover:border-slate-300 hover:bg-slate-200 hover:text-blue-600"
+                                }`}
+                              >
+                                <ShoppingCart className="h-3.5 w-3.5" />
+                                {isInCart
+                                  ? t("detail.addedToCart")
+                                  : t("detail.addToCart")}
+                              </button>
+                            )}
+
+                            {isExtinguisher && (
+                              <ExtinguisherChargeControl product={product} />
+                            )}
                           </div>
 
                           <div className="flex min-w-0 flex-1 items-center gap-3 lg:hidden">
@@ -257,41 +272,55 @@ export default function Home() {
                               />
                             </div>
 
-                            <div className="flex min-w-0 flex-1 flex-col gap-2">
+                            <div className="flex min-w-0 flex-1 flex-col gap-3.5">
                               <Link href={`/${product.id}`} className="block">
                                 <h3 className="line-clamp-1 text-sm font-bold text-slate-800 sm:text-lg">
                                   {productName}
                                 </h3>
 
-                                <p className="text-sm font-semibold tracking-tighter text-green-700">
-                                  {formatKz(product.price)}
-                                </p>
+                                {!isCharging && (
+                                  <div className="flex items-baseline gap-2">
+                                    <p className="text-sm font-semibold tracking-tighter text-green-700">
+                                      {formatKz(product.price)}
+                                    </p>
 
-                                {product.oldPrice > 0 && (
-                                  <p className="text-xs text-slate-400 line-through">
-                                    {formatKz(product.oldPrice)}
-                                  </p>
+                                    {product.oldPrice > 0 && (
+                                      <p className="text-xs text-slate-400 line-through">
+                                        {formatKz(product.oldPrice)}
+                                      </p>
+                                    )}
+                                  </div>
                                 )}
                               </Link>
 
-                              <div className="flex items-center justify-between gap-2">
-                                <QuantitySelector
-                                  value={cartItem?.quantity ?? 0}
-                                  onChange={(quantity) => {
-                                    if (quantity === 0) {
-                                      updateQuantity(product.id, 0);
-                                      return;
-                                    }
+                              <div className="flex flex-col gap-2">
+                                {!isCharging && (
+                                  <div className="flex items-center justify-between gap-2">
+                                    <QuantitySelector
+                                      value={cartItem?.quantity ?? 0}
+                                      onChange={(quantity) => {
+                                        if (quantity === 0) {
+                                          updateQuantity(product.id, 0);
+                                          return;
+                                        }
 
-                                    if (!cartItem) {
-                                      addItem(product);
-                                      return;
-                                    }
+                                        if (!cartItem) {
+                                          addItem(product);
+                                          return;
+                                        }
 
-                                    updateQuantity(product.id, quantity);
-                                  }}
-                                  variant="card"
-                                />
+                                        updateQuantity(product.id, quantity);
+                                      }}
+                                      variant="card"
+                                    />
+                                  </div>
+                                )}
+
+                                {isExtinguisher && (
+                                  <ExtinguisherChargeControl
+                                    product={product}
+                                  />
+                                )}
                               </div>
                             </div>
                           </div>
