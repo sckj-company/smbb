@@ -3,6 +3,7 @@
 import { Download, ShoppingCart, Trash2 } from "lucide-react";
 import useCart from "@/hooks/useCart";
 import QuantitySelector from "@/components/products/QuantitySelector";
+import { isChargeItem } from "@/components/products/ExtinguisherChargeControl";
 import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp";
 import {
   Sheet,
@@ -201,6 +202,7 @@ export default function CartSheet({ open, onClose }: Props) {
             <div className="space-y-8">
               {items.map((item, index) => {
                 const productName = localize(item.name, item.nameZh);
+                const isCharge = isChargeItem(String(item.id));
 
                 return (
                   <div
@@ -244,6 +246,7 @@ export default function CartSheet({ open, onClose }: Props) {
                           onChange={(quantity) =>
                             updateQuantity(item.id, quantity)
                           }
+                          suffix={isCharge ? "Kg" : undefined}
                         />
                       </div>
                     </div>
