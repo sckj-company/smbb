@@ -52,6 +52,10 @@
   "products": {
     "description": "滅火器、支架與消防標示牌。"
   },
+  "extinguisher": {
+    "chargeName": "火药装料",
+    "charge": "充电式灭火器"
+  },
   "services": {
     "description": "消防維護與安全服務，線上預約。",
     "startingAt": "从：",
@@ -70,6 +74,7 @@
     "all": "全部",
     "extinguishers": "灭火器",
     "supports": "灭火器支架",
+    "accessories": "配件",
     "plates": "标牌面板",
     "placeholder": "搜索产品"
   },
@@ -90,7 +95,7 @@
   },
   "cart": {
     "title": "你的购物车",
-    "label": "大车",
+    "label": "购物车",
     "totalText": "全部的",
     "emptyTrash": "您的购物车是空的",
     "moveToTrash": "清洁",
