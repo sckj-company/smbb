@@ -218,6 +218,7 @@ export default function CatalogForm({ kind, item, backHref }: Props) {
                 >
                   <option>Extintor</option>
                   <option>Suporte</option>
+                  <option>Acessório</option>
                   <option>Placa de Sinalização</option>
                 </select>
               </label>
