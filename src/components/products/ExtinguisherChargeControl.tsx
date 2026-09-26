@@ -54,7 +54,7 @@ export default function ExtinguisherChargeControl({ product }: Props) {
   }
 
   return (
-    <div className="-mt-2 w-full grid lg:flex items-center justify-between gap-3 lg:gap-2">
+    <div className="-mt-4 w-full grid lg:flex items-center justify-between gap-3 lg:gap-2">
       <span className="text-sm font-semibold tracking-tighter text-green-700">
         {formatKz(chargeItem.quantity * CHARGE_PRICE_PER_KG)}
       </span>
