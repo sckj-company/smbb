@@ -272,7 +272,7 @@ export default function Home() {
                               />
                             </div>
 
-                            <div className="flex min-w-0 flex-1 flex-col gap-3.5">
+                            <div className="flex min-w-0 flex-1 flex-col lg:gap-3.5">
                               <Link href={`/${product.id}`} className="block">
                                 <h3 className="line-clamp-1 text-sm font-bold text-slate-800 sm:text-lg">
                                   {productName}
@@ -295,7 +295,7 @@ export default function Home() {
 
                               <div className="flex flex-col gap-2">
                                 {!isCharging && (
-                                  <div className="flex items-center justify-between gap-2">
+                                  <div className="mt-3 flex items-center justify-between gap-2">
                                     <QuantitySelector
                                       value={cartItem?.quantity ?? 0}
                                       onChange={(quantity) => {
