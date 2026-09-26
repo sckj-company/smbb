@@ -14,7 +14,15 @@ import useCatalogLanguage from "@/hooks/useCatalogLanguage";
 import { useTranslation } from "react-i18next";
 import { groupTranslationKeys } from "@/data/productGroups";
 
-export default function ProductQuickView({ product }: { product: Product }) {
+interface ProductQuickViewProps {
+  product: Product;
+  isCharging: boolean;
+}
+
+export default function ProductQuickView({
+  product,
+  isCharging
+}: ProductQuickViewProps) {
   const { t } = useTranslation();
   const { localize } = useCatalogLanguage();
   const productName = localize(product.name, product.nameZh);
@@ -39,14 +47,20 @@ export default function ProductQuickView({ product }: { product: Product }) {
               {t(groupTranslationKeys[product.groupType])}
             </span>
           </div>
-          <h2 className="line-clamp-1 font-bold text-slate-800 2xl:text-lg">
-            {productName}
-          </h2>
-          <p className="text-sm font-semibold tracking-tighter text-green-700">
-            {product.price.toLocaleString("pt-AO")} Kz
-          </p>
+          
+          <div className="space-y-2 mb-3">
+            <h2 className="line-clamp-1 font-bold text-slate-800 2xl:text-lg">
+              {productName}
+            </h2>
+            {!isCharging && (
+              <p className="text-sm font-semibold tracking-tighter text-green-700">
+                {product.price.toLocaleString("pt-AO")} Kz
+              </p>
+            )}
+          </div>
         </div>
       </DialogTrigger>
+
       <DialogContent>
         <DialogTitle className="sr-only">{productName}</DialogTitle>
         <DialogDescription className="sr-only">
