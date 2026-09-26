@@ -38,7 +38,7 @@ export default function ExtinguisherChargeControl({ product }: Props) {
             {
               ...product,
               id: chargeId,
-              name: `${t("extinguisher.chargeName", "Carga de pó")} · ${product.name}`,
+              name: `${t("extinguisher.chargeName")} · ${product.name}`,
               price: CHARGE_PRICE_PER_KG,
               oldPrice: 0
             },
@@ -48,7 +48,7 @@ export default function ExtinguisherChargeControl({ product }: Props) {
         className="inline-flex items-center justify-center gap-1.5 rounded-full border border-blue-200 px-3 py-1.5 text-xs font-semibold text-blue-500 transition-colors hover:border-blue-300 hover:bg-blue-50 sm:py-2"
       >
         <Flame className="h-3.5 w-3.5" />
-        {t("extinguisher.charge", "Carregar Extintor")}
+        {t("extinguisher.charge")}
       </button>
     );
   }
