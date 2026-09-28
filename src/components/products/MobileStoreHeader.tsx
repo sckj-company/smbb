@@ -16,12 +16,12 @@ export default function MobileStoreHeader() {
   const isOpen = availability.endsWith(".open");
 
   return (
-    <header className="mt-15 lg:hidden">
+    <header className="mt-12 sm:mt-12.5 lg:hidden">
       <div className="relative h-44 overflow-hidden bg-linear-to-br from-sky-900 via-blue-700 to-blue-500">
         {COVER_SRC && (
           <Image
             src={COVER_SRC}
-            alt=""
+            alt="Store header cover"
             fill
             priority
             sizes="100vw"
@@ -114,10 +114,7 @@ export default function MobileStoreHeader() {
                         key={index}
                         className="inline-flex items-center gap-1.5 text-xs font-medium text-white/95"
                       >
-                        <Phone
-                          aria-hidden="true"
-                          className="h-3 w-3"
-                        />
+                        <Phone aria-hidden="true" className="h-3 w-3" />
                         {number}
                       </Link>
                     ))}
