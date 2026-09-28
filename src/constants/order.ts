@@ -1,14 +1,14 @@
 import { OrderStatus, OrderStatusFilter } from "@/interface/order"
 
 export const STATUS_LABEL: Record<OrderStatus, string> = {
-  pending: "Pendente",
-  processing: "Em análise",
-  completed: "Concluído",
-  cancelled: "Cancelado",
+  pending: "Pendente (待定)",
+  processing: "Em análise (审核中)",
+  completed: "Concluído (已完成)",
+  cancelled: "Cancelado (已取消)",
 }
 
 export const STATUS_FILTER_LABEL: Record<OrderStatusFilter, string> = {
-  all: "Todos",
+  all: "Todos (全部)",
   ...STATUS_LABEL,
 }
 
@@ -27,14 +27,14 @@ export const STATUS_TONE_HOVER: Record<OrderStatus, string> = {
 }
 
 export const TABLE_COLUMNS = [
-  "Pedido",
-  "Tipo",
-  "Nome",
-  "Cliente",
-  "Telefone",
-  "Canal",
-  "Total",
-  "Estado",
+  "Pedido (订单)",
+  "Tipo (类型)",
+  "Nome (姓名)",
+  "Cliente (客户)",
+  "Telefone (电话号码)",
+  "Canal (渠道)",
+  "Total (总计)",
+  "Estado (状态)",
 ] as const
 
 export const CLIENT_TABLE_COLUMNS = [
