@@ -49,11 +49,11 @@ export default function OrderDetailsDialog({ order, open, onClose }: Props) {
         </DialogHeader>
 
         <dl className="my-5 grid grid-cols-2 gap-x-6 gap-y-4">
-          <DetailField label="Estado">
+          <DetailField label="Estado (状态)">
             <OrderStatusBadge status={order.status} />
           </DetailField>
-          <DetailField label="Tipo">{getTypeLabel(order.type)}</DetailField>
-          <DetailField label="Telefone">
+          <DetailField label="Tipo (类型)">{getTypeLabel(order.type)}</DetailField>
+          <DetailField label="Telefone (电话)">
             {order.phone ? (
               <a
                 href={`tel:${order.phone}`}
@@ -65,7 +65,7 @@ export default function OrderDetailsDialog({ order, open, onClose }: Props) {
               NOT_INFORMED
             )}
           </DetailField>
-          <DetailField label="Canal">
+          <DetailField label="Canal (频道)">
             {getChannelLabel(order.channel)}
           </DetailField>
         </dl>
@@ -73,7 +73,7 @@ export default function OrderDetailsDialog({ order, open, onClose }: Props) {
         <section className="space-y-2">
           <div className="flex items-baseline justify-between">
             <h3 className="text-sm font-semibold text-slate-900">
-              Itens do pedido
+              Itens do pedido (订单项)
             </h3>
             {order.items.length > 0 && (
               <p className="text-xs text-slate-500">
@@ -88,7 +88,7 @@ export default function OrderDetailsDialog({ order, open, onClose }: Props) {
         </section>
 
         <div className="flex items-center justify-between border-t border-slate-200 pt-4">
-          <span className="text-sm text-slate-500">Total</span>
+          <span className="text-sm text-slate-500">Total (总价值)</span>
           <span className="text-lg font-semibold text-slate-900">
             {formatKz(order.total)}
           </span>
