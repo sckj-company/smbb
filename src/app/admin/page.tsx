@@ -25,7 +25,10 @@ export default async function AdminPage() {
       try {
         return await getCatalogCounts();
       } catch (error) {
-        console.error("Não foi possível carregar a contagem do catálogo:", error);
+        console.error(
+          "Não foi possível carregar a contagem do catálogo:",
+          error
+        );
         return [0, 0] as const;
       }
     })(),
@@ -38,44 +41,45 @@ export default async function AdminPage() {
   const sections = [
     {
       href: "#orders",
-      title: "Pedidos",
+      title: "Pedidos (订单)",
       count:
         orders === 0
-          ? "Sem solicitações"
+          ? "Sem solicitações (没有要求)"
           : orders === 1
-            ? `${orders} solicitação`
-            : `${orders} solicitações`,
+            ? `${orders} solicitação (要求)`
+            : `${orders} solicitações (要求)`,
       icon: Package,
       arrow: ArrowDown
     },
     {
       href: "/admin/messages",
-      title: "Mensagens",
-      count: unreadMessages === 0 ? "Sem Mensagens" : "por ler",
+      title: "Mensagens (留言)",
+      count:
+        unreadMessages === 0 ? "Sem Mensagens (没有消息)" : "por ler (阅读)",
       icon: Mail,
       arrow: ArrowUpRight
     },
     {
       href: "/admin/products",
-      title: "Produtos",
+      title: "Produtos (产品)",
       count:
         products === 0
-          ? "Sem Produtos"
+          ? "Sem Produtos (没有产品)"
           : products === 1
-            ? `${products} produto`
-            : `${products} produtos`,
+            ? `${products} produto (产品)`
+            : `${products} produtos (产品)`,
       icon: Package,
       arrow: ArrowUpRight
     },
     {
       href: "/admin/services",
-      title: "Serviços",
+      title: "Serviços (服务请求)",
       count:
         services === 0
-          ? "Sem serviços"
+          ? "Sem serviços (无服务)"
           : services === 1
-            ? `${services} serviço`
-            : `${services} serviços`,
+            ? `${services} serviço (服务)`
+            : `${services} serviços (服务)`,
       icon: Wrench,
       arrow: ArrowUpRight
     }
@@ -85,13 +89,14 @@ export default async function AdminPage() {
     <main className="px-4 pb-12 sm:px-8">
       <div className="mx-auto w-full lg:w-5xl 2xl:w-7xl">
         <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-500">
-          Administração
+          Administração (行政)
         </p>
         <h1 className="mt-2 mb-4 text-2xl font-semibold text-slate-900">
-          Dashboard
+          Dashboard (仪表板)
         </h1>
         <p className="mt-2 text-sm text-slate-500">
-          Gerencie o catálogo da SMBB.
+          Gerencie o catálogo da SMBB. <br />
+          (管理 SMBB 目录。)
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {sections.map(({ href, title, count, icon: Icon, arrow: Arrow }) => (
@@ -113,7 +118,7 @@ export default async function AdminPage() {
             </Link>
           ))}
         </div>
-        
+
         <div id="orders">
           <OrdersTable />
         </div>
