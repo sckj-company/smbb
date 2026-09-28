@@ -11,7 +11,8 @@ export const KZ_POR_KILO = 2500;
 export default function useSubmitService({ service }: ServiceProps) {
   const [client, setClient] = useState("");
   const [phone, setPhone] = useState("");
-  const [kilos, setKilos] = useState<string>("");
+  const [kilos, setKilos] = useState("");
+  const [component, setComponent] = useState("");
 
   const totalKz =
     !isNaN(Number(kilos)) && Number(kilos) > 0
@@ -35,6 +36,9 @@ export default function useSubmitService({ service }: ServiceProps) {
       "",
       "> Quero contratar um serviço:",
       `Serviço: *${service.name}*`,
+      ...(service.requiresComponent
+        ? [`Componente a substituir: *${component}*`]
+        : []),
       `Quilos do Extintor: *${kilos} KG*`,
       `Total da Manut.: *${formatKz(totalKz)}*`
     ].join("\n");
@@ -54,7 +58,10 @@ export default function useSubmitService({ service }: ServiceProps) {
             {
               name: service.name,
               quantity: 1,
-              unitPrice: service.price
+              unitPrice: service.price,
+              ...(service.requiresComponent && {
+                component
+              })
             }
           ]
         })
@@ -69,6 +76,7 @@ export default function useSubmitService({ service }: ServiceProps) {
       setClient("");
       setPhone("");
       setKilos("");
+      setComponent("");
     } catch (error) {
       console.error("Erro ao enviar pedido:", error);
     }
@@ -81,6 +89,8 @@ export default function useSubmitService({ service }: ServiceProps) {
     setPhone,
     kilos,
     setKilos,
+    component,
+    setComponent,
     totalKz,
     submitService
   };
