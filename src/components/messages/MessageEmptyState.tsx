@@ -7,7 +7,8 @@ export default function MessageEmptyState() {
         <MailOpen aria-hidden="true" className="h-5 w-5" />
       </span>
       <p className="text-sm text-slate-500">
-        Selecione uma mensagem para a ler.
+        Selecione uma mensagem para a ler. <br />
+        (选择一条消息即可阅读)
       </p>
     </div>
   );
