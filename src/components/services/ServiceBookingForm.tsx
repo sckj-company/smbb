@@ -11,6 +11,7 @@ export type ServiceProps = {
   service: {
     name: string;
     price: number;
+    requiresComponent?: boolean;
   };
 };
 
@@ -24,6 +25,8 @@ export default function ServiceBookingForm({ service }: ServiceProps) {
     setPhone,
     kilos,
     setKilos,
+    component,
+    setComponent,
     totalKz,
     submitService
   } = useSubmitService({
@@ -36,10 +39,10 @@ export default function ServiceBookingForm({ service }: ServiceProps) {
   return (
     <form
       onSubmit={submitService}
-      className="mt-5 space-y-7 border-t border-slate-200 pt-4"
+      className="mt-5 flex flex-1 flex-col space-y-7 border-t border-slate-200 pt-4"
     >
       <p className="text-sm font-semibold text-slate-800">
-        {t("services.bookService")}
+        {t("services.clientInfo")}
       </p>
 
       <label className="grid gap-1 text-xs font-medium text-slate-600">
@@ -74,57 +77,63 @@ export default function ServiceBookingForm({ service }: ServiceProps) {
           title={t("services.phoneValidation")}
           value={phone}
           onChange={(event) => setPhone(event.target.value.replace(/\D/g, ""))}
-          placeholder={t("services.phonePlaceholder")}
+          placeholder="900 000 000"
           className={inputClass}
         />
       </label>
 
-      <div className="flex items-center justify-between border-t border-slate-200 pt-4">
-        <div className="flex gap-1.5 text-sm font-medium text-slate-700">
-          <span className="text-sm font-semibold text-slate-800">
-            {t("services.startingAt")}
-          </span>
-
-          <span className="font-semibold text-green-700">
-            {formatKz(service.price)}
-          </span>
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between gap-2">
+      {service.requiresComponent && (
         <label className="grid gap-1 text-xs font-medium text-slate-600">
-          {t("services.kilos")}
-
-          <input
-            type="number"
-            required
-            min={1}
-            step="any"
-            value={kilos}
-            onChange={(event) => setKilos(event.target.value)}
-            placeholder={t("services.kilosPlaceholder")}
-            className={inputClass}
-          />
-        </label>
-
-        <ArrowRight className="mt-5 h-4 w-4 text-blue-700" />
-
-        <label className="grid gap-1 text-xs font-medium text-slate-600">
-          {t("services.totalValue")}
+          {t("services.componentToReplace")}
 
           <input
             type="text"
-            disabled
-            value={totalKz > 0 ? formatKz(totalKz) : ""}
-            placeholder={t("services.totalValuePlaceholder")}
-            className={`${inputClass} cursor-not-allowed bg-slate-100 text-slate-500`}
+            required
+            minLength={2}
+            value={component}
+            onChange={(event) => setComponent(event.target.value)}
+            placeholder={t("services.componentToReplacePlaceholder")}
+            className={inputClass}
           />
         </label>
-      </div>
+      )}
+
+      {!service.requiresComponent && (
+        <div className="flex items-center justify-between gap-2">
+          <label className="grid gap-1 text-xs font-medium text-slate-600">
+            {t("services.kilos")}
+
+            <input
+              type="number"
+              required
+              min={1}
+              step="any"
+              value={kilos}
+              onChange={(event) => setKilos(event.target.value)}
+              placeholder={t("services.kilosPlaceholder")}
+              className={inputClass}
+            />
+          </label>
+
+          <ArrowRight className="mt-5 h-4 w-4 text-blue-700" />
+
+          <label className="grid gap-1 text-xs font-medium text-slate-600">
+            {t("services.totalValue")}
+
+            <input
+              type="text"
+              disabled
+              value={totalKz > 0 ? formatKz(totalKz) : ""}
+              placeholder={t("services.totalValuePlaceholder")}
+              className={`${inputClass} cursor-not-allowed bg-slate-100 text-slate-500`}
+            />
+          </label>
+        </div>
+      )}
 
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-600"
+        className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-full bg-blue-500 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-600"
       >
         <RiWhatsappLine className="h-4 w-4" />
         {t("services.requestOnWhatsApp")}
