@@ -55,10 +55,12 @@ export async function POST(request: Request) {
   const parsed = catalogSchema.safeParse(await request.json());
   if (!parsed.success)
     return NextResponse.json({ error: "Dados inválidos" }, { status: 400 });
+
   const data = parsed.data;
   const baseSlug = slugify(data.name);
   const slug = `${baseSlug}-${Date.now().toString(36)}`;
   const product = await prisma.product.create({ data: { ...data, slug } });
+  
   revalidateTag("products", "max");
   return NextResponse.json(product, { status: 201 });
 }
