@@ -11,15 +11,16 @@ export default function AdminMessagesPage() {
           className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-blue-600"
         >
           <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-          Dashboard
+          Dashboard (仪表板)
         </Link>
         <h1 className="mt-4 mb-1 text-2xl font-semibold text-slate-900">
-          Mensagens
+          Mensagens (消息)
         </h1>
-        <p className="mb-12 text-sm text-slate-500">
-          Mensagens enviadas pelo formulário de contacto da loja.
+        <p className="mb-12 text-sm text-slate-500 leading-">
+          Mensagens enviadas pelo formulário de contacto da loja. <br />
+          (通过商店联系表格发送的消息)
         </p>
-        
+
         <MessagesInbox />
       </div>
     </main>
