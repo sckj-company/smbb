@@ -1,15 +1,11 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import ServiceBookingForm from "./services/ServiceBookingForm";
 import useCatalogLanguage from "@/hooks/useCatalogLanguage";
 import { serviceDataSection } from "@/data/service";
-import { useTranslation } from "react-i18next";
-import { formatKz } from "@/utils/formatKz";
 
 export default function Service() {
-  const { t } = useTranslation();
   const { localize } = useCatalogLanguage();
   const service = serviceDataSection;
 
