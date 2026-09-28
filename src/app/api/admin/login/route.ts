@@ -10,12 +10,14 @@ export async function POST(request: Request) {
   const email =
     typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   const password = typeof body.password === "string" ? body.password : "";
+
   if (email !== ADMIN_EMAIL.toLowerCase() || password !== ADMIN_PASSWORD) {
     return NextResponse.json(
       { error: "Email ou palavra-passe inválidos." },
       { status: 401 }
     );
   }
+  
   await createAdminSession();
   return NextResponse.json({ ok: true });
 }
