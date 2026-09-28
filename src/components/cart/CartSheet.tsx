@@ -274,7 +274,7 @@ export default function CartSheet({ open, onClose }: Props) {
                 handlePhoneChange(event.target.value.replace(/\D/g, ""))
               }
               onBlur={() => setPhoneError(validatePhone(phone))}
-              placeholder={t("cart.phonePlaceholder")}
+              placeholder="900 000 000"
               aria-invalid={Boolean(phoneError)}
               className={`rounded-lg border bg-white px-3 py-2 text-sm font-normal text-slate-700 outline-none focus:border-blue-500 ${
                 phoneError ? "border-red-400" : "border-slate-200"
