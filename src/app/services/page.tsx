@@ -46,7 +46,9 @@ export default function ServicesPage() {
               <h1 className="mt-2 text-2xl font-semibold text-slate-900">
                 {t("pageTitle.services")}
               </h1>
-              <p className="text-gray-500 text-sm">{t("services.description")}</p>
+              <p className="text-gray-500 text-sm">
+                {t("services.description")}
+              </p>
             </div>
           </div>
         </div>
@@ -75,7 +77,7 @@ export default function ServicesPage() {
                     alt={serviceName}
                     width={200}
                     height={200}
-                    className="h-48 md:h-60 w-full rounded-sm object-cover object-top"
+                    className="h-48 md:h-60 w-full rounded-sm object-cover object-bottom"
                   />
                   <div className="px-5 pb-4 pt-4">
                     <h3 className="mb-2 text-xl font-semibold text-blue-900">
@@ -95,8 +97,14 @@ export default function ServicesPage() {
                       </div>
                       <ArrowUpRight className="h-4 w-4 text-blue-700" />
                     </div>
+
                     <ServiceBookingForm
-                      service={{ ...service, name: serviceName }}
+                      service={{
+                        ...service,
+                        name: serviceName,
+                        requiresComponent:
+                          service.name === "Manutenção de Extintores"
+                      }}
                     />
                   </div>
                 </article>
