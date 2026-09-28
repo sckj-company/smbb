@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/lib/data/products";
-import CatalogDetail from "./CatalogDetail";
+import CatalogDetail from "@/components/admin/CatalogDetail";
 
 export default async function CatalogDetailPage({
   params
