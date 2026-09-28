@@ -20,6 +20,7 @@ export function CatalogDetailContent({ item }: { item: Product }) {
   const productName = localize(item.name, item.nameZh);
   const productDescription = localize(item.description, item.descriptionZh);
   const isInCart = items.some((cartItem) => cartItem.id === item.id);
+
   function buyNow() {
     addItem(item, quantity);
     window.open(
@@ -33,10 +34,14 @@ export function CatalogDetailContent({ item }: { item: Product }) {
       "noopener,noreferrer"
     );
   }
+
   return (
     <div className="grid gap-8 px-5 sm:p-8 md:grid-cols-2 md:gap-12">
       <div className="space-y-4">
-        <Link href="/products" className="flex items-center gap-2 text-sm text-blue-500 hover:text-blue-600">
+        <Link
+          href="/products"
+          className="flex items-center gap-2 text-sm text-blue-500 hover:text-blue-600"
+        >
           <ArrowLeft className="w-4 h-4" /> Voltar
         </Link>
 
@@ -91,7 +96,7 @@ export function CatalogDetailContent({ item }: { item: Product }) {
               <ShoppingCart className="h-4 w-4" />
               {isInCart ? t("detail.addedToCart") : t("detail.addToCart")}
             </button>
-            
+
             <QrCodeDialog
               href={`/${item.id}`}
               label={`Mostrar QR Code de ${productName}`}
@@ -112,10 +117,4 @@ export function CatalogDetailContent({ item }: { item: Product }) {
   );
 }
 
-export default function CatalogDetail({ item }: { item: Product }) {
-  return (
-    <main className="mx-auto max-w-7xl bg-white px-4 pb-12 pt-28 sm:px-6 md:pt-35">
-      <CatalogDetailContent item={item} />
-    </main>
-  );
-}
+
