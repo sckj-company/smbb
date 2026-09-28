@@ -16,9 +16,9 @@ import MessageEmptyState from "./MessageEmptyState";
 import ConfirmDeleteDialog from "../orders/ConfirmDeleteDialog";
 
 const EMPTY_LABEL: Record<MessageFilter, string> = {
-  all: "Ainda não há mensagens.",
-  unread: "Não há mensagens por ler.",
-  archived: "Não há mensagens arquivadas."
+  all: "Ainda não há mensagens. (目前还没有消息)",
+  unread: "Não há mensagens por ler. (没有未读邮件)",
+  archived: "Não há mensagens arquivadas. (没有已存档的消息)"
 };
 
 export default function MessagesInbox() {
@@ -78,12 +78,17 @@ export default function MessagesInbox() {
 
         <div className="min-h-0 flex-1 overflow-y-auto">
           {error ? (
-            <p role="alert" className="px-4 py-10 text-center text-sm text-red-600">
-              Não foi possível carregar as mensagens.
+            <p
+              role="alert"
+              className="px-4 py-10 text-center text-sm text-red-600"
+            >
+              Não foi possível carregar as mensagens. <br />
+              (消息无法加载。)
             </p>
           ) : isLoading ? (
             <p className="px-4 py-10 text-center text-sm text-slate-500">
-              A carregar mensagens...
+              A carregar mensagens... <br />
+              (正在加载消息...)
             </p>
           ) : (
             <MessageList
@@ -113,7 +118,7 @@ export default function MessagesInbox() {
       <ConfirmDeleteDialog
         open={deletion.isOpen}
         title={`Apagar a mensagem de ${deletion.item?.name ?? ""}?`}
-        description="Esta ação é permanente. A mensagem deixa de existir na base de dados e não pode ser recuperada."
+        description="Esta ação é permanente. A mensagem deixa de existir na base de dados e não pode ser recuperada. (此操作不可逆。邮件已从数据库中删除，无法恢复。)"
         confirmLabel="Apagar mensagem"
         isDeleting={deletion.isDeleting}
         error={deletion.error}
