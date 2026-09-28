@@ -11,6 +11,8 @@ export async function POST() {
     where: { read: false },
     data: { read: true }
   });
+
   revalidateTag("messages", "max");
+  
   return new NextResponse(null, { status: 204 });
 }
