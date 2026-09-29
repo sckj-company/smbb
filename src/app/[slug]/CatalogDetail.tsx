@@ -9,7 +9,6 @@ import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp";
 import Image from "next/image";
 import useCatalogLanguage from "@/hooks/useCatalogLanguage";
 import { useTranslation } from "react-i18next";
-import QrCodeDialog from "@/components/QrCodeDialog";
 import Link from "next/link";
 
 export function CatalogDetailContent({ item }: { item: Product }) {
