@@ -9,7 +9,7 @@ export default function CTA() {
   const { t } = useTranslation()
 
   return (
-    <section className="mx-4 sm:mx-8 mt-55 -mb-30 lg:w-5xl 2xl:w-7xl lg:mx-auto bg-blue-500 rounded-3xl p-8 sm:p-12 2xl:p-20 shadow-[0_20px_30px_rgba(15,23,42,0.08)] flex sm:flex sm:items-center sm:justify-between">
+    <section className="mx-6 sm:mx-8 mt-55 -mb-30 lg:w-5xl 2xl:w-7xl lg:mx-auto bg-blue-500 rounded-3xl p-8 sm:p-12 2xl:p-20 shadow-[0_20px_30px_rgba(15,23,42,0.08)] flex sm:flex sm:items-center sm:justify-between">
       <div className="grid sm:max-w-[40%]">
         <Logo className="mb-8" variant="light" />
         <div className="max-w-2xl mx-auto">
