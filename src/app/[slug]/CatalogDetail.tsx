@@ -36,7 +36,7 @@ export function CatalogDetailContent({ item }: { item: Product }) {
   }
 
   return (
-    <div className="grid gap-8 px-5 sm:p-8 md:grid-cols-2 md:gap-12">
+    <div className="w-full grid gap-8 px-2 sm:p-8 md:grid-cols-2 md:gap-12">
       <div className="space-y-4">
         <Link
           href="/products"
@@ -80,7 +80,7 @@ export function CatalogDetailContent({ item }: { item: Product }) {
 
         <QuantitySelector value={quantity} onChange={setQuantity} />
 
-        <div className="mt-8 grid grid-cols-2 gap-4">
+        <div className="mt-8 grid grid-cols-2 gap-2">
           <button
             onClick={buyNow}
             className="flex items-center justify-center gap-2 rounded-full transition-colors bg-blue-500 hover:bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white"
@@ -88,26 +88,18 @@ export function CatalogDetailContent({ item }: { item: Product }) {
             <BanknoteArrowUp className="h-4 w-4" />
             {t("detail.buyNow")}
           </button>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => addItem(item, quantity)}
-              className={`flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors ${isInCart ? "border-slate-300 bg-slate-200 text-slate-700 hover:bg-slate-300" : "border-slate-200 text-slate-700 hover:bg-slate-50"}`}
-            >
-              <ShoppingCart className="h-4 w-4" />
-              {isInCart ? t("detail.addedToCart") : t("detail.addToCart")}
-            </button>
-
-            <QrCodeDialog
-              href={`/${item.id}`}
-              label={`Mostrar QR Code de ${productName}`}
-              className="border border-slate-200"
-            />
-          </div>
+          <button
+            onClick={() => addItem(item, quantity)}
+            className={`flex min-w-0 flex-1 items-center justify-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors ${isInCart ? "border-slate-300 bg-slate-200 text-slate-700 hover:bg-slate-300" : "border-slate-200 text-slate-700 hover:bg-slate-50"}`}
+          >
+            <ShoppingCart className="h-4 w-4" />
+            {isInCart ? t("detail.addedToCart") : t("detail.addToCart")}
+          </button>
         </div>
 
-        <div className="mt-6 flex items-center gap-3 text-sm bg-blue-100 border border-blue-200 py-2 px-2.5 2xl:py-2.5 2xl:px-3 rounded-4xl 2xl:rounded-md">
-          <div className="w-6 h-6 2xl:w-8 2xl:h-8 flex items-center justify-center rounded-full bg-blue-300">
-            <Star className="h-3 w-3 2xl:h-4 2xl:w-4 text-blue-800" />
+        <div className="mt-6 flex items-center gap-3 text-sm bg-slate-100 border border-slate-200 py-2 px-2.5 2xl:py-2.5 2xl:px-3 rounded-4xl 2xl:rounded-md">
+          <div className="w-6 h-6 2xl:w-8 2xl:h-8 flex items-center justify-center rounded-full bg-slate-300">
+            <Star className="h-3 w-3 2xl:h-4 2xl:w-4 text-slate-800" />
           </div>
 
           <span className="text-slate-500">{t("detail.suggestion")}</span>
@@ -116,5 +108,3 @@ export function CatalogDetailContent({ item }: { item: Product }) {
     </div>
   );
 }
-
-
