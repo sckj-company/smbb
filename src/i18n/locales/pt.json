@@ -53,8 +53,9 @@
     "description": "Extintores, suportes e sinalização contra incêndio."
   },
   "extinguisher": {
-    "chargeName": "Carga de pó",
-    "charge": "Carregar Extintor"
+    "chargeName": "Troca de pó",
+    "charge": "Trocar Pó",
+    "chargeLabel": "Quilos de pó"
   },
   "services": {
     "description": "Manutenção e segurança contra incêndio, com agendamento online.",
@@ -74,6 +75,7 @@
   "filters": {
     "all": "Todos",
     "extinguishers": "Extintores",
+    "refill": "Troca de Extintores",
     "supports": "Suportes",
     "accessories": "Acessórios",
     "plates": "Sinalização",

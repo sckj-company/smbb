@@ -1,7 +1,8 @@
-import { Cog, FireExtinguisher, Flame, Signpost, Wrench } from "lucide-react";
+import { Cog, FireExtinguisher, Flame, RefreshCw, Signpost, Wrench } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import ProductCard from "@/components/products/ProductCard";
+import ExtinguisherRefillCard from "@/components/products/ExtinguisherRefillCard";
 
 import { groupTranslationKeys } from "@/data/productGroups";
 import type { ProductGroup } from "@/data/productGroups";
@@ -10,6 +11,7 @@ import type { Product } from "@/interface/products";
 
 const groupIcons = {
   Extintor: FireExtinguisher,
+  "Troca de Extintores": RefreshCw,
   Suporte: Wrench,
   Acessório: Cog,
   "Placa de Sinalização": Signpost
@@ -46,13 +48,13 @@ export default function ProductGroupSection({
       </h2>
 
       <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5 2xl:grid-cols-4">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            isExtinguisher={groupType === "Extintor"}
-          />
-        ))}
+        {products.map((product) =>
+          groupType === "Troca de Extintores" ? (
+            <ExtinguisherRefillCard key={product.id} product={product} />
+          ) : (
+            <ProductCard key={product.id} product={product} />
+          )
+        )}
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { Cog, FireExtinguisher, Flame, Signpost, Wrench } from "lucide-react";
+import { Cog, FireExtinguisher, Flame, RefreshCw, Signpost, Wrench } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { groupTranslationKeys, productGroups } from "@/data/productGroups";
@@ -6,6 +6,7 @@ import type { ProductGroup } from "@/data/productGroups";
 
 const groupIcons = {
   Extintor: FireExtinguisher,
+  "Troca de Extintores": RefreshCw,
   Suporte: Wrench,
   Acessório: Cog,
   "Placa de Sinalização": Signpost

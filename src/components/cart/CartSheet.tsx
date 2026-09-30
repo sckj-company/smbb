@@ -1,9 +1,8 @@
 "use client";
 
 import { Download, ShoppingCart, Trash2 } from "lucide-react";
-import useCart from "@/hooks/useCart";
+import useCart, { isChargeItem } from "@/hooks/useCart";
 import QuantitySelector from "@/components/products/QuantitySelector";
-import { isChargeItem } from "@/components/products/ExtinguisherChargeControl";
 import { createProductOrderMessage, createWhatsAppLink } from "@/lib/whatsapp";
 import {
   Sheet,

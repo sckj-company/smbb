@@ -25,14 +25,32 @@ export default function Home() {
   const groupedProducts = useMemo(
     () =>
       productGroups
-        .map((groupType) => ({
-          groupType,
-          products: visibleProducts.filter(
-            (product) => product.groupType === groupType
-          )
-        }))
+        .map((groupType) => {
+          if (groupType === "Troca de Extintores") {
+            if (selectedGroup && selectedGroup !== "Troca de Extintores") {
+              return { groupType, products: [] };
+            }
+            return {
+              groupType,
+              products: visibleProducts.filter(
+                (product) => product.groupType === "Extintor"
+              )
+            };
+          }
+
+          if (selectedGroup && selectedGroup !== groupType) {
+            return { groupType, products: [] };
+          }
+
+          return {
+            groupType,
+            products: visibleProducts.filter(
+              (product) => product.groupType === groupType
+            )
+          };
+        })
         .filter(({ products }) => products.length > 0),
-    [visibleProducts]
+    [visibleProducts, selectedGroup]
   );
 
   const { activeGroup, setActiveGroup, containerRef, registerSection } =

@@ -16,12 +16,12 @@ import { groupTranslationKeys } from "@/data/productGroups";
 
 interface ProductQuickViewProps {
   product: Product;
-  isCharging: boolean;
+  isCharging?: boolean;
 }
 
 export default function ProductQuickView({
   product,
-  isCharging
+  isCharging = false
 }: ProductQuickViewProps) {
   const { t } = useTranslation();
   const { localize } = useCatalogLanguage();

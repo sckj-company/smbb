@@ -2,13 +2,12 @@
 
 import { useTranslation } from "react-i18next";
 import { groupTranslationKeys, productGroups } from "@/data/productGroups";
+import type { ProductGroup } from "@/data/productGroups";
 
 interface SelectGroupProps {
-  selectedGroup: string | null;
+  selectedGroup: ProductGroup | null;
   language?: string;
-  setSelectedGroup: (
-    groupType: "Extintor" | "Suporte" | "Acessório" | "Placa de Sinalização" | null
-  ) => void;
+  setSelectedGroup: (groupType: ProductGroup | null) => void;
 }
 
 export default function SelectGroup({
