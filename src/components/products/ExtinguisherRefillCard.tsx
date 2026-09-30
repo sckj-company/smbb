@@ -70,7 +70,7 @@ export default function ExtinguisherRefillCard({
               {product.brand}
             </span>
             <span className="rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-[8px] uppercase font-semibold text-blue-600">
-              {t("filters.refill", "Troca de Extintores")}
+              {t("filters.refill", "Troca de Pó")}
             </span>
           </div>
 

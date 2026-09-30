@@ -26,8 +26,8 @@ export default function Home() {
     () =>
       productGroups
         .map((groupType) => {
-          if (groupType === "Troca de Extintores") {
-            if (selectedGroup && selectedGroup !== "Troca de Extintores") {
+          if (groupType === "Troca de Pó") {
+            if (selectedGroup && selectedGroup !== "Troca de Pó") {
               return { groupType, products: [] };
             }
             return {

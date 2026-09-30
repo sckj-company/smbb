@@ -6,7 +6,7 @@ import type { ProductGroup } from "@/data/productGroups";
 
 const groupIcons = {
   Extintor: FireExtinguisher,
-  "Troca de Extintores": RefreshCw,
+  "Troca de Pó": RefreshCw,
   Suporte: Wrench,
   Acessório: Cog,
   "Placa de Sinalização": Signpost

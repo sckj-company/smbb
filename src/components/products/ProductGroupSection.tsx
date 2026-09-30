@@ -11,7 +11,7 @@ import type { Product } from "@/interface/products";
 
 const groupIcons = {
   Extintor: FireExtinguisher,
-  "Troca de Extintores": RefreshCw,
+  "Troca de Pó": RefreshCw,
   Suporte: Wrench,
   Acessório: Cog,
   "Placa de Sinalização": Signpost
@@ -49,7 +49,7 @@ export default function ProductGroupSection({
 
       <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5 2xl:grid-cols-4">
         {products.map((product) =>
-          groupType === "Troca de Extintores" ? (
+          groupType === "Troca de Pó" ? (
             <ExtinguisherRefillCard key={product.id} product={product} />
           ) : (
             <ProductCard key={product.id} product={product} />
