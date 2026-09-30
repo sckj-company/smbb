@@ -65,12 +65,9 @@ export default function ExtinguisherRefillCard({
         </div>
 
         <div className="space-y-3 px-2 pt-4 pb-2.5">
-          <div className="flex items-center justify-between gap-3">
+          <div>
             <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-400">
               {product.brand}
-            </span>
-            <span className="rounded-full border border-blue-200 bg-blue-50 px-2 py-0.5 text-[8px] uppercase font-semibold text-blue-600">
-              {t("filters.refill", "Troca de Pó")}
             </span>
           </div>
 
@@ -123,12 +120,9 @@ export default function ExtinguisherRefillCard({
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <div className="flex items-center justify-between gap-2">
+          <div>
             <span className="text-[10px] font-medium uppercase tracking-wider text-slate-400">
               {product.brand}
-            </span>
-            <span className="rounded-full border border-blue-200 bg-blue-50 px-1.5 py-0.5 text-[8px] font-semibold text-blue-600">
-              {t("filters.refill", "Troca")}
             </span>
           </div>
 
