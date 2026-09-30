@@ -37,11 +37,11 @@ export default function useSelectGroup({ searchQuery }: UseSelectGroupProps) {
         const matchesGroup =
           !selectedGroup ||
           product.groupType === selectedGroup ||
-          (selectedGroup === "Troca de Pó" &&
+          (selectedGroup === "Manutenção" &&
             product.groupType === "Extintor");
 
         const searchableText =
-          `${product.name} ${product.brand} ${product.groupType} ${product.groupType === "Extintor" ? "troca de po recarga carga" : ""}`.toLocaleLowerCase();
+          `${product.name} ${product.brand} ${product.groupType} ${product.groupType === "Extintor" ? "manutencao troca de po recarga carga" : ""}`.toLocaleLowerCase();
 
         return matchesGroup && searchableText.includes(normalizedSearchQuery);
       }),
