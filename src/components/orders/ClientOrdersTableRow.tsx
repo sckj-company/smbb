@@ -1,8 +1,9 @@
 "use client";
 
-import type { KeyboardEvent, MouseEvent } from "react";
+import type { KeyboardEvent } from "react";
+import { useTranslation } from "react-i18next";
 import { formatKz } from "@/utils/formatKz";
-import { Order, OrderStatus } from "@/interface/order";
+import { Order } from "@/interface/order";
 import {
   formatOrderCode,
   formatOrderItems,
@@ -10,27 +11,17 @@ import {
   NOT_INFORMED
 } from "@/utils/orderFormat";
 import OrderTypeIcon from "./OrderTypeIcon";
-import DeleteOrderButton from "./DeleteOrderButton";
 import { formatTimestampDate } from "@/utils/formatDate";
-import { STATUS_LABEL, STATUS_TONE } from "@/constants/order";
+import { STATUS_TONE } from "@/constants/order";
 import { cn } from "@/lib/utils";
 
 type Props = {
   order: Order;
   onView: (order: Order) => void;
-  onDelete: (order: Order) => void;
-  onStatusChange: (id: string, status: OrderStatus) => void;
 };
 
-function stopPropagation(event: MouseEvent) {
-  event.stopPropagation();
-}
-
-export default function ClientOrdersTableRow({
-  order,
-  onView,
-  onDelete
-}: Props) {
+export default function ClientOrdersTableRow({ order, onView }: Props) {
+  const { t } = useTranslation();
   const code = formatOrderCode(order.id);
 
   function handleKeyDown(event: KeyboardEvent<HTMLTableRowElement>) {
@@ -40,8 +31,6 @@ export default function ClientOrdersTableRow({
       onView(order);
     }
   }
-
-  console.log(order.status);
 
   return (
     <tr
@@ -76,19 +65,12 @@ export default function ClientOrdersTableRow({
       <td className="px-5 py-4">
         <span
           className={cn(
-            "w-32 rounded-lg border px-3 py-1.5 text-xs font-semibold capitalize",
+            "inline-flex min-w-16 items-center justify-center whitespace-nowrap rounded-lg border px-3 py-1.5 text-xs font-semibold capitalize",
             STATUS_TONE[order.status]
           )}
         >
-          {STATUS_LABEL[order.status]}
+          {t(`orders.status.${order.status}`)}
         </span>
-      </td>
-      <td className="px-5 py-4 text-right" onClick={stopPropagation}>
-        <DeleteOrderButton
-          orderCode={code}
-          onClick={() => onDelete(order)}
-          status={order.status}
-        />
       </td>
     </tr>
   );
