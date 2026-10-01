@@ -52,7 +52,7 @@ export default function OrdersPage() {
             <input
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
-              placeholder="923456789"
+              placeholder={t("orders.searchPlaceholder")}
               aria-label="Pesquisar por telefone"
               inputMode="tel"
               maxLength={9}
