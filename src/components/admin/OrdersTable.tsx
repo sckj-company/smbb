@@ -39,7 +39,7 @@ export default function OrdersTable() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-175 text-left text-sm">
+        <table className="w-max min-w-full whitespace-nowrap text-left text-sm">
           <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-400">
             <tr>
               {TABLE_COLUMNS.map((column) => (
