@@ -251,9 +251,17 @@
   },
   "orders": {
     "description": "Insira o seu número de telefone para consultar o estado dos seus pedidos.",
+    "searchPlaceholder": "Telefone para consulta",
+    "status": {
+      "pending": "Pendente",
+      "processing": "Em análise",
+      "completed": "Concluído",
+      "cancelled": "Cancelado"
+    },
     "table": {
       "title": "Pedidos",
       "description": "Solicitações enviadas à loja SMBB.",
+      "searchPrompt": "Digite seu telefone para consultar seus pedidos.",
       "status": {
         "all": "Todos",
         "pending": "Pendentes",
