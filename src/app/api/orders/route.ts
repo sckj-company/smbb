@@ -39,3 +39,39 @@ export async function POST(request: Request) {
 
   return NextResponse.json(created, { status: 201 });
 }
+
+export async function GET(request: Request) {
+  const phone = new URL(request.url).searchParams
+    .get("phone")
+    ?.replace(/\D/g, "");
+  if (!phone || !/^9\d{8}$/.test(phone)) {
+    return NextResponse.json({ error: "Telefone inválido" }, { status: 400 });
+  }
+
+  try {
+    const orders = await prisma.order.findMany({
+      where: { phone },
+      select: {
+        id: true,
+        type: true,
+        channel: true,
+        status: true,
+        total: true,
+        phone: true,
+        createdAt: true,
+        items: { select: { name: true, quantity: true } }
+      },
+      orderBy: { createdAt: "desc" }
+    });
+
+    return NextResponse.json(orders, {
+      headers: { "Cache-Control": "private, no-store" }
+    });
+  } catch (error) {
+    console.error("Não foi possível consultar os pedidos:", error);
+    return NextResponse.json(
+      { error: "Não foi possível consultar os pedidos." },
+      { status: 503, headers: { "Cache-Control": "private, no-store" } }
+    );
+  }
+}
