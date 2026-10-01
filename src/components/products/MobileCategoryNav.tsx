@@ -27,7 +27,7 @@ export default function MobileCategoryNav({
 
   return (
     <aside className="flex w-30 shrink-0 flex-col border-r border-slate-200/80 bg-white/70 backdrop-blur-xl lg:hidden">
-      <div className="flex h-16 shrink-0 items-center border-b border-slate-200/70 bg-white/55 px-3">
+      <div className="flex h-16 shrink-0 items-center border-y border-slate-200/70 bg-white/55 px-3">
         <p className="truncate text-sm font-semibold text-slate-900">
           {t("pageTitle.categories")}
         </p>
@@ -45,7 +45,7 @@ export default function MobileCategoryNav({
               key={groupType ?? "all"}
               type="button"
               onClick={() => onSelect(groupType)}
-              className={`flex min-h-20 w-full items-center gap-2 border-l-2 px-3 text-left text-xs font-medium transition-colors ${
+              className={`flex min-h-15 w-full items-center gap-2 border-l-2 px-3 text-left text-xs font-medium transition-colors ${
                 isActive
                   ? "border-blue-500 bg-white/85 text-slate-900"
                   : "border-transparent text-slate-500 hover:bg-white/45"
