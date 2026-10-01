@@ -251,9 +251,17 @@
   },
   "orders": {
     "description": "請輸入您的電話號碼以查詢訂單狀態。",
+    "searchPlaceholder": "查询电话",
+    "status": {
+      "pending": "待定",
+      "processing": "审核中",
+      "completed": "已完成",
+      "cancelled": "已取消"
+    },
     "table": {
       "title": "订单",
       "description": "请求发送到SMBB 存储。",
+      "searchPrompt": "请输入电话号码以查询您的订单。",
       "status": {
         "all": "全部",
         "pending": "待办的",
