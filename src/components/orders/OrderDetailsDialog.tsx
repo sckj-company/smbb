@@ -35,7 +35,7 @@ export default function OrderDetailsDialog({ order, open, onClose }: Props) {
 
   return (
     <Dialog open={open} onOpenChange={(next) => !next && onClose()}>
-      <DialogContent className="w-full sm:max-w-md max-h-[85vh] overflow-y-auto">
+      <DialogContent className="w-[90%] sm:max-w-md max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center gap-3">
             <OrderTypeIcon type={order.type} className="h-10 w-10" />
